@@ -1,1 +1,7 @@
-<p>course-list works!</p>
+<div *ngFor="let course of courses">
+    <app-course-item [course]="course"
+                     (onDelete)="delete($event)"></app-course-item>      
+</div>
+<div>
+    <a class="load-more-button" href="#" (click)="loadMore()">Load more</a>
+</div>

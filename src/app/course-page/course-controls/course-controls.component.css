@@ -1,0 +1,17 @@
+#add-button-container {
+    float: right;
+}
+
+.controls-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search-placeholder {
+    position: absolute;
+    left: 74px;
+}
+
+.search-input:focus + .search-placeholder, .search-input:hover + .search-placeholder, .search-placeholder:hover {
+    display: none;    
+}

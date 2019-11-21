@@ -1,0 +1,13 @@
+* {
+    background: lightgray;
+}
+
+.load-more-button {
+    display: inline-block;
+    font-size: 23px;
+    text-transform: uppercase;
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+}
