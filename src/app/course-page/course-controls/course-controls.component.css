@@ -9,7 +9,7 @@
 
 .search-placeholder {
     position: absolute;
-    left: 82px;
+    left: 130px;
     line-height: 48px;
     color: #e1e2ea;
 }
@@ -35,6 +35,10 @@
     font-size: 17px;
 }
 
+#search-button:hover {
+    cursor: pointer;
+}
+
 #search-container {
     font-size: 18px;
 }
@@ -47,5 +51,5 @@
     border: 1px solid lightgrey;
 }
 
-
+ 
 

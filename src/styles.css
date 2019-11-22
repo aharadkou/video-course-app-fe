@@ -14,8 +14,12 @@ html, body {
     margin: 0;
 }
 
-.padding-default {
-    padding-left: 70px;
+.padding-default-left {
+    padding-left: 120px;
+}
+
+.padding-default-right {
+    padding-right: 120px;
 }
 
 .button {
@@ -25,6 +29,10 @@ html, body {
     border: none;
     color: white;
     padding: 6px 14px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
 
 .header-footer-background {
