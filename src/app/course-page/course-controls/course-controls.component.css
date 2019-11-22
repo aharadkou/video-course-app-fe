@@ -9,9 +9,43 @@
 
 .search-placeholder {
     position: absolute;
-    left: 74px;
+    left: 82px;
+    line-height: 48px;
+    color: #e1e2ea;
 }
 
-.search-input:focus + .search-placeholder, .search-input:hover + .search-placeholder, .search-placeholder:hover {
+.search-input:focus + .search-placeholder, 
+.search-input:hover + .search-placeholder,
+.search-input[ng-reflect-model] + .search-placeholder,
+.search-placeholder:hover {
     display: none;    
 }
+
+#course-add-button {
+    padding: 12px 25px;
+}
+
+#search-button {
+    padding: 14px 24px;  
+    color: white; 
+    background-color: #9BC837;
+    border: none;
+    border-radius: 4px;
+    margin-left: 5px;
+    font-size: 17px;
+}
+
+#search-container {
+    font-size: 18px;
+}
+
+.search-input {
+    width: 25%;
+    padding: 14px 18px;  
+    border-radius: 2px;
+    border: none;
+    border: 1px solid lightgrey;
+}
+
+
+

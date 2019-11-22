@@ -4,8 +4,10 @@
 
 .header {
     overflow: hidden;
-    background-color: #2d3138;
-    padding: 10px 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
 }
 
 .header-right {
@@ -14,7 +16,6 @@
 
 .header a {
     float: left;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px;
 }

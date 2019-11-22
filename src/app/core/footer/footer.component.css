@@ -3,11 +3,12 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #2d3138;
     color: lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .footer p {
     text-align: right;
-    margin: 20px;
+    margin-right: 70px;
 }
