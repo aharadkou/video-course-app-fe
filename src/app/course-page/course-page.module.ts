@@ -4,7 +4,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CourseControlsComponent } from './course-controls/course-controls.component';
 import { CourseItemComponent } from './course-item/course-item.component';
 import { FormsModule } from "@angular/forms";
-import { CourseDurationPipe } from '../pipes/course-duration.pipe';
+import { CourseDurationPipe } from './pipes/course-duration.pipe';
 import { CoursePageContainerComponent } from './course-page-container/course-page-container.component';
 import { CoreModule } from '../core/core.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
