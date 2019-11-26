@@ -1,4 +1,4 @@
-#add-button-container {
+.add-button-container {
     float: right;
 }
 
@@ -12,20 +12,18 @@
     left: 130px;
     line-height: 48px;
     color: #e1e2ea;
+    pointer-events: none;
 }
 
-.search-input:focus + .search-placeholder, 
-.search-input:hover + .search-placeholder,
-.search-input[ng-reflect-model] + .search-placeholder,
-.search-placeholder:hover {
-    display: none;    
+.search-input:valid + .search-placeholder {
+    display: none;
 }
 
-#course-add-button {
+.course-add-button {
     padding: 12px 25px;
 }
 
-#search-button {
+.search-button {
     padding: 14px 24px;  
     color: white; 
     background-color: #9BC837;
@@ -35,11 +33,11 @@
     font-size: 17px;
 }
 
-#search-button:hover {
+.search-button:hover {
     cursor: pointer;
 }
 
-#search-container {
+.search-container {
     font-size: 18px;
 }
 
@@ -49,6 +47,7 @@
     border-radius: 2px;
     border: none;
     border: 1px solid lightgrey;
+    position: relative;
 }
 
  

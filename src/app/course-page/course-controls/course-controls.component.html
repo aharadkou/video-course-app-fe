@@ -1,10 +1,10 @@
 <div class="clearfix controls-container">
-    <div id="search-container">
-        <input class="search-input" type="text" [(ngModel)]="searchValue"/>
+    <div class="search-container">
+        <input class="search-input" type="text" [(ngModel)]="searchValue" required/>
         <span class="search-placeholder"><fa-icon [icon]="['fas', 'search']"></fa-icon> Text to search</span>
-        <button (click)="find()" id="search-button">Search</button>
+        <button (click)="find()" class="search-button">Search</button>
     </div>
-    <div id="add-button-container">
-        <button (click)="add()" class="button" id="course-add-button"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add course</button>
+    <div class="add-button-container">
+        <button (click)="add()" class="button course-add-button"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add course</button>
     </div>
 </div>

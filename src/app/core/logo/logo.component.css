@@ -4,11 +4,11 @@
     font-weight: bold;
 }
 
-#logo-icon {
+.logo-icon {
     color:lightgreen;
 }
 
-#title {
+.title {
     font-size: 26px;
     text-transform: uppercase;
     padding-left: 7px;
