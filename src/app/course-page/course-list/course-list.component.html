@@ -1,6 +1,6 @@
 <div *ngFor="let course of courses">
     <app-course-item [course]="course"
-                     (onDelete)="delete($event)"></app-course-item>      
+                     (delete)="delete($event)"></app-course-item>      
 </div>
 <div class="shadow">
     <a class="load-more-button" href="#" (click)="loadMore()">Load more</a>

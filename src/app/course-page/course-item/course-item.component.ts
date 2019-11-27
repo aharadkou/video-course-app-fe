@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Course } from 'src/app/course-page/entities/course/course.model';
+import { Course } from 'src/app/core/entities/course/course.model';
 
 @Component({
   selector: 'app-course-item',
@@ -8,8 +8,8 @@ import { Course } from 'src/app/course-page/entities/course/course.model';
 })
 export class CourseItemComponent implements OnInit {
 
-  @Input() private course: Course;
-  @Output() private onDelete : EventEmitter<number> = new EventEmitter<number>();
+  @Input() course: Course;
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 

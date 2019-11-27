@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from 'src/app/course-page/entities/course/course.model';
-import { courses } from '../entities/courses';
+import { Course } from 'src/app/core/entities/course/course.model';
+import { courses } from '../courses';
 
 @Component({
   selector: 'app-course-list',
@@ -9,7 +9,7 @@ import { courses } from '../entities/courses';
 })
 export class CourseListComponent implements OnInit {
 
-  private courses : Course[];
+  private courses: Course[];
 
   constructor() { }
 
@@ -17,12 +17,12 @@ export class CourseListComponent implements OnInit {
     this.courses = courses;
   }
 
-  private delete(id : number) {
-    this.courses = this.courses.filter((course : Course) => course.id !== id);   
+  private delete(id: number) {
+    this.courses = this.courses.filter((course: Course) => course.id !== id);
   }
 
   loadMore() {
-    console.log("Loaded more courses");
+    console.log('Loaded more courses');
   }
 
 }

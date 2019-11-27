@@ -2,8 +2,8 @@ import { Course } from '../course.model';
 
 export class CourseImpl implements Course {
 
-    id: number; 
-    title : string;
+    id: number;
+    title: string;
     creationDate: Date;
     duration: number;
     description: string;

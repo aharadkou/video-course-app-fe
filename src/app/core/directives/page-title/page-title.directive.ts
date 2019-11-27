@@ -10,7 +10,7 @@ export class PageTitleDirective implements OnInit {
 
   constructor(private titleService: Title) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.titleService.setTitle(this.pageTitle);
   }
 
