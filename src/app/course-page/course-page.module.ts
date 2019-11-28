@@ -6,8 +6,8 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { FormsModule } from '@angular/forms';
 import { CoursePageContainerComponent } from './course-page-container/course-page-container.component';
 import { CoreModule } from '../core/core.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
+import { IconsModule } from '../icons/icons.module';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     CoreModule,
     SharedModule,
-    FontAwesomeModule
+    IconsModule
   ],
   exports: [CourseControlsComponent, CourseListComponent, CoursePageContainerComponent],
 })
