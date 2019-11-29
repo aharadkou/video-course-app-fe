@@ -9,7 +9,7 @@ import { courses } from '../courses';
 })
 export class CourseListComponent implements OnInit {
 
-  private courses: Course[];
+  courses: Course[];
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class CourseListComponent implements OnInit {
     this.courses = courses;
   }
 
-  private delete(id: number) {
+  delete(id: number) {
     this.courses = this.courses.filter((course: Course) => course.id !== id);
   }
 

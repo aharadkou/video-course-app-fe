@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { courses } from '../courses';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -21,7 +22,19 @@ describe('CourseListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('ngOnInit', () => {
+    it('should init courses list', () => {
+      expect(component.courses).toBeTruthy();
+    });
   });
+
+  describe('delete', () => {
+    it('should delete element with passed id', () => {
+      let deletedId: 1;
+      component.delete(deletedId);
+      expect(courses.find((course) => course.id === deletedId)).not.toBeTruthy();
+
+    });
+  });
+  
 });

@@ -5,10 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CourseDurationPipe implements PipeTransform {
 
+  private getTimePart(time: number, title: string): string {
+    return time ? time + title : '';
+  }
+
   transform(value: number): string {
     const minutesInHour = 60;
-    const hoursNumber = Math.floor(value / minutesInHour);
-    return (hoursNumber ? hoursNumber + 'h ' : '') + (value % minutesInHour) + ' min';
+    const hours = Math.floor(value / minutesInHour);
+    const minutes = Math.floor(value % minutesInHour);
+    return this.getTimePart(hours, 'h ') + this.getTimePart(minutes, ' min');
   }
 
 }
