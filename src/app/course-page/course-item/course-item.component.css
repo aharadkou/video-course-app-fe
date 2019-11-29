@@ -1,0 +1,32 @@
+.course-item {
+    background-color: white;    
+    margin-bottom: 30px;    
+    padding: 30px 20px;
+    border-radius: 7px;
+}
+
+.buttons-container, .title, .date-duration-container, .course-info-container {
+    display: inline-block;
+}
+
+.title {
+    margin: 0;
+}
+
+.course-info-container {
+    width: 80%;
+}
+
+.date-duration-container {
+    float: right;
+    color: lightgrey;
+    font-size: 14px;
+}
+
+.buttons-container {
+    margin-left: 40px;
+}
+
+.date {
+    margin-left: 30px;
+}

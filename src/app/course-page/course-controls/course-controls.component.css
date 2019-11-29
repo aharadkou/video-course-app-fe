@@ -1,0 +1,51 @@
+.add-button-container {
+    float: right;
+}
+
+.controls-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search-placeholder {
+    position: absolute;
+    left: 130px;
+    line-height: 48px;
+    color: #e1e2ea;
+    pointer-events: none;
+}
+
+.search-input:valid + .search-placeholder {
+    display: none;
+}
+
+.course-add-button {
+    padding: 12px 25px;
+}
+
+.search-button {
+    padding: 14px 24px;  
+    color: white; 
+    background-color: #9BC837;
+    border: none;
+    border-radius: 4px;
+    margin-left: 5px;
+    font-size: 17px;
+}
+
+.search-button:hover {
+    cursor: pointer;
+}
+
+.search-container {
+    font-size: 18px;
+}
+
+.search-input {
+    width: 25%;
+    padding: 14px 18px;  
+    border-radius: 2px;
+    border: none;
+    border: 1px solid lightgrey;
+    position: relative;
+}

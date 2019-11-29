@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+html, body {
+    height: 100%;
+    padding: 0px;
+    margin: 0;
+}
+
+.padding-default-left {
+    padding-left: 120px;
+}
+
+.padding-default-right {
+    padding-right: 120px;
+}
+
+.button {
+    background-color: #2cb7de;
+    border-radius: 5px;
+    margin: 5px;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.header-footer-background {
+    background-color: #3f4251;    
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 24px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 24px -14px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 24px -14px rgba(0,0,0,0.75);
+}

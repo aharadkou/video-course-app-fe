@@ -1,0 +1,17 @@
+.logo {
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+}
+
+.logo-icon {
+    color:lightgreen;
+}
+
+.title {
+    font-size: 26px;
+    text-transform: uppercase;
+    padding-left: 7px;
+    position: absolute;
+    top:28px;
+}

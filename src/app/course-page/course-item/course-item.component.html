@@ -1,0 +1,28 @@
+<div class="course-item shadow">
+        <div class="course-info-container">
+                <div>
+                        <h2 class="title">{{course?.title}}</h2>
+                        <div class="date-duration-container">
+                                <span class="duration">
+                                        <fa-icon [icon]="['far', 'clock']"></fa-icon>
+                                        {{course?.duration | courseDuration}}
+                                </span>
+                                <span class="date">
+                                        <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>
+                                        {{course?.creationDate | date: 'd MMM, y'}}
+                                </span>
+                        </div>
+                </div>
+                <p>{{course?.description}}</p>
+        </div>
+        <div class="buttons-container">
+                        <button class="button">
+                                <fa-icon [icon]="['fas', 'pen']"></fa-icon> Edit
+                        </button>
+                        <button class="button" (click)="delete.emit(course.id)">
+                                <fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete
+                        </button>
+        </div>
+</div>
+
+

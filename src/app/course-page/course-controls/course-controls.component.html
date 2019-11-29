@@ -1,1 +1,10 @@
-<p>course-controls works!</p>
+<div class="clearfix controls-container">
+    <div class="search-container">
+        <input class="search-input" type="text" [(ngModel)]="searchValue" required/>
+        <span class="search-placeholder"><fa-icon [icon]="['fas', 'search']"></fa-icon> Text to search</span>
+        <button (click)="find()" class="search-button">Search</button>
+    </div>
+    <div class="add-button-container">
+        <button (click)="add()" class="button course-add-button"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add course</button>
+    </div>
+</div>
