@@ -25,20 +25,20 @@ describe('CourseControlsComponent', () => {
   });
 
   it('should log input value after Search button clicked', fakeAsync(() => {
-    let expectedValue = "texxxt";
-    let searchInputEl = fixture.debugElement.query(By.css('.search-input')).nativeElement;
+    const expectedValue = 'texxxt';
+    const searchInputEl = fixture.debugElement.query(By.css('.search-input')).nativeElement;
     searchInputEl.value = expectedValue;
     searchInputEl.dispatchEvent(new Event('input'));
     tick();
     fixture.detectChanges();
-    let searchButton = fixture.debugElement.query(By.css('.search-button'));
+    const searchButton = fixture.debugElement.query(By.css('.search-button'));
     searchButton.triggerEventHandler('click', null);
     expect(console.log).toHaveBeenCalledWith(expectedValue);
   }));
 
   it('should log message after Course add button clicked', () => {
-    let courseAddButton = fixture.debugElement.query(By.css('.course-add-button'));
-    courseAddButton.triggerEventHandler('click', null);    
+    const courseAddButton = fixture.debugElement.query(By.css('.course-add-button'));
+    courseAddButton.triggerEventHandler('click', null);
     expect(console.log).toHaveBeenCalled();
   });
 });

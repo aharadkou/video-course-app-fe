@@ -9,10 +9,10 @@ import { By } from '@angular/platform-browser';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
-  let titleEl = fixture.debugElement.query(By.css('.title')).nativeElement;
-  let descriptionEl = fixture.debugElement.query(By.css('.description')).nativeElement;
+  const titleEl = fixture.debugElement.query(By.css('.title')).nativeElement;
+  const descriptionEl = fixture.debugElement.query(By.css('.description')).nativeElement;
   expect(titleEl.textContent).toEqual(mockCourse.title);
-  expect(descriptionEl.textContent).toEqual(mockCourse.description);   
+  expect(descriptionEl.textContent).toEqual(mockCourse.description);
 }
 
 @Pipe({
@@ -24,9 +24,9 @@ class TestPipe implements PipeTransform {
 }
 
 
-const mockCourse = new CourseImpl(1, "expTitle", new Date(), 111, "expDescription");
+const mockCourse = new CourseImpl(1, 'expTitle', new Date(), 111, 'expDescription');
 @Component({
-  template:`
+  template: `
     <app-course-item [course]="course" (delete)="delete($event)">
     </app-course-item>`
 })
@@ -61,10 +61,10 @@ describe('CourseItemComponent with host', () => {
   });
 
   it('should raise delete on host', () => {
-    let deleteButton = fixture.debugElement.query(By.css('.delete-button'));
+    const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     deleteButton.triggerEventHandler('click', null);
     expect(testHost.delete).toHaveBeenCalled();
-  });  
+  });
 });
 
 
@@ -88,7 +88,7 @@ describe('CourseItemComponent as stand alone', () => {
   });
 
   it('should display course title and description', () => {
-    testCourseInfo(fixture);  
+    testCourseInfo(fixture);
   });
 
 });

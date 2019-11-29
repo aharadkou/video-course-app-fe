@@ -4,11 +4,11 @@ import { async } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { PageTitleDirective } from './page-title.directive';
 
-const expectedTitle = "expTitle";
+const expectedTitle = 'expTitle';
 @Component({
   template: `<span appPageTitle pageTitle=${expectedTitle}></span>`
 })
-class TestHostComponent{ }
+class TestHostComponent { }
 describe('PageTitleDirective', () => {
 
   beforeEach(async(() => {

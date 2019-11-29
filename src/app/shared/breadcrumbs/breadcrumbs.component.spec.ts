@@ -9,7 +9,7 @@ const expectedText = 'wwwfff';
 @Component({
   template: `<app-breadcrumbs>${expectedText}</app-breadcrumbs>`
 })
-class TestHostComponent{ }
+class TestHostComponent { }
 
 describe('BreadcrumbsComponent', () => {
   let testHost: TestHostComponent;
@@ -29,7 +29,7 @@ describe('BreadcrumbsComponent', () => {
   });
 
   it('should display passed as <ng-content> text', () => {
-    let titleEl = fixture.debugElement.query(By.css('.breadcrumbs-title')).nativeElement;
+    const titleEl = fixture.debugElement.query(By.css('.breadcrumbs-title')).nativeElement;
     expect(titleEl.textContent).toBe(expectedText);
   });
 });
