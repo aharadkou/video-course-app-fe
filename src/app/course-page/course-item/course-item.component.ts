@@ -11,9 +11,20 @@ export class CourseItemComponent implements OnInit {
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
+  courseItemClass;
+  starClass;
+
   constructor() { }
 
   ngOnInit() {
+    this.courseItemClass = {
+      'course-item shadow': true,
+      'course-item-top-rated': this.course.topRated
+    };
+    this.starClass = {
+      'star-icon': true,
+      hidden: !this.course.topRated
+    };
   }
 
 }

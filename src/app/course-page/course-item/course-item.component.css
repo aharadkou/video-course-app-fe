@@ -30,3 +30,23 @@
 .date {
     margin-left: 30px;
 }
+
+.course-item-top-rated {
+    background-color: lightyellow;
+}
+
+.course-item-fresh {
+    border: 1px green solid;
+}
+
+.course-item-upcoming {
+    border: 1px blue solid;
+}
+
+.star-icon {
+    color: orange;
+}
+
+.hidden {
+    display: none;
+}

@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class PageTitleDirective implements OnInit {
 
-  @Input() pageTitle: string;
+  @Input('appPageTitle') pageTitle: string;
 
   constructor(private titleService: Title) { }
 

@@ -24,7 +24,7 @@ class TestPipe implements PipeTransform {
 }
 
 
-const mockCourse = new CourseImpl(1, 'expTitle', new Date(), 111, 'expDescription');
+const mockCourse = new CourseImpl(1, 'expTitle', new Date(), 111, 'expDescription', true);
 @Component({
   template: `
     <app-course-item [course]="course" (delete)="delete($event)">

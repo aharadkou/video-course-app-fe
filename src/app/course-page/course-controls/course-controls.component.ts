@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunicatorService } from 'src/app/core/services/communicator-service';
 
 @Component({
   selector: 'app-course-controls',
@@ -9,7 +10,7 @@ export class CourseControlsComponent implements OnInit {
 
   private searchValue: string;
 
-  constructor() { }
+  constructor(private communicatorService: CommunicatorService) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,8 @@ export class CourseControlsComponent implements OnInit {
 
   private find() {
     console.log(this.searchValue);
+    this.communicatorService.publishData(this.searchValue);
+
   }
 
 }

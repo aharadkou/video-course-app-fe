@@ -6,7 +6,7 @@ describe('CourseDurationPipe', () => {
 
   it('when duration less than 60 minutes than without hours', () => {
     const duration = 55;
-    const expected = `${duration} min`;
+    const expected = `${duration}min`;
     expect(pipe.transform(duration)).toBe(expected);
   });
 
@@ -18,7 +18,7 @@ describe('CourseDurationPipe', () => {
 
   it('when duration greater than 60 minutes than with hours and minutes', () => {
     const duration = 88;
-    const expected = `1h 28 min`;
+    const expected = `1h 28min`;
     expect(pipe.transform(duration)).toBe(expected);
   });
 });

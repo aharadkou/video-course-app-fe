@@ -13,7 +13,7 @@ export class CourseDurationPipe implements PipeTransform {
     const minutesInHour = 60;
     const hours = Math.floor(value / minutesInHour);
     const minutes = Math.floor(value % minutesInHour);
-    return this.getTimePart(hours, 'h ') + this.getTimePart(minutes, ' min');
+    return this.getTimePart(hours, 'h ') + this.getTimePart(minutes, 'min');
   }
 
 }
