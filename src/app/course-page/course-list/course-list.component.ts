@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { courses } from '../courses';
-import { CommunicatorService } from 'src/app/core/services/communicator-service';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { Subscription } from 'rxjs';
 import { CourseFindPipe } from 'src/app/core/pipes/course-find.pipe';
 

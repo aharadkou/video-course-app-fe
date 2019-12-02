@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommunicatorService } from 'src/app/core/services/communicator-service';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
 
 @Component({
   selector: 'app-course-controls',
