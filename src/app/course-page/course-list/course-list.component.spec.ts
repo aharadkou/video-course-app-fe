@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -19,6 +20,11 @@ describe('CourseListComponent', () => {
     fixture = TestBed.createComponent(CourseListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create child component for each courses list element', () => {
+    const childInstancesCount = fixture.debugElement.queryAll(By.css('app-course-item')).length;
+    expect(component.courses.length).toBe(childInstancesCount);
   });
 
   describe('ngOnInit', () => {
