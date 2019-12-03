@@ -13,13 +13,13 @@
                                 </span>
                         </div>
                 </div>
-                <p>{{course?.description}}</p>
+                <p class="description">{{course?.description}}</p>
         </div>
         <div class="buttons-container">
                         <button class="button">
                                 <fa-icon [icon]="['fas', 'pen']"></fa-icon> Edit
                         </button>
-                        <button class="button" (click)="delete.emit(course.id)">
+                        <button class="button delete-button" (click)="delete.emit(course.id)">
                                 <fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete
                         </button>
         </div>
