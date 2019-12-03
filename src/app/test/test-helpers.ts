@@ -1,6 +1,6 @@
 import { Pipe, Directive, Component } from '@angular/core';
 
-export function mockPipe(options: Pipe, transformFun?: (...args: any[]) => any): Pipe {
+export function mockPipe(options: Pipe, transformFun?: (value?: any, ...args: any[]) => any): Pipe {
     const metadata: Pipe = {
       name: options.name
     };
