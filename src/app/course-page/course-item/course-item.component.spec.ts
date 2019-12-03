@@ -4,25 +4,15 @@ import { CourseItemComponent } from './course-item.component';
 import { IconsModule } from 'src/app/icons/icons.module';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
-import { Component, Pipe, PipeTransform } from '@angular/core';
+import { Component, Pipe, PipeTransform, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { mockPipe, mockDirective } from 'src/app/test/test-helpers';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
-  const titleEl = fixture.debugElement.query(By.css('.title')).nativeElement;
   const descriptionEl = fixture.debugElement.query(By.css('.description')).nativeElement;
-  expect(titleEl.textContent).toEqual(mockCourse.title);
   expect(descriptionEl.textContent).toEqual(mockCourse.description);
 }
-
-@Pipe({
-  name: 'courseDuration'
-})
-class TestPipe implements PipeTransform {
-  transform(value: any, ...args: any[]) {
-  }
-}
-
 
 const mockCourse = new CourseImpl(1, 'expTitle', new Date(), 111, 'expDescription', true);
 @Component({
@@ -36,6 +26,13 @@ class TestHostComponent {
   }
 }
 
+const mocks = [
+  mockPipe({name: 'courseDuration'}),
+  mockDirective({
+    selector: '[appCourseFreshness]',
+    inputs: ['appCourseFreshness']
+  })
+];
 
 describe('CourseItemComponent with host', () => {
   let testHost: TestHostComponent;
@@ -43,8 +40,13 @@ describe('CourseItemComponent with host', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent, TestHostComponent, TestPipe ],
-      imports: [ IconsModule ]
+      declarations: [
+        CourseItemComponent,
+        TestHostComponent,
+        ...mocks
+      ],
+      imports: [ IconsModule ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
@@ -56,7 +58,7 @@ describe('CourseItemComponent with host', () => {
     fixture.detectChanges();
   });
 
-  it('should display course title and description', () => {
+  it('should display course info', () => {
     testCourseInfo(fixture);
   });
 
@@ -74,8 +76,9 @@ describe('CourseItemComponent as stand alone', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent, TestPipe ],
-      imports: [ IconsModule ]
+      declarations: [ CourseItemComponent, ...mocks],
+      imports: [ IconsModule ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
@@ -87,7 +90,7 @@ describe('CourseItemComponent as stand alone', () => {
     fixture.detectChanges();
   });
 
-  it('should display course title and description', () => {
+  it('should display course info', () => {
     testCourseInfo(fixture);
   });
 
