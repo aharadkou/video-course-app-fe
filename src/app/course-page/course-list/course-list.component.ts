@@ -31,7 +31,10 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   delete(id: number) {
-    this.courseService.delete(id);
+    const deleteConfirmed = confirm('Do you really want to delete this course?');
+    if (deleteConfirmed) {
+      this.courseService.delete(id);
+    }
   }
 
   loadMore() {
