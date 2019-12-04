@@ -26,7 +26,10 @@ export class CourseListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.fetchData();
     this.sub = this.communicatorService.channel$.subscribe(
-      searchValue => this.courses = this.findPipe.transform(this.courses, searchValue)
+      searchValue => {
+        this.fetchData();
+        this.courses = this.findPipe.transform(this.courses, searchValue);
+      }
     );
   }
 

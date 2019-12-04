@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CourseService } from './course.service';
 import { Course } from '../entities/course/course.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
 
 @Injectable({
@@ -48,7 +48,7 @@ private static courses: Course[]  = [
   getById(id: number): Observable<Course> {
     const findedCourse = this.getCourseById(id);
     if (findedCourse === undefined) {
-      throw new Error(`Course with id=${id} isn't found`);
+      throwError(`Course with id=${id} isn't found`);
     }
     return this.createObservble(findedCourse);
   }
@@ -56,7 +56,7 @@ private static courses: Course[]  = [
   update(course: Course): Observable<Course> {
     const updated = this.getCourseById(course.id);
     InMemoryCourseService.courses[InMemoryCourseService.courses.indexOf(updated)] = course;
-    return this.createObservble(updated);
+    return this.createObservble(course);
   }
 
   delete(course: Course | number): Observable<any> {

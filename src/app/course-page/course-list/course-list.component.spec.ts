@@ -6,14 +6,21 @@ import { By } from '@angular/platform-browser';
 import { mockPipe } from 'src/app/test/test-helpers';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
+import { Observable } from 'rxjs';
+import { CourseService } from 'src/app/core/services/course.service';
 
 
 describe('CourseListComponent', () => {
+
   const mockCourses: Course[]  = [
     new CourseImpl(1, 'Course 1', new Date(), 55, 'descr1', true),
     new CourseImpl(2, 'Course 2', new Date(), 75, 'descr2', false),
     new CourseImpl(3, 'Course 3', new Date(), 135, 'descr3', true),
   ];
+  const courseServiceSpy: Partial<CourseService> = jasmine.createSpyObj({
+    getAll: new Observable(observer => observer.next(mockCourses)),
+    delete: undefined
+  });
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
 
@@ -24,11 +31,13 @@ describe('CourseListComponent', () => {
         mockPipe({name: 'coursesOrderBy'}, () => mockCourses)
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ {provide: CourseService, useValue: courseServiceSpy} ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    spyOn(window, 'confirm').and.returnValue(true);
     fixture = TestBed.createComponent(CourseListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -55,10 +64,10 @@ describe('CourseListComponent', () => {
   });
 
   describe('delete', () => {
-    it('should delete element with passed id', () => {
+    it('should invoke course service delete method with passed id', () => {
       const deletedId = 1;
       component.delete(deletedId);
-      expect(component.courses.find((course) => course.id === deletedId)).not.toBeTruthy();
+      expect(courseServiceSpy.delete).toHaveBeenCalledWith(deletedId);
     });
   });
 

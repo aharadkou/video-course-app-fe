@@ -8,17 +8,15 @@ import { User } from '../entities/user/user.model';
 })
 export class InMemoryUserService implements UserService {
 
-  private static readonly KEY_TOKEN = 'token';
+  public static readonly KEY_TOKEN = 'token';
 
-  private static readonly KEY_USER_LOGIN = 'login';
+  public static readonly KEY_USER_LOGIN = 'login';
 
-  private static readonly KEY_USER_PASSWORD = 'login';
+  public static readonly KEY_USER_PASSWORD = 'password';
 
   private generateFakeToken(): string {
     return Math.random().toString(36).substr(2);
   }
-
-  constructor() { }
 
   login(login: string, password: string): Observable<any> {
     localStorage.setItem(InMemoryUserService.KEY_USER_LOGIN, login);

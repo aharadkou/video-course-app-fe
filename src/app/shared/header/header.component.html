@@ -5,10 +5,10 @@
             *ngIf="isAuthenticated() | async; then loggedIn; else loggedOut">
         </ng-container>
         <ng-template #loggedIn>
-            <a (click)="logout()"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Log off</a>
+            <a (click)="logout()" class="logout-button"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Log off</a>
         </ng-template>
         <ng-template #loggedOut>
-            <a (click)="login()"><fa-icon [icon]="['fas', 'user']"></fa-icon> User login</a>
+            <a href="login"><fa-icon [icon]="['fas', 'user']"></fa-icon> User login</a>
         </ng-template>
     </div>
 </div>
