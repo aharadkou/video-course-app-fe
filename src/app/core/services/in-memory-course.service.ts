@@ -3,7 +3,6 @@ import { CourseService } from './course.service';
 import { Course } from '../entities/course/course.model';
 import { Observable } from 'rxjs';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
-import { courses } from 'src/app/course-page/courses';
 
 @Injectable({
   providedIn: 'root'
@@ -32,18 +31,18 @@ private static courses: Course[]  = [
   }
 
   getAll(): Observable<Course[]> {
-    return this.createObservble(courses.slice());
+    return this.createObservble(InMemoryCourseService.courses.slice());
   }
 
   add(course: Course): Observable<Course> {
-    courses.push(course);
-    course.id = courses[courses.length - 1].id || 1;
+    InMemoryCourseService.courses.push(course);
+    course.id = InMemoryCourseService.courses[InMemoryCourseService.courses.length - 1].id || 1;
     return this.createObservble(course);
 
   }
 
   private getCourseById(id: number): Course {
-    return courses.find(course => course.id === id);
+    return InMemoryCourseService.courses.find(course => course.id === id);
   }
 
   getById(id: number): Observable<Course> {
@@ -56,13 +55,13 @@ private static courses: Course[]  = [
 
   update(course: Course): Observable<Course> {
     const updated = this.getCourseById(course.id);
-    courses[courses.indexOf(updated)] = course;
+    InMemoryCourseService.courses[InMemoryCourseService.courses.indexOf(updated)] = course;
     return this.createObservble(updated);
   }
 
   delete(course: Course | number): Observable<any> {
     const deleted = typeof course === 'number' ? this.getCourseById(course) : this.getCourseById(course.id);
-    courses.splice(courses.indexOf(deleted), 1);
+    InMemoryCourseService.courses.splice(InMemoryCourseService.courses.indexOf(deleted), 1);
     return new Observable();
 
   }

@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CoursePageModule } from './course-page/course-page.module';
 import { SharedModule } from './shared/shared.module';
+import { CourseService } from './core/services/course.service';
+import { InMemoryCourseService } from './core/services/in-memory-course.service';
+import { UserService } from './core/services/user.service';
+import { InMemoryUserService } from './core/services/in-memory-user.service';
 const routes: Routes = [
   {
     path: '',
@@ -25,7 +29,10 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    {provide: CourseService, useClass: InMemoryCourseService},
+    {provide: UserService, useClass: InMemoryUserService},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

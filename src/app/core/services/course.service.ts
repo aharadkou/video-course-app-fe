@@ -6,5 +6,5 @@ export abstract class CourseService {
     abstract add(course: Course): Observable<Course>;
     abstract getById(id: number): Observable<Course>;
     abstract update(course: Course): Observable<Course>;
-    abstract delete(id: number): Observable<any>;
+    abstract delete(course: Course | number): Observable<any>;
 }

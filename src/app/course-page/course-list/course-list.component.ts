@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
-import { courses } from '../courses';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { Subscription } from 'rxjs';
 import { CourseFindPipe } from 'src/app/core/pipes/course-find.pipe';
+import { CourseService } from 'src/app/core/services/course.service';
 
 @Component({
   selector: 'app-course-list',
@@ -17,17 +17,21 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
-  constructor(private communicatorService: CommunicatorService, private findPipe: CourseFindPipe) { }
+  constructor(
+    private communicatorService: CommunicatorService,
+    private findPipe: CourseFindPipe,
+    private courseService: CourseService
+  ) { }
 
   ngOnInit() {
-    this.courses = courses;
+    this.courseService.getAll().subscribe(courses => this.courses = courses);
     this.sub = this.communicatorService.channel$.subscribe(
       searchValue => this.courses = this.findPipe.transform(this.courses, searchValue)
     );
   }
 
   delete(id: number) {
-    this.courses = this.courses.filter((course: Course) => course.id !== id);
+    this.courseService.delete(id);
   }
 
   loadMore() {

@@ -4,11 +4,16 @@ import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { mockPipe } from 'src/app/test/test-helpers';
-import { courses } from '../courses';
+import { Course } from 'src/app/core/entities/course/course.model';
+import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
 
 
 describe('CourseListComponent', () => {
-  const mockCourses = courses.slice();
+  const mockCourses: Course[]  = [
+    new CourseImpl(1, 'Course 1', new Date(), 55, 'descr1', true),
+    new CourseImpl(2, 'Course 2', new Date(), 75, 'descr2', false),
+    new CourseImpl(3, 'Course 3', new Date(), 135, 'descr3', true),
+  ];
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
 
