@@ -1,1 +1,23 @@
-<p>login-page works!</p>
+<div class="login-form-container">
+    <div class="login-form">
+        <h2 class="login-form-title">Login</h2>
+        <div class="form-group">
+            <div>
+                <label for="">E-mail:</label>
+                <span class="input-description">*required</span>
+            </div>
+            <input #emailInput type="text" required placeholder="Enter e-mail"/>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="">Password:</label>
+                <span class="input-description">*required</span>
+            </div>
+            <input #passwordInput type="text" required placeholder="Enter password"/>
+        </div>
+        <div class="form-group">
+            <a class="forgot-password" href="#" >Forgot password?</a>
+            <button class="login-button" (click)="login(emailInput.value, passwordInput.value)">Login</button>
+        </div>
+    </div>		
+</div>

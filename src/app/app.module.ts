@@ -12,10 +12,16 @@ import { CourseService } from './core/services/course.service';
 import { InMemoryCourseService } from './core/services/in-memory-course.service';
 import { UserService } from './core/services/user.service';
 import { InMemoryUserService } from './core/services/in-memory-user.service';
+import { LoginModule } from './login/login.module';
+import { LoginPageComponent } from './login/login-page/login-page.component';
 const routes: Routes = [
   {
     path: '',
     component : CoursePageContainerComponent
+  },
+  {
+    path: 'login',
+    component : LoginPageComponent
   }
 ];
 
@@ -27,6 +33,7 @@ const routes: Routes = [
     CoreModule,
     CoursePageModule,
     SharedModule,
+    LoginModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

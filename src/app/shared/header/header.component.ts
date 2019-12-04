@@ -18,4 +18,12 @@ export class HeaderComponent implements OnInit {
     return this.userService.isAuthenticated();
   }
 
+  login() {
+
+  }
+
+  logout(): Observable<boolean> {
+    return this.userService.logout();
+  }
+
 }

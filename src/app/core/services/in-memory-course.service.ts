@@ -63,8 +63,6 @@ private static courses: Course[]  = [
     const deleted = typeof course === 'number' ? this.getCourseById(course) : this.getCourseById(course.id);
     InMemoryCourseService.courses.splice(InMemoryCourseService.courses.indexOf(deleted), 1);
     return new Observable();
-
   }
-
 
 }

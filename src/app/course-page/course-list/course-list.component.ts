@@ -24,16 +24,21 @@ export class CourseListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.courseService.getAll().subscribe(courses => this.courses = courses);
+    this.fetchData();
     this.sub = this.communicatorService.channel$.subscribe(
       searchValue => this.courses = this.findPipe.transform(this.courses, searchValue)
     );
+  }
+
+  fetchData() {
+    this.courseService.getAll().subscribe(courses => this.courses = courses);
   }
 
   delete(id: number) {
     const deleteConfirmed = confirm('Do you really want to delete this course?');
     if (deleteConfirmed) {
       this.courseService.delete(id);
+      this.fetchData();
     }
   }
 
