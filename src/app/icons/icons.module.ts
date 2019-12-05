@@ -14,7 +14,8 @@ import {
   faPlus as fasPlus,
   faPen as fasPen,
   faTrash as fasTrash,
-  faSearch as fasSearch
+  faSearch as fasSearch,
+  faStar as fasStar
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -27,7 +28,8 @@ const icons: IconDefinition[] = [
   fasTrash,
   fasSearch,
   farClock,
-  farCalendarAlt
+  farCalendarAlt,
+  fasStar
 ];
 
 

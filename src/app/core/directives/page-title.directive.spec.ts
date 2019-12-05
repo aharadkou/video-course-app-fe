@@ -6,7 +6,7 @@ import { PageTitleDirective } from './page-title.directive';
 
 const expectedTitle = 'expTitle';
 @Component({
-  template: `<span appPageTitle pageTitle=${expectedTitle}></span>`
+  template: `<span appPageTitle=${expectedTitle}></span>`
 })
 class TestHostComponent { }
 describe('PageTitleDirective', () => {

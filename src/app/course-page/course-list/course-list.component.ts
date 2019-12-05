@@ -1,20 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { courses } from '../courses';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
+import { Subscription } from 'rxjs';
+import { CourseFindPipe } from 'src/app/core/pipes/course-find.pipe';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
-  styleUrls: ['./course-list.component.css']
+  styleUrls: ['./course-list.component.css'],
+  providers: [CourseFindPipe]
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy {
 
   courses: Course[];
 
-  constructor() { }
+  private sub: Subscription;
+
+  constructor(private communicatorService: CommunicatorService, private findPipe: CourseFindPipe) { }
 
   ngOnInit() {
     this.courses = courses;
+    this.sub = this.communicatorService.channel$.subscribe(
+      searchValue => this.courses = this.findPipe.transform(this.courses, searchValue)
+    );
   }
 
   delete(id: number) {
@@ -23,6 +32,10 @@ export class CourseListComponent implements OnInit {
 
   loadMore() {
     console.log('Loaded more courses');
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

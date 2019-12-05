@@ -1,7 +1,7 @@
-<div class="course-item shadow">
+<div [ngClass]="courseItemClass" [appCourseFreshness]="course.creationDate">
         <div class="course-info-container">
                 <div>
-                        <h2 class="title">{{course?.title}}</h2>
+                        <h2 class="title">{{course?.title | uppercase}} <fa-icon [icon]="['fas', 'star']" [ngClass]="starClass"></fa-icon></h2>
                         <div class="date-duration-container">
                                 <span class="duration">
                                         <fa-icon [icon]="['far', 'clock']"></fa-icon>

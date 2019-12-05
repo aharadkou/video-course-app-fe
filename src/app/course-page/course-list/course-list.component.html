@@ -1,7 +1,13 @@
-<div *ngFor="let course of courses">
+<div *ngFor="let course of courses | coursesOrderBy">
     <app-course-item [course]="course"
                      (delete)="delete($event)"></app-course-item>      
 </div>
-<div class="shadow">
-    <a class="load-more-button" href="#" (click)="loadMore()">Load more</a>
-</div>
+<ng-container *ngIf="courses.length != 0; then loadMore; else noItems"></ng-container>
+<ng-template #loadMore>
+    <div class="shadow">
+        <a class="load-more-button" href="#" (click)="loadMore()">Load more</a>
+    </div>
+</ng-template>
+<ng-template #noItems>
+    <h2 class="no-items-title">There are no courses!</h2>
+</ng-template>

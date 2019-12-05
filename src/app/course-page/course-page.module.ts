@@ -24,6 +24,6 @@ import { IconsModule } from '../icons/icons.module';
     SharedModule,
     IconsModule
   ],
-  exports: [CourseControlsComponent, CourseListComponent, CoursePageContainerComponent],
+  exports: [CoursePageContainerComponent],
 })
 export class CoursePageModule { }
