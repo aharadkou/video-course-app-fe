@@ -1,7 +1,7 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
 
 import { InMemoryUserService } from './in-memory-user.service';
-import { userInfo } from 'os';
+import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
 
 describe('InMemoryUserService', () => {
 
@@ -12,9 +12,9 @@ describe('InMemoryUserService', () => {
       const expectedLogin = 'log';
       const expectedPassword = 'pas';
       service.login(expectedLogin, expectedPassword);
-      expect(expectedLogin).toBe(localStorage.getItem(InMemoryUserService.KEY_USER_LOGIN));
-      expect(expectedPassword).toBe(localStorage.getItem(InMemoryUserService.KEY_USER_PASSWORD));
-      expect(localStorage.getItem(InMemoryUserService.KEY_TOKEN)).toBeTruthy();
+      expect(expectedLogin).toBe(localStorage.getItem(KEY_USER_LOGIN));
+      expect(expectedPassword).toBe(localStorage.getItem(KEY_USER_PASSWORD));
+      expect(localStorage.getItem(KEY_TOKEN)).toBeTruthy();
       localStorage.clear();
     });
   });
@@ -29,7 +29,7 @@ describe('InMemoryUserService', () => {
 
   describe('isAuthenticated', () => {
     it('should return true if token exists in local storage', async(() => {
-      localStorage.setItem(InMemoryUserService.KEY_TOKEN, 'val');
+      localStorage.setItem(KEY_TOKEN, 'val');
       service.isAuthenticated().subscribe(flag => {
         expect(flag).toBeTruthy();
         localStorage.clear();
@@ -46,7 +46,7 @@ describe('InMemoryUserService', () => {
   describe('getUserInfo', () => {
     it('should return user login from local storage', async(() => {
       const userLogin = 'login';
-      localStorage.setItem(InMemoryUserService.KEY_USER_LOGIN, userLogin);
+      localStorage.setItem(KEY_USER_LOGIN, userLogin);
       service.getUserInfo().subscribe(login => {
         expect(login).toBe(userLogin);
         localStorage.clear();
