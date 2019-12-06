@@ -8,24 +8,20 @@ import { createObservable } from '../helpers/observable-helpers';
 @Injectable({
   providedIn: 'root'
 })
-export class InMemoryCourseService extends CourseService {
+export class InMemoryCourseService implements CourseService {
 
-private static mockDescription = `Learn about where you can find course descriptions, what information they include, how they work,
-and details about various components of a course description.
-Learn about where you can find course descriptions, what information they include, how they work,
-and details about various components of a course description.
-Learn about where you can find course descriptions, what information they include, how they work,
-and details about various components of a course description. `;
+  private static mockDescription = `Learn about where you can find course descriptions, what information they include, how they work,
+  and details about various components of a course description.
+  Learn about where you can find course descriptions, what information they include, how they work,
+  and details about various components of a course description.
+  Learn about where you can find course descriptions, what information they include, how they work,
+  and details about various components of a course description. `;
 
-private static courses: Course[]  = [
-  new CourseImpl(1, 'Course 1', new Date(2019, 9, 10), 55, InMemoryCourseService.mockDescription, true),
-  new CourseImpl(2, 'Course 2', new Date(2019, 11, 12), 75, InMemoryCourseService.mockDescription, false),
-  new CourseImpl(3, 'Course 3', new Date(2019, 10, 24), 135, InMemoryCourseService.mockDescription, true),
-];
-
-  constructor() {
-    super();
-  }
+  private static courses: Course[]  = [
+    new CourseImpl(1, 'Course 1', new Date(2019, 9, 10), 55, InMemoryCourseService.mockDescription, true),
+    new CourseImpl(2, 'Course 2', new Date(2019, 11, 12), 75, InMemoryCourseService.mockDescription, false),
+    new CourseImpl(3, 'Course 3', new Date(2019, 10, 24), 135, InMemoryCourseService.mockDescription, true),
+  ];
 
   getAll(): Observable<Course[]> {
     return createObservable(InMemoryCourseService.courses.slice());
