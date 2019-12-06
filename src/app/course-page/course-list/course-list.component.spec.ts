@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -6,9 +6,10 @@ import { By } from '@angular/platform-browser';
 import { mockPipe } from 'src/app/test/test-helpers';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { CourseService } from 'src/app/core/services/course.service';
 import { createObservable } from 'src/app/core/helpers/observable-helpers';
+import { create } from 'domain';
 
 
 describe('CourseListComponent', () => {
@@ -20,7 +21,7 @@ describe('CourseListComponent', () => {
   ];
   const courseServiceSpy: Partial<CourseService> = jasmine.createSpyObj({
     getAll: createObservable(mockCourses),
-    delete: new Observable()
+    delete: createObservable(0)
   });
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
@@ -70,6 +71,14 @@ describe('CourseListComponent', () => {
       component.delete(deletedId);
       expect(courseServiceSpy.delete).toHaveBeenCalledWith(deletedId);
     });
+
+    it('should delete course with passed id from courses array', () => {
+      const deletedId = 2;
+      component.delete(deletedId);
+      fixture.detectChanges();
+      expect(component.courses.find(course => course.id === deletedId)).not.toBeDefined();
+    });
+
   });
 
 });
