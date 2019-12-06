@@ -3,6 +3,7 @@ import { CourseService } from './course.service';
 import { Course } from '../entities/course/course.model';
 import { Observable, throwError } from 'rxjs';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
+import { createObservable } from '../helpers/observable-helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -26,18 +27,14 @@ private static courses: Course[]  = [
     super();
   }
 
-  private createObservble(value: any): Observable<any> {
-    return new Observable(observer => observer.next(value));
-  }
-
   getAll(): Observable<Course[]> {
-    return this.createObservble(InMemoryCourseService.courses.slice());
+    return createObservable(InMemoryCourseService.courses.slice());
   }
 
   add(course: Course): Observable<Course> {
     InMemoryCourseService.courses.push(course);
     course.id = InMemoryCourseService.courses[InMemoryCourseService.courses.length - 1].id || 1;
-    return this.createObservble(course);
+    return createObservable(course);
 
   }
 
@@ -50,19 +47,19 @@ private static courses: Course[]  = [
     if (findedCourse === undefined) {
       throwError(`Course with id=${id} isn't found`);
     }
-    return this.createObservble(findedCourse);
+    return createObservable(findedCourse);
   }
 
   update(course: Course): Observable<Course> {
     const updated = this.getCourseById(course.id);
     InMemoryCourseService.courses[InMemoryCourseService.courses.indexOf(updated)] = course;
-    return this.createObservble(course);
+    return createObservable(course);
   }
 
   delete(course: Course | number): Observable<any> {
     const deleted = typeof course === 'number' ? this.getCourseById(course) : this.getCourseById(course.id);
     InMemoryCourseService.courses.splice(InMemoryCourseService.courses.indexOf(deleted), 1);
-    return this.createObservble(course);
+    return createObservable(course);
   }
 
 }

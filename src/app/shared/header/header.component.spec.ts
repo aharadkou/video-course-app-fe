@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { createObservable } from 'src/app/core/helpers/observable-helpers';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -14,7 +15,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     userServiceSpy.isAuthenticated = jasmine.createSpy('isAuthenticated').and.returnValue(
-      new Observable(observer => observer.next(true))
+      createObservable(true)
     );
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { User } from '../entities/user/user.model';
+import { create } from 'domain';
+import { createObservable } from '../helpers/observable-helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +34,12 @@ export class InMemoryUserService implements UserService {
 
   isAuthenticated(): Observable<boolean> {
     const token = localStorage.getItem(InMemoryUserService.KEY_TOKEN);
-    return new Observable(observer => observer.next(token != null));
+    return createObservable(token != null);
   }
 
   getUserInfo(): Observable<string> {
     const userLogin = localStorage.getItem(InMemoryUserService.KEY_USER_LOGIN);
-    return new Observable(observer => observer.next(userLogin));
+    return createObservable(userLogin);
   }
 
 }

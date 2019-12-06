@@ -8,6 +8,7 @@ import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
 import { Observable } from 'rxjs';
 import { CourseService } from 'src/app/core/services/course.service';
+import { createObservable } from 'src/app/core/helpers/observable-helpers';
 
 
 describe('CourseListComponent', () => {
@@ -18,8 +19,8 @@ describe('CourseListComponent', () => {
     new CourseImpl(3, 'Course 3', new Date(), 135, 'descr3', true),
   ];
   const courseServiceSpy: Partial<CourseService> = jasmine.createSpyObj({
-    getAll: new Observable(observer => observer.next(mockCourses)),
-    delete: undefined
+    getAll: createObservable(mockCourses),
+    delete: new Observable()
   });
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
