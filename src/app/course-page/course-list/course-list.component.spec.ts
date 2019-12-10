@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -9,7 +9,6 @@ import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model'
 import { Observable, throwError } from 'rxjs';
 import { CourseService } from 'src/app/core/services/course.service';
 import { createObservable } from 'src/app/core/helpers/observable-helpers';
-import { create } from 'domain';
 
 
 describe('CourseListComponent', () => {

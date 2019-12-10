@@ -1,11 +1,11 @@
 import { async } from '@angular/core/testing';
 
-import { InMemoryUserService } from './in-memory-user.service';
+import { UserService } from './user.service';
 import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
 
-describe('InMemoryUserService', () => {
+describe('UserService', () => {
 
-  const service: InMemoryUserService = new InMemoryUserService();
+  const service: UserService = new UserService();
 
   describe('login', () => {
     it('should add login, password and token to local storage', () => {

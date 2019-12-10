@@ -1,5 +1,5 @@
 
-import { InMemoryCourseService } from './in-memory-course.service';
+import { CourseService } from './course.service';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
 import { Course } from '../entities/course/course.model';
 import { async } from '@angular/core/testing';
@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 describe('CourseService', () => {
-  const service: InMemoryCourseService = new InMemoryCourseService();
+  const service: CourseService = new CourseService();
 
   it('should get all', async(() => {
     const expectedLength = 3;
