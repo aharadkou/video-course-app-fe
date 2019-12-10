@@ -1,21 +1,24 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseService } from 'src/app/core/services/course.service';
-import { ModalService } from 'src/app/core/services/modal.service';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy {
 
   courses: Course[];
+  private sub: Subscription;
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private communicatorService: CommunicatorService) { }
 
   ngOnInit() {
     this.fetchData();
+    this.sub = this.communicatorService.channel$.subscribe(id => this.delete(id));
   }
 
   private fetchData() {
@@ -33,6 +36,10 @@ export class CourseListComponent implements OnInit {
 
   loadMore() {
     console.log('Loaded more courses');
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

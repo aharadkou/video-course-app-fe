@@ -21,7 +21,11 @@ describe('UserService', () => {
     it('should throw error(invalid login and password) ', async(() => {
       const invalidLogin = 'log';
       const invalidPassword = 'pas';
-      service.login(invalidLogin, invalidPassword).subscribe(user => expect(user).toBeNull());
+      service.login(invalidLogin, invalidPassword).subscribe(
+        {
+          error: (error: Error) => expect(error).toBeTruthy()
+        }
+      );
     }));
   });
 

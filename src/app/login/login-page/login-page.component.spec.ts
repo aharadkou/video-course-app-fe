@@ -3,16 +3,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginPageComponent } from './login-page.component';
 import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
-  const userServiceSpy: Partial<UserService> = jasmine.createSpyObj(['login']);
+  const userServiceSpy: Partial<UserService> = jasmine.createSpyObj(
+    {
+      login: new Observable()
+    }
+  );
+  const routerSpy: Partial<Router> = jasmine.createSpyObj(['navigate']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginPageComponent ],
-      providers: [ { provide: UserService, useValue: userServiceSpy }]
+      providers: [
+        { provide: UserService, useValue: userServiceSpy },
+        { provide: Router, useValue: routerSpy }
+      ]
     })
     .compileComponents();
   }));

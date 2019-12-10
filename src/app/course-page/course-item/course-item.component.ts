@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
-import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { MODAL_COURSE_DELETE } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.css']
 })
-export class CourseItemComponent implements OnInit, OnDestroy {
+export class CourseItemComponent implements OnInit {
 
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
@@ -17,10 +17,7 @@ export class CourseItemComponent implements OnInit, OnDestroy {
   courseItemClass;
   starClass;
 
-  constructor(
-    private communicatorService: CommunicatorService,
-    private modalService: ModalService
-  ) { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
     this.courseItemClass = {
@@ -34,9 +31,7 @@ export class CourseItemComponent implements OnInit, OnDestroy {
   }
 
   openDeleteModal() {
-    this.modalService.open('course-delete-modal', this.course.id);
+    this.modalService.open(MODAL_COURSE_DELETE, this.course.id);
   }
 
-  ngOnDestroy() {
-  }
 }

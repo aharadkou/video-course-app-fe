@@ -13,12 +13,16 @@ export class ModalService {
     }
 
     open(id: string, ...args: any[]) {
-        const modal: any = this.modals.find(x => x.id === id);
-        modal.open();
+        const modal: any = this.findModal(id);
+        modal.open(...args);
     }
 
     close(id: string) {
-        const modal: any = this.modals.find(x => x.id === id);
+        const modal: any = this.findModal(id);
         modal.close();
+    }
+
+    private findModal(id: string): any {
+        return this.modals.find(x => x.id === id);
     }
 }

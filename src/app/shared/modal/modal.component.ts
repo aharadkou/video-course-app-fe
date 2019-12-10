@@ -9,6 +9,8 @@ import { ModalService } from 'src/app/core/services/modal.service';
 export class ModalComponent implements OnInit, OnDestroy {
 
   @Input() id: string;
+  args: any[];
+
 
   constructor(protected modalService: ModalService, protected el: ElementRef) { }
 
@@ -29,6 +31,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   open(...args: any[]) {
     this.toggleModal();
+    this.args = args;
   }
 
   close() {

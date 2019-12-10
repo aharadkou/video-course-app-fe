@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { mockPipe } from 'src/app/test/test-helpers';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
-import { Observable, throwError } from 'rxjs';
 import { CourseService } from 'src/app/core/services/course.service';
 import { createObservable } from 'src/app/core/utils/observable-utils';
 
