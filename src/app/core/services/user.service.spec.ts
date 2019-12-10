@@ -8,15 +8,21 @@ describe('UserService', () => {
   const service: UserService = new UserService();
 
   describe('login', () => {
-    it('should add login, password and token to local storage', () => {
-      const expectedLogin = 'log';
-      const expectedPassword = 'pas';
+    it('should add login, password and token to local storage(valid login and password)', () => {
+      const expectedLogin = 'dadaya@gmail.com';
+      const expectedPassword = '12345';
       service.login(expectedLogin, expectedPassword);
       expect(expectedLogin).toBe(localStorage.getItem(KEY_USER_LOGIN));
       expect(expectedPassword).toBe(localStorage.getItem(KEY_USER_PASSWORD));
       expect(localStorage.getItem(KEY_TOKEN)).toBeTruthy();
       localStorage.clear();
     });
+
+    it('should throw error(invalid login and password) ', async(() => {
+      const invalidLogin = 'log';
+      const invalidPassword = 'pas';
+      service.login(invalidLogin, invalidPassword).subscribe(user => expect(user).toBeNull());
+    }));
   });
 
   describe('logout', () => {

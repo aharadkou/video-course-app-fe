@@ -38,7 +38,7 @@ export class CourseService {
   getById(id: number): Observable<Course> {
     const findedCourse = this.getCourseById(id);
     if (findedCourse === undefined) {
-      throwError(`Course with id=${id} isn't found`);
+      return throwError(`Course with id=${id} isn't found`);
     }
     return createObservable(findedCourse);
   }

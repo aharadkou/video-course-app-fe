@@ -22,11 +22,11 @@ describe('CourseService', () => {
 
     it('should throw error with nonexistent id', async(() => {
       const nonexistentId = 77;
-      service.getById(nonexistentId).pipe(
-        catchError(error => {
-          return of(null);
-        })
-      ).subscribe((course) => expect(course).not.toBeTruthy());
+      service.getById(nonexistentId).subscribe(
+        {
+          error: (error: Error) => expect(error).toBeTruthy()
+        }
+      );
     }));
   });
 
