@@ -5,8 +5,7 @@ import { IconsModule } from 'src/app/icons/icons.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { createObservable } from 'src/app/core/helpers/observable-helpers';
+import { createObservable } from 'src/app/core/utils/observable-utils';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

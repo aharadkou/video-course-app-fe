@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { createObservable } from '../helpers/observable-helpers';
+import { createObservable } from '../utils/observable-utils';
 import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
 
 @Injectable({

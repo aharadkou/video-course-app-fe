@@ -2,39 +2,37 @@ import { Injectable } from '@angular/core';
 import { Course } from '../entities/course/course.model';
 import { Observable, throwError } from 'rxjs';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
-import { createObservable } from '../helpers/observable-helpers';
+import { createObservable } from '../utils/observable-utils';
+
+const MOCK_DESCRIPTION = `Learn about where you can find course descriptions, what information they include, how they work,
+and details about various components of a course description.
+Learn about where you can find course descriptions, what information they include, how they work,
+and details about various components of a course description.`;
+
+const COURSES: Course[]  = [
+  new CourseImpl(1, 'Course 1', new Date(2019, 9, 10), 55, MOCK_DESCRIPTION, true),
+  new CourseImpl(2, 'Course 2', new Date(2019, 11, 12), 75, MOCK_DESCRIPTION, false),
+  new CourseImpl(3, 'Course 3', new Date(2019, 10, 24), 135, MOCK_DESCRIPTION, true),
+];
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  private static mockDescription = `Learn about where you can find course descriptions, what information they include, how they work,
-  and details about various components of a course description.
-  Learn about where you can find course descriptions, what information they include, how they work,
-  and details about various components of a course description.
-  Learn about where you can find course descriptions, what information they include, how they work,
-  and details about various components of a course description. `;
-
-  private static courses: Course[]  = [
-    new CourseImpl(1, 'Course 1', new Date(2019, 9, 10), 55, CourseService.mockDescription, true),
-    new CourseImpl(2, 'Course 2', new Date(2019, 11, 12), 75, CourseService.mockDescription, false),
-    new CourseImpl(3, 'Course 3', new Date(2019, 10, 24), 135, CourseService.mockDescription, true),
-  ];
-
   getAll(): Observable<Course[]> {
-    return createObservable(CourseService.courses.slice());
+    return createObservable(COURSES.slice());
   }
 
   add(course: Course): Observable<Course> {
-    CourseService.courses.push(course);
-    course.id = CourseService.courses[CourseService.courses.length - 1].id || 1;
+    COURSES.push(course);
+    course.id = COURSES[COURSES.length - 1].id || 1;
     return createObservable(course);
 
   }
 
   private getCourseById(id: number): Course {
-    return CourseService.courses.find(course => course.id === id);
+    return COURSES.find(course => course.id === id);
   }
 
   getById(id: number): Observable<Course> {
@@ -47,13 +45,13 @@ export class CourseService {
 
   update(course: Course): Observable<Course> {
     const updated = this.getCourseById(course.id);
-    CourseService.courses[CourseService.courses.indexOf(updated)] = course;
+    COURSES[COURSES.indexOf(updated)] = course;
     return createObservable(course);
   }
 
   delete(course: Course | number): Observable<any> {
     const deleted = typeof course === 'number' ? this.getCourseById(course) : this.getCourseById(course.id);
-    CourseService.courses.splice(CourseService.courses.indexOf(deleted), 1);
+    COURSES.splice(COURSES.indexOf(deleted), 1);
     return createObservable(course);
   }
 
