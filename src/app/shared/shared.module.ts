@@ -7,6 +7,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '../icons/icons.module';
 import { ModalComponent } from './modal/modal.component';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ModalComponent } from './modal/modal.component';
     FooterComponent,
     LogoComponent,
     BreadcrumbsComponent,
-    ModalComponent
+    ModalComponent,
+    AlertModalComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { ModalComponent } from './modal/modal.component';
     HeaderComponent,
     LogoComponent,
     BreadcrumbsComponent,
-    ModalComponent
+    ModalComponent,
+    AlertModalComponent
   ]
 })
 export class SharedModule { }

@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -21,8 +22,9 @@ describe('LoginPageComponent', () => {
       declarations: [ LoginPageComponent ],
       providers: [
         { provide: UserService, useValue: userServiceSpy },
-        { provide: Router, useValue: routerSpy }
-      ]
+        { provide: Router, useValue: routerSpy },
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

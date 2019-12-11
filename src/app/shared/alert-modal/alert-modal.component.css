@@ -1,0 +1,8 @@
+.modal-body {
+    margin: auto;
+    padding-top: 5px;
+    width: 15%;
+    border-radius: 8px;
+    background-color: #f2f3f7;
+    text-align: center;
+}

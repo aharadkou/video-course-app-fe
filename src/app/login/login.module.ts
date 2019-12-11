@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -9,7 +10,8 @@ import { CoreModule } from '../core/core.module';
   declarations: [LoginPageComponent],
   imports: [
     CommonModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ]
 })
 export class LoginModule { }

@@ -29,7 +29,6 @@ export class UserService {
       user => user.email === login.trim() && user.password === password.trim()
     );
     if (!loggedUser) {
-      alert('Invalid email or password!');
       return throwError(`Failed to login(${login};${password})`);
     }
     localStorage.setItem(KEY_USER_LOGIN, login);

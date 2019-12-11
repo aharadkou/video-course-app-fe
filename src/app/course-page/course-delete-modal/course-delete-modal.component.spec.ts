@@ -5,21 +5,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
-import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { TestModalComponent } from 'src/app/test/test-modal.component';
 
-@Component(
-  {
-    selector: 'app-modal',
-    template: '<ng-content></ng-content>',
-    providers: [
-      { provide: ModalComponent, useClass: TestModalComponent }
-    ]
-  }
-)
-class TestModalComponent {
-  @Input() id;
-  args = [ 1 ];
-}
 
 describe('CourseDeleteModalComponent', () => {
   let component: CourseDeleteModalComponent;
@@ -41,6 +28,8 @@ describe('CourseDeleteModalComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseDeleteModalComponent);
+    const modal = TestBed.createComponent(TestModalComponent).componentInstance;
+    modal.args.push(1);
     component = fixture.componentInstance;
     component.id = 'test';
     fixture.detectChanges();
