@@ -9,6 +9,7 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { IconsModule } from '../icons/icons.module';
 import { CourseDeleteModalComponent } from './course-delete-modal/course-delete-modal.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CourseDeleteModalComponent } from './course-delete-modal/course-delete-
     FormsModule,
     CoreModule,
     SharedModule,
-    IconsModule
+    IconsModule,
+    RouterModule
   ],
   exports: [CoursePageContainerComponent],
 })

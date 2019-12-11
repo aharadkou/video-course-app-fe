@@ -10,6 +10,8 @@ import { CoursePageModule } from './course-page/course-page.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/login.module';
 import { LoginPageComponent } from './login/login-page/login-page.component';
+import { CourseFormPageModule } from './course-form-page/course-form-page.module';
+import { CourseFormComponent } from './course-form-page/course-form/course-form.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +20,14 @@ const routes: Routes = [
   {
     path: 'login',
     component : LoginPageComponent
+  },
+  {
+    path: 'new',
+    component: CourseFormComponent
+  },
+  {
+    path: 'courses/:courseId',
+    component: CourseFormComponent
   }
 ];
 
@@ -28,6 +38,7 @@ const routes: Routes = [
     BrowserModule,
     CoreModule,
     CoursePageModule,
+    CourseFormPageModule,
     SharedModule,
     LoginModule,
     RouterModule.forRoot(routes)

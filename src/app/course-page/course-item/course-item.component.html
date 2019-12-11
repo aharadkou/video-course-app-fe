@@ -16,7 +16,7 @@
                 <p class="description">{{course?.description}}</p>
         </div>
         <div class="buttons-container">
-                        <button class="button">
+                        <button class="button" [routerLink]="['/courses', course?.id]">
                                 <fa-icon [icon]="['fas', 'pen']"></fa-icon> Edit
                         </button>
                         <button class="button delete-button" (click)="openDeleteModal()">

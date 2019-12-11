@@ -48,3 +48,14 @@ html, body {
 .modal-open {
     overflow: hidden;
  }
+
+ .form-input {
+    height: 40px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.input-stretched {
+    width: 100%;
+}
