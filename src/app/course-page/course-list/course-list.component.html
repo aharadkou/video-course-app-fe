@@ -2,8 +2,8 @@
     <app-course-item [course]="course"
                      (delete)="delete($event)"></app-course-item>      
 </div>
-<ng-container *ngIf="courses.length != 0; then loadMore; else noItems"></ng-container>
-<ng-template #loadMore>
+<ng-container *ngIf="courses.length != 0; then loadMoreButton; else noItems"></ng-container>
+<ng-template #loadMoreButton>
     <div class="shadow">
         <a class="load-more-button" href="#" (click)="loadMore()">Load more</a>
     </div>

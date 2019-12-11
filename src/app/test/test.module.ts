@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TestModalComponent } from './test-modal.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ TestModalComponent ],
   imports: [
     CommonModule
   ]

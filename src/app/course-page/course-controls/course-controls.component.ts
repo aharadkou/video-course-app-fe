@@ -7,18 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseControlsComponent implements OnInit {
 
-  private searchValue: string;
+  searchValue: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  private add() {
+  add() {
     console.log('Add course pressed');
   }
 
-  private find() {
+  find() {
     console.log(this.searchValue);
   }
 
