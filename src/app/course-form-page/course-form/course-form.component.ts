@@ -32,6 +32,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   save() {
+    // TODO: make this method work
     // not working properly now because of:
     // - one-way binding
     // - course-list component isn't notified about additon/edition of single course

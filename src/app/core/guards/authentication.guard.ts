@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from '../core/services/user.service';
+import { UserService } from '../services/user.service';
 import { tap } from 'rxjs/operators';
+import { debug } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthenticationGuard implements CanActivateChild {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.userService.isAuthenticated()
+      return this.userService.isAuthenticated()
       .pipe(
         tap((isAuthenticated: boolean) => {
           if (!isAuthenticated) {

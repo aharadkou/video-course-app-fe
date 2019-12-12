@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   login(email: string, password: string) {
     this.userService.login(email, password).subscribe(
       {
-        next: (_: any) => {
+        next: () => {
           this.router.navigate(['/']);
           console.log('Logged in succesfully');
         },

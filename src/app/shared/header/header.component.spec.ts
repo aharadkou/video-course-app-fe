@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
 import { createObservable } from 'src/app/core/utils/observable-utils';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -18,7 +19,7 @@ describe('HeaderComponent', () => {
     );
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      imports: [ IconsModule ],
+      imports: [ IconsModule, RouterTestingModule ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [ {provide: UserService, useValue: userServiceSpy} ]
     })

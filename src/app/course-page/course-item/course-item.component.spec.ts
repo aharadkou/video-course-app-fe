@@ -8,6 +8,7 @@ import { Component, Pipe, PipeTransform, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEM
 import { By } from '@angular/platform-browser';
 import { mockPipe, mockDirective } from 'src/app/test/test-helpers';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
@@ -47,7 +48,10 @@ describe('CourseItemComponent with host', () => {
         TestHostComponent,
         ...mocks
       ],
-      imports: [ IconsModule ],
+      imports: [
+        IconsModule,
+        RouterTestingModule.withRoutes([])
+      ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [ {provide: ModalService, useValue: modalServiceSpy} ]
     })
@@ -80,7 +84,10 @@ describe('CourseItemComponent as stand alone', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseItemComponent, ...mocks],
-      imports: [ IconsModule ],
+      imports: [
+        IconsModule,
+        RouterTestingModule.withRoutes([])
+      ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();

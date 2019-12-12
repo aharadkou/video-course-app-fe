@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { createObservable } from '../utils/observable-utils';
 import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
-import { UserImpl } from '../entities/user/impl/user-impl.model';
+import { UserCredentials } from '../entities/user/user-credentials';
 
-const USERS = [
+const USERS: UserCredentials[] = [
   {
     email: 'dadaya@gmail.com',
     password: '12345'
@@ -21,10 +21,11 @@ const USERS = [
 export class UserService {
 
   private generateFakeToken(): string {
+    // TODO: replace fake token generation alhoritm with the real one
     return Math.random().toString(36).substr(2);
   }
 
-  login(login: string, password: string): Observable<any> {
+  login(login: string, password: string): Observable<UserCredentials> {
     const loggedUser = USERS.find(
       user => user.email === login.trim() && user.password === password.trim()
     );
@@ -37,9 +38,8 @@ export class UserService {
     return createObservable(loggedUser);
   }
 
-  logout(): Observable<any> {
+  logout() {
     localStorage.clear();
-    return new Observable();
   }
 
   isAuthenticated(): Observable<boolean> {

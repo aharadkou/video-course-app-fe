@@ -28,7 +28,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   delete(id: number) {
     this.courseService.delete(id).subscribe(
       {
-        next: (_: any) => this.courses = this.courses.filter(course => course.id !== id),
+        next: () => this.courses = this.courses.filter(course => course.id !== id),
         error: (error: Error) => console.log(error)
       }
     );

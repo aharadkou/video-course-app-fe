@@ -4,7 +4,7 @@ import { CoursePageContainerComponent } from '../course-page/course-page-contain
 import { LoginPageComponent } from '../login/login-page/login-page.component';
 import { CourseFormComponent } from '../course-form-page/course-form/course-form.component';
 import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.component';
-import { AuthenticationGuard } from '../guards/authentication.guard';
+import { AuthenticationGuard } from '../core/guards/authentication.guard';
 
 
 const ROUTES: Routes = [

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/core/entities/user/user.model';
 
 @Component({
   selector: 'app-course-authors-input',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-authors-input.component.css']
 })
 export class CourseAuthorsInputComponent implements OnInit {
+
+  @Input() authors: User[];
 
   constructor() { }
 

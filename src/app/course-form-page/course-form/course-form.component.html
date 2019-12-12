@@ -1,8 +1,9 @@
 <ng-container *ngIf="course; then editTitle; else addTitle"></ng-container>
 <ng-template #addTitle><span appPageTitle="Add course"></span></ng-template>
 <ng-template #editTitle><span appPageTitle="Edit course"></span></ng-template>
-<app-breadcrumbs routerLink="/courses">
-    Courses<ng-container *ngIf="course?.title">/{{course.title}}</ng-container>
+<app-breadcrumbs>
+    <span routerLink="/courses" class="courses-link">Courses</span>
+    <ng-container *ngIf="course?.title">/{{course.title}}</ng-container>
 </app-breadcrumbs>
 <div class="form-container padding-default-left padding-default-right">
     <div class="form-group">
@@ -23,7 +24,7 @@
     </div>
     <div class="form-group">
         <div><label>Authors:</label></div>
-        <app-course-authors-input></app-course-authors-input>
+        <app-course-authors-input [authors]="course?.authors"></app-course-authors-input>
     </div>
     <div>
         <button class="button save-button" (click)="save()">Save</button>

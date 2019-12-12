@@ -1,0 +1,24 @@
+.input-container {
+    position: relative;
+}
+
+.authors-container {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+}
+
+.author-item {
+    display: inline-block;
+    margin-right: 7px;
+    background-color: lightblue;
+    padding: 5px;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+.author-item::after {
+    content: 'x';
+    font-style: normal;
+    font-weight: 900;
+}
