@@ -54,6 +54,7 @@ html, body {
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid gray;
+    padding-left: 3px;
 }
 
 .input-stretched {

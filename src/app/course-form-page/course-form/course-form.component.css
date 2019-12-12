@@ -1,8 +1,7 @@
 .form-container {
     background-color: #f2f3f7;
-    padding-bottom: 110px;
+    padding-bottom: 75px;
     padding-top: 30px;
-    height: 100%;
 }
 
 .form-group {
@@ -19,7 +18,7 @@
     resize: none;
 }
 
-.form-group:last-child {
+.form-group-last {
     margin-bottom: 50px;
 }
 
