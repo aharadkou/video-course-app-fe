@@ -1,7 +1,7 @@
 <ng-container *ngIf="course; then editTitle; else addTitle"></ng-container>
 <ng-template #addTitle><span appPageTitle="Add course"></span></ng-template>
 <ng-template #editTitle><span appPageTitle="Edit course"></span></ng-template>
-<app-breadcrumbs>
+<app-breadcrumbs routerLink="/courses">
     Courses<ng-container *ngIf="course?.title">/{{course.title}}</ng-container>
 </app-breadcrumbs>
 <div class="form-container padding-default-left padding-default-right">
@@ -26,7 +26,7 @@
         <app-course-authors-input></app-course-authors-input>
     </div>
     <div>
-        <button class="button save-button">Save</button>
-        <button class="button cancel-button">Cancel</button>
+        <button class="button save-button" (click)="save()">Save</button>
+        <button class="button cancel-button" routerLink="/courses">Cancel</button>
     </div>
 </div>

@@ -8,7 +8,7 @@
             <a (click)="logout()" class="logout-button"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Log off</a>
         </ng-template>
         <ng-template #loggedOut>
-            <a href="login"><fa-icon [icon]="['fas', 'user']"></fa-icon> User login</a>
+            <a routerLink="/login"><fa-icon [icon]="['fas', 'user']"></fa-icon> User login</a>
         </ng-template>
     </div>
 </div>

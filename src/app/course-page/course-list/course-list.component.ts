@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseService } from 'src/app/core/services/course.service';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';

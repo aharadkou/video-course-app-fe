@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '../icons/icons.module';
 import { ModalComponent } from './modal/modal.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { RoutingModule } from '../routing/routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -17,11 +19,13 @@ import { AlertModalComponent } from './alert-modal/alert-modal.component';
     LogoComponent,
     BreadcrumbsComponent,
     ModalComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
-    IconsModule
+    IconsModule,
+    RoutingModule
   ],
   exports: [
     FooterComponent,

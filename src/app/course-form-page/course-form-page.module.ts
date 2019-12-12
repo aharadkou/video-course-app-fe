@@ -7,6 +7,7 @@ import { CourseAuthorsInputComponent } from './course-authors-input/course-autho
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { FormsModule } from '@angular/forms';
+import { RoutingModule } from '../routing/routing.module';
 
 
 
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SharedModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    RoutingModule
   ],
   exports: [
     CourseFormComponent

@@ -1,0 +1,9 @@
+.page-not-found {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.error-code {
+    font-style: italic;
+    color: red;
+}
