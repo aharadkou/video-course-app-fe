@@ -7,6 +7,7 @@ import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model'
 import { Component, Pipe, PipeTransform, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { mockPipe, mockDirective } from 'src/app/test/test-helpers';
+import { ModalService } from 'src/app/core/services/modal.service';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
@@ -37,6 +38,7 @@ const mocks = [
 describe('CourseItemComponent with host', () => {
   let testHost: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
+  const modalServiceSpy: Partial<ModalService> = jasmine.createSpyObj([ 'open' ]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,7 +48,8 @@ describe('CourseItemComponent with host', () => {
         ...mocks
       ],
       imports: [ IconsModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ {provide: ModalService, useValue: modalServiceSpy} ]
     })
     .compileComponents();
   }));
@@ -62,10 +65,10 @@ describe('CourseItemComponent with host', () => {
     testCourseInfo(fixture);
   });
 
-  it('should raise delete on host', () => {
+  it('should open modal when delete button pressed', () => {
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     deleteButton.triggerEventHandler('click', null);
-    expect(testHost.delete).toHaveBeenCalled();
+    expect( modalServiceSpy.open).toHaveBeenCalled();
   });
 });
 

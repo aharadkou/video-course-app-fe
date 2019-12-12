@@ -55,5 +55,4 @@
       "post-merge": "npm install"
     }
   }
-  
 }

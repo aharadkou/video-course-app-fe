@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { MODAL_COURSE_DELETE } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-course-item',
@@ -14,7 +17,7 @@ export class CourseItemComponent implements OnInit {
   courseItemClass;
   starClass;
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
     this.courseItemClass = {
@@ -25,6 +28,10 @@ export class CourseItemComponent implements OnInit {
       'star-icon': true,
       hidden: !this.course.topRated
     };
+  }
+
+  openDeleteModal() {
+    this.modalService.open(MODAL_COURSE_DELETE, this.course.id);
   }
 
 }

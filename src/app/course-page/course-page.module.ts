@@ -8,6 +8,7 @@ import { CoursePageContainerComponent } from './course-page-container/course-pag
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { IconsModule } from '../icons/icons.module';
+import { CourseDeleteModalComponent } from './course-delete-modal/course-delete-modal.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { IconsModule } from '../icons/icons.module';
     CourseControlsComponent,
     CourseListComponent,
     CourseItemComponent,
-    CoursePageContainerComponent
+    CoursePageContainerComponent,
+    CourseDeleteModalComponent
   ],
   imports: [
     CommonModule,

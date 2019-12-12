@@ -5,7 +5,6 @@ import { CourseDurationPipe } from './pipes/course-duration.pipe';
 import { IconsModule } from '../icons/icons.module';
 import { CourseFreshnessDirective } from './directives/course-freshness.directive';
 import { CoursesOrderByPipe } from './pipes/courses-order-by.pipe';
-import { CourseFindPipe } from './pipes/course-find.pipe';
 
 
 
@@ -14,8 +13,7 @@ import { CourseFindPipe } from './pipes/course-find.pipe';
     PageTitleDirective,
     CourseDurationPipe,
     CourseFreshnessDirective,
-    CoursesOrderByPipe,
-    CourseFindPipe
+    CoursesOrderByPipe
   ],
   imports: [
     CommonModule,

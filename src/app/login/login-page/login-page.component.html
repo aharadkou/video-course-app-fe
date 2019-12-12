@@ -1,0 +1,27 @@
+<span appPageTitle="Login"></span>
+<div class="login-form-container">
+    <div class="login-form">
+        <h2 class="login-form-title">Login</h2>
+        <div class="form-group">
+            <div>
+                <label for="email-input">E-mail:</label>
+                <span class="input-description">*required</span>
+            </div>
+            <input #emailInput id="email-input" type="text" required placeholder="Enter e-mail"/>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="password-input">Password:</label>
+                <span class="input-description">*required</span>
+            </div>
+            <input #passwordInput id="password-input" type="password" required placeholder="Enter password"/>
+        </div>
+        <div class="form-group">
+            <a class="forgot-password" href="#" >Forgot password?</a>
+            <button class="login-button" (click)="login(emailInput.value, passwordInput.value)">Login</button>
+        </div>
+    </div>		
+</div>
+<app-alert-modal id="login-failed-modal">
+    Invalid email or password!
+</app-alert-modal>

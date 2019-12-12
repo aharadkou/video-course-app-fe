@@ -1,0 +1,10 @@
+<app-modal [id]="id" #childModal>
+    <div class="modal-body">
+        <h3 class="modal-title">Are you sure want to delete this course?</h3>
+        <div>
+            <button class="button yes-button" (click)="delete()">Yes</button>
+            <button class="button cancel-button" (click)="childModal.close()">Cancel</button>
+        </div>
+    </div>
+</app-modal>
+
