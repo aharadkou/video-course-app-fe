@@ -17,7 +17,8 @@ export class CourseImpl implements Course {
         creationDate: Date,
         duration: number,
         description: string,
-        topRated: boolean
+        topRated: boolean,
+        authors?: User[]
     ) {
         this.id = id;
         this.title = title;
@@ -25,7 +26,7 @@ export class CourseImpl implements Course {
         this.duration = duration;
         this.description = description;
         this.topRated = topRated;
-        this.authors = [];
+        this.authors = authors || [];
     }
 
 }

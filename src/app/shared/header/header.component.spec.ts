@@ -7,6 +7,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { By } from '@angular/platform-browser';
 import { createObservable } from 'src/app/core/utils/observable-utils';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -29,6 +30,7 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    TestBed.get(Router).navigate = jasmine.createSpy();
     fixture.detectChanges();
   });
 

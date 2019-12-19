@@ -8,15 +8,17 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { FormsModule } from '@angular/forms';
 import { RoutingModule } from '../routing/routing.module';
-
-
+import { CourseAddPageComponent } from './course-add-page/course-add-page.component';
+import { CourseEditPageComponent } from './course-edit-page/course-edit-page.component';
 
 @NgModule({
   declarations: [
     CourseFormComponent,
     CourseDateInputComponent,
     CourseDurationInputComponent,
-    CourseAuthorsInputComponent
+    CourseAuthorsInputComponent,
+    CourseAddPageComponent,
+    CourseEditPageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { RoutingModule } from '../routing/routing.module';
     RoutingModule
   ],
   exports: [
-    CourseFormComponent
+    CourseAddPageComponent,
+    CourseEditPageComponent
   ]
 })
 export class CourseFormPageModule { }

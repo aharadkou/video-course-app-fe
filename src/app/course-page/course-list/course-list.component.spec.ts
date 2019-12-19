@@ -19,7 +19,7 @@ describe('CourseListComponent', () => {
   ];
   const courseServiceSpy: Partial<CourseService> = jasmine.createSpyObj({
     getAll: createObservable(mockCourses),
-    delete: createObservable(0)
+    deleteById: createObservable(0)
   });
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
@@ -67,7 +67,7 @@ describe('CourseListComponent', () => {
     it('should invoke course service delete method with passed id', () => {
       const deletedId = 1;
       component.delete(deletedId);
-      expect(courseServiceSpy.delete).toHaveBeenCalledWith(deletedId);
+      expect(courseServiceSpy.deleteById).toHaveBeenCalledWith(deletedId);
     });
 
     it('should delete course with passed id from courses array', () => {

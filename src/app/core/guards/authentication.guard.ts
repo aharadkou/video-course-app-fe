@@ -14,7 +14,7 @@ export class AuthenticationGuard implements CanActivateChild {
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> {
       return this.userService.isAuthenticated()
       .pipe(
         tap((isAuthenticated: boolean) => {

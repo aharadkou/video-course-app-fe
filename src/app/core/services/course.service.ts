@@ -61,10 +61,10 @@ export class CourseService {
     return createObservable(course);
   }
 
-  delete(course: Course | number): Observable<Course> {
-    const deleted = typeof course === 'number' ? this.getCourseById(course) : this.getCourseById(course.id);
+  deleteById(id: number): Observable<Course> {
+    const deleted = this.getCourseById(id);
     COURSES.splice(COURSES.indexOf(deleted), 1);
-    return createObservable(course);
+    return createObservable(id);
   }
 
 }

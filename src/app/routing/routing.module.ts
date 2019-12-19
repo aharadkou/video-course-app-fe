@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoursePageContainerComponent } from '../course-page/course-page-container/course-page-container.component';
 import { LoginPageComponent } from '../login/login-page/login-page.component';
-import { CourseFormComponent } from '../course-form-page/course-form/course-form.component';
 import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.component';
 import { AuthenticationGuard } from '../core/guards/authentication.guard';
+import { CourseEditPageComponent } from '../course-form-page/course-edit-page/course-edit-page.component';
+import { CourseAddPageComponent } from '../course-form-page/course-add-page/course-add-page.component';
 
 
 const ROUTES: Routes = [
@@ -23,11 +24,11 @@ const ROUTES: Routes = [
       },
       {
         path: 'new',
-        component: CourseFormComponent
+        component: CourseAddPageComponent
       },
       {
         path: ':courseId',
-        component: CourseFormComponent
+        component: CourseEditPageComponent
       },
     ]
   },

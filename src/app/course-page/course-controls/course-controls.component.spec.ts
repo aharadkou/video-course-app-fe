@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IconsModule } from 'src/app/icons/icons.module';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('CourseControlsComponent', () => {
   let component: CourseControlsComponent;
@@ -22,6 +23,7 @@ describe('CourseControlsComponent', () => {
     fixture = TestBed.createComponent(CourseControlsComponent);
     component = fixture.componentInstance;
     console.log = jasmine.createSpy();
+    TestBed.get(Router).navigate = jasmine.createSpy();
     fixture.detectChanges();
   });
 

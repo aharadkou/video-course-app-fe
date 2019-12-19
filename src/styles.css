@@ -60,3 +60,7 @@ html, body {
 .input-stretched {
     width: 100%;
 }
+
+.courses-link {
+    cursor: pointer;
+}
