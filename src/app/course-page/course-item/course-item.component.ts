@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { ModalService } from 'src/app/core/services/modal.service';
@@ -7,7 +7,8 @@ import { MODAL_COURSE_DELETE } from 'src/app/core/constants/constants';
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.css']
+  styleUrls: ['./course-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
 

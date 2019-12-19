@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-controls',
@@ -7,18 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseControlsComponent implements OnInit {
 
-  private searchValue: string;
+  searchValue: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  private add() {
+  add() {
     console.log('Add course pressed');
+    this.router.navigate(['/courses/new']);
   }
 
-  private find() {
+  find() {
     console.log(this.searchValue);
   }
 

@@ -1,0 +1,8 @@
+<div class="input-container">
+    <div class="authors-container">
+            <div *ngFor="let author of authors" class="author-item">
+                {{author.firstName}} {{author.lastName}}
+            </div>   
+    </div>  
+    <input class="form-input input-stretched authors-input" type="text" readonly />
+</div>

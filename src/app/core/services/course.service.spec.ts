@@ -45,7 +45,7 @@ describe('CourseService', () => {
     }));
 
     afterEach(() => {
-      service.delete(added);
+      service.deleteById(added.id);
     });
 
   });
