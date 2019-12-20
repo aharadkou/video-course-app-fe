@@ -1,1 +1,4 @@
-<input type="date" class="form-input" [value]="date | date:'yyyy-MM-dd'"/>	
+<input type="date" class="form-input" 
+    [ngModel]="courseForm.course.date | date:'yyyy-MM-dd'" 
+    (ngModelChange)="courseForm.course.date = $event"
+/>	

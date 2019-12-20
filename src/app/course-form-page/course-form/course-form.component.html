@@ -1,11 +1,11 @@
 <div class="form-container padding-default-left padding-default-right">
     <div class="form-group">
         <div><label>Title:</label></div>
-        <input class="form-input" type="text" [value]="course?.title"/>	
+        <input class="form-input" type="text" [(ngModel)]="course.title"/>	
     </div>
     <div class="form-group">
         <div><label>Description:</label></div>
-        <textarea>{{course?.description}}</textarea>
+        <textarea [(ngModel)]="course.description">{{course?.description}}</textarea>
     </div>
     <div class="form-group">
         <div><label>Date:</label></div>

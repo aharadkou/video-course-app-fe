@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CourseService } from 'src/app/core/services/course.service';
 
 @Component({
   selector: 'app-course-form',

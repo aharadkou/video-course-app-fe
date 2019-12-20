@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Host } from '@angular/core';
+import { CourseFormComponent } from '../course-form/course-form.component';
 
 @Component({
   selector: 'app-course-date-input',
@@ -9,7 +10,7 @@ export class CourseDateInputComponent implements OnInit {
 
   @Input() date: Date;
 
-  constructor() { }
+  constructor(@Host() couseForm: CourseFormComponent) { }
 
   ngOnInit() {
   }
