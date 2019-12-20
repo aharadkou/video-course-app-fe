@@ -4,7 +4,6 @@ import { PageTitleDirective } from './directives/page-title.directive';
 import { CourseDurationPipe } from './pipes/course-duration.pipe';
 import { IconsModule } from '../icons/icons.module';
 import { CourseFreshnessDirective } from './directives/course-freshness.directive';
-import { CoursesOrderByPipe } from './pipes/courses-order-by.pipe';
 
 
 
@@ -12,8 +11,7 @@ import { CoursesOrderByPipe } from './pipes/courses-order-by.pipe';
   declarations: [
     PageTitleDirective,
     CourseDurationPipe,
-    CourseFreshnessDirective,
-    CoursesOrderByPipe
+    CourseFreshnessDirective
   ],
   imports: [
     CommonModule,
@@ -23,7 +21,6 @@ import { CoursesOrderByPipe } from './pipes/courses-order-by.pipe';
     PageTitleDirective,
     CourseDurationPipe,
     CourseFreshnessDirective,
-    CoursesOrderByPipe,
     CourseFreshnessDirective
   ]
 })

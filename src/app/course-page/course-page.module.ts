@@ -28,6 +28,6 @@ import { RouterModule } from '@angular/router';
     IconsModule,
     RouterModule
   ],
-  exports: [CoursePageContainerComponent],
+  exports: [ CoursePageContainerComponent ],
 })
 export class CoursePageModule { }
