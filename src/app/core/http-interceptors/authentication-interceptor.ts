@@ -8,9 +8,9 @@ import { UNAUTHORIZED_STATUS, HEADER_TOKEN } from '../constants/constants';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
- constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
- intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let requestWithToken: HttpRequest<any>;
     if (this.userService.isAuthenticated()) {
         requestWithToken = req.clone({
@@ -28,5 +28,5 @@ export class AuthenticationInterceptor implements HttpInterceptor {
             }
         )
     );
- }
+  }
 }

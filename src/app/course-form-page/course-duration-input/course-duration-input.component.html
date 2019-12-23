@@ -1,2 +1,2 @@
-<input type="number" [(ngModel)]="courseForm.course.duration" class="form-input"/>
-<span class="string-duration">{{courseForm.course.duration | courseDuration}}</span>
+<input type="number" [ngModel]="duration" (ngModelChange)="duration = $event; durationChange.emit(duration)" class="form-input"/>
+<span class="string-duration">{{duration | courseDuration}}</span>

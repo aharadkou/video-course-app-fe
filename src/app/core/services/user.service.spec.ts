@@ -1,7 +1,7 @@
 import { async } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
+import { KEY_USER_INFO, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
 
 describe('UserService', () => {
 
@@ -12,7 +12,7 @@ describe('UserService', () => {
       const expectedLogin = 'dadaya@gmail.com';
       const expectedPassword = '12345';
       service.login(expectedLogin, expectedPassword);
-      expect(expectedLogin).toBe(localStorage.getItem(KEY_USER_LOGIN));
+      expect(expectedLogin).toBe(localStorage.getItem(KEY_USER_INFO));
       expect(expectedPassword).toBe(localStorage.getItem(KEY_USER_PASSWORD));
       expect(localStorage.getItem(KEY_TOKEN)).toBeTruthy();
       localStorage.clear();
@@ -56,7 +56,7 @@ describe('UserService', () => {
   describe('getUserInfo', () => {
     it('should return user login from local storage', async(() => {
       const userLogin = 'login';
-      localStorage.setItem(KEY_USER_LOGIN, userLogin);
+      localStorage.setItem(KEY_USER_INFO, userLogin);
       service.getUserInfo().subscribe(login => {
         expect(login).toBe(userLogin);
         localStorage.clear();

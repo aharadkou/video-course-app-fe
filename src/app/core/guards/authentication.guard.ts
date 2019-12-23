@@ -3,7 +3,7 @@ import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree,
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { tap } from 'rxjs/operators';
-import { debug } from 'util';
+import { createObservable } from '../utils/observable-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthenticationGuard implements CanActivateChild {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-      return this.userService.isAuthenticated()
+      return createObservable(this.userService.isAuthenticated())
       .pipe(
         tap((isAuthenticated: boolean) => {
           if (!isAuthenticated) {

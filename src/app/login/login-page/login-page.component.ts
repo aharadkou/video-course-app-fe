@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate(['/']);
           console.log('Logged in succesfully');
         },
-        error: (error: Error) => {
+        error: error => {
           console.log(error);
           this.modalService.open('login-failed-modal');
         }

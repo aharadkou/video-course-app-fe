@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,8 +14,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): boolean {
     return this.userService.isAuthenticated();
+  }
+
+  getUserInfo(): string {
+    return this.userService.getUserInfo();
   }
 
   logout() {

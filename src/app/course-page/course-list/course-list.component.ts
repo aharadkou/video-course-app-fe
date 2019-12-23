@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseService } from 'src/app/core/services/course.service';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { Subscription } from 'rxjs';
-import { COURSE_PAGE_ORDER, COURSE_PAGE_START, COURSE_PAGE_INC } from 'src/app/core/constants/constants';
+import { COURSE_PAGE_ORDER, COURSE_LOAD_FROM, COURSE_PER_PAGE } from 'src/app/core/constants/constants';
 
 @Component({
   selector: 'app-course-list',
@@ -12,37 +12,59 @@ import { COURSE_PAGE_ORDER, COURSE_PAGE_START, COURSE_PAGE_INC } from 'src/app/c
 })
 export class CourseListComponent implements OnInit, OnDestroy {
 
-  courses: Course[];
   private deleteSub: Subscription;
   private findSub: Subscription;
+  private loadFrom = COURSE_LOAD_FROM;
 
-  private loadStart = COURSE_PAGE_START;
+  courses: Course[];
+  coursePerPage = COURSE_PER_PAGE;
+  totalCourses: number;
+  searchValue = '';
 
   constructor(private courseService: CourseService, private communicatorService: CommunicatorService) { }
 
   ngOnInit() {
-    this.fetchData(this.loadStart, COURSE_PAGE_INC);
+    this.courses = [];
+    this.fetchData(this.loadFrom, this.coursePerPage);
     this.deleteSub = this.communicatorService.getData('courseDelete').subscribe(id => this.delete(id));
-    this.findSub = this.communicatorService.getData('courseFind').subscribe(courses => this.courses = courses);
+    this.findSub = this.communicatorService.getData('courseFind').subscribe(
+      searchValue => {
+        this.searchValue = searchValue;
+        this.loadFrom = COURSE_LOAD_FROM;
+        this.courses = [];
+        this.fetchData(this.loadFrom, this.coursePerPage);
+      }
+    );
   }
 
   private fetchData(start: number, count: number) {
-    this.courseService.getAll(this.loadStart, COURSE_PAGE_INC, COURSE_PAGE_ORDER)
-                        .subscribe(courses => this.courses = this.courses.concat(courses));
+    this.courseService.getAll(start, count, COURSE_PAGE_ORDER, this.searchValue)
+                        .subscribe(coursePagination => {
+                          this.courses = this.courses.concat(coursePagination.courses);
+                          this.totalCourses = coursePagination.total;
+                        });
   }
 
   delete(id: number) {
     this.courseService.deleteById(id).subscribe(
       {
-        next: () => this.fetchData(COURSE_PAGE_START, this.courses.length),
+        next: () => {
+          const length = this.courses.length;
+          this.courses = [];
+          this.fetchData(COURSE_LOAD_FROM, length);
+        },
         error: (error: Error) => console.log(error)
       }
     );
   }
 
   loadMore() {
-    this.loadStart += COURSE_PAGE_INC;
-    this.fetchData(this.loadStart, COURSE_PAGE_INC);
+    this.loadFrom += this.coursePerPage;
+    this.fetchData(this.loadFrom, this.coursePerPage);
+  }
+
+  canLoadMore(): boolean {
+    return this.courses.length !== this.totalCourses;
   }
 
   ngOnDestroy() {

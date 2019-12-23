@@ -5,15 +5,15 @@
     </div>
     <div class="form-group">
         <div><label>Description:</label></div>
-        <textarea [(ngModel)]="course.description">{{course?.description}}</textarea>
+        <textarea [(ngModel)]="course.description"></textarea>
     </div>
     <div class="form-group">
         <div><label>Date:</label></div>
-        <app-course-date-input [date]="course?.creationDate"></app-course-date-input>
+        <app-course-date-input [(date)]="course.creationDate"></app-course-date-input>
     </div>
     <div class="form-group">
         <div><label>Duration:</label></div>
-        <app-course-duration-input [duration]="course?.duration"></app-course-duration-input>
+        <app-course-duration-input [(duration)]="course.duration"></app-course-duration-input>
     </div>
     <div class="form-group form-group-last">
         <div><label>Authors:</label></div>

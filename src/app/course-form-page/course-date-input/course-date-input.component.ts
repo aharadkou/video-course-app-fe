@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Host } from '@angular/core';
-import { CourseFormComponent } from '../course-form/course-form.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-date-input',
@@ -9,8 +8,9 @@ import { CourseFormComponent } from '../course-form/course-form.component';
 export class CourseDateInputComponent implements OnInit {
 
   @Input() date: Date;
+  @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 
-  constructor(@Host() couseForm: CourseFormComponent) { }
+  constructor() { }
 
   ngOnInit() {
   }
