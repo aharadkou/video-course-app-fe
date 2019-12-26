@@ -69,14 +69,14 @@ describe('CourseListComponent', () => {
       component.delete(deletedId);
       expect(courseServiceSpy.deleteById).toHaveBeenCalledWith(deletedId);
     });
+  });
 
-    it('should delete course with passed id from courses array', () => {
-      const deletedId = 2;
+  describe('loadMore', () => {
+    it('should increase loadFrom by ', () => {
+      const deletedId = 1;
       component.delete(deletedId);
-      fixture.detectChanges();
-      expect(component.courses.find(course => course.id === deletedId)).not.toBeDefined();
+      expect(courseServiceSpy.deleteById).toHaveBeenCalledWith(deletedId);
     });
-
   });
 
 });

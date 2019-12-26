@@ -12,12 +12,13 @@ import { COURSE_PAGE_ORDER, COURSE_LOAD_FROM, COURSE_PER_PAGE } from 'src/app/co
 })
 export class CourseListComponent implements OnInit, OnDestroy {
 
+  private readonly coursePerPage = COURSE_PER_PAGE;
+
   private deleteSub: Subscription;
   private findSub: Subscription;
   private loadFrom = COURSE_LOAD_FROM;
 
   courses: Course[];
-  coursePerPage = COURSE_PER_PAGE;
   totalCourses: number;
   searchValue = '';
 
@@ -38,11 +39,17 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   private fetchData(start: number, count: number) {
-    this.courseService.getAll(start, count, COURSE_PAGE_ORDER, this.searchValue)
-                        .subscribe(coursePagination => {
-                          this.courses = this.courses.concat(coursePagination.courses);
-                          this.totalCourses = coursePagination.total;
-                        });
+    this.courseService
+      .getAll(start, count, COURSE_PAGE_ORDER, this.searchValue)
+        .subscribe(
+          {
+            next: coursePagination => {
+              this.courses = this.courses.concat(coursePagination.courses);
+              this.totalCourses = coursePagination.total;
+            },
+            error: error => console.log(error)
+          }
+        );
   }
 
   delete(id: number) {
@@ -53,7 +60,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
           this.courses = [];
           this.fetchData(COURSE_LOAD_FROM, length);
         },
-        error: (error: Error) => console.log(error)
+        error: error => console.log(error)
       }
     );
   }

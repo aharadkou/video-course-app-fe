@@ -26,7 +26,12 @@ export class CourseEditPageComponent implements OnInit {
   }
 
   update(course: Course) {
-    this.courseService.update(course).subscribe(() => this.router.navigateByUrl('/courses'));
+    this.courseService.update(course).subscribe(
+        {
+          next: () => this.router.navigateByUrl('/courses'),
+          error: error => console.log(error)
+        }
+      );
   }
 
 }

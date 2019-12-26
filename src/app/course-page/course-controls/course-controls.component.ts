@@ -17,8 +17,7 @@ export class CourseControlsComponent implements OnInit {
   }
 
   add() {
-    console.log('Add course pressed');
-    this.router.navigate(['/courses/new']);
+    this.router.navigateByUrl('/courses/new');
   }
 
   find() {

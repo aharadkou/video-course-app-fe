@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { UNAUTHORIZED_STATUS, HEADER_TOKEN } from '../constants/constants';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {

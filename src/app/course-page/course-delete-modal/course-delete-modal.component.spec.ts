@@ -39,6 +39,6 @@ describe('CourseDeleteModalComponent', () => {
     const yesButtonEl = fixture.debugElement.query(By.css('.yes-button'));
     yesButtonEl.triggerEventHandler('click', null);
     expect(modalServiceSpy.close).toHaveBeenCalledWith(component.id);
-    expect(communicatorServiceSpy.publishData).toHaveBeenCalledWith(component.modal.args[0]);
+    expect(communicatorServiceSpy.publishData).toHaveBeenCalledWith('courseDelete', component.modal.args[0]);
   });
 });

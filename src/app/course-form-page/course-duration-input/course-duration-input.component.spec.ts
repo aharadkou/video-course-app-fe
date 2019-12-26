@@ -11,7 +11,7 @@ describe('CourseDurationInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseDurationInputComponent, mockPipe({ name: 'courseDuration' }) ],
-      imports: [ FormsModule ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
