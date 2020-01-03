@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter} from 'rxjs/operators';
 import { DEBOUNCE_SEARCH, SEARCH_SKIP_COUNT } from 'src/app/core/constants/constants';
 import { Subscription } from 'rxjs';
 
@@ -22,7 +22,10 @@ export class CourseControlsComponent implements OnInit, OnDestroy {
     this.searchControl = new FormControl('');
     this.searchSub = this.searchControl.valueChanges.pipe(
       debounceTime(DEBOUNCE_SEARCH),
-      filter((searchValue: string) => searchValue.trim().length >= SEARCH_SKIP_COUNT)
+      filter((searchValue: string) => {
+        const searchLength = searchValue.trim().length;
+        return searchLength >= SEARCH_SKIP_COUNT || searchLength === 0;
+      })
     ).subscribe(
       searchValue => this.communicatorService.publishData('courseFind', searchValue)
     );
