@@ -30,8 +30,8 @@ describe('CourseListComponent', () => {
         CourseListComponent,
         mockPipe({name: 'coursesOrderBy'}, () => mockCourses)
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ {provide: CourseService, useValue: courseServiceSpy} ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: CourseService, useValue: courseServiceSpy}]
     })
     .compileComponents();
   }));

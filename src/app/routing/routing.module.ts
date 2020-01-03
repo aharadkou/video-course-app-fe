@@ -16,7 +16,7 @@ const ROUTES: Routes = [
   },
   {
     path: 'courses',
-    canActivateChild: [ AuthenticationGuard ],
+    canActivateChild: [AuthenticationGuard],
     children: [
       {
         path: '',
@@ -44,7 +44,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [ RouterModule.forRoot(ROUTES) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(ROUTES)],
+  exports: [RouterModule]
 })
 export class RoutingModule { }

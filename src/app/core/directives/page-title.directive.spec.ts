@@ -12,9 +12,9 @@ class TestHostComponent { }
 describe('PageTitleDirective', () => {
 
   beforeEach(async(() => {
-    const spyTitle = jasmine.createSpyObj('Title', [ 'setTitle' ]);
+    const spyTitle = jasmine.createSpyObj('Title', ['setTitle']);
     TestBed.configureTestingModule({
-      declarations: [ TestHostComponent, PageTitleDirective ],
+      declarations: [TestHostComponent, PageTitleDirective],
       providers: [{ provide: Title, useValue: spyTitle }]
     })
     .compileComponents();

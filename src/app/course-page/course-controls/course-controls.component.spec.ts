@@ -12,13 +12,13 @@ describe('CourseControlsComponent', () => {
   let component: CourseControlsComponent;
   let fixture: ComponentFixture<CourseControlsComponent>;
   let router: Router;
-  const communicatorServiceSpy: Partial<CommunicatorService> = jasmine.createSpyObj([ 'publishData' ]);
+  const communicatorServiceSpy: Partial<CommunicatorService> = jasmine.createSpyObj(['publishData']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseControlsComponent ],
-      imports: [ FormsModule, IconsModule, RouterTestingModule ],
-      providers: [ { provide: CommunicatorService, useValue: communicatorServiceSpy } ]
+      declarations: [CourseControlsComponent],
+      imports: [FormsModule, IconsModule, RouterTestingModule],
+      providers: [{ provide: CommunicatorService, useValue: communicatorServiceSpy }]
     })
     .compileComponents();
   }));

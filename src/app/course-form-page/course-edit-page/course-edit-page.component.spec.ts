@@ -22,9 +22,9 @@ describe('CourseEditPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseEditPageComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      imports: [ RouterTestingModule ],
+      declarations: [CourseEditPageComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [RouterTestingModule],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: CourseService, useValue: courseServiceSpy }

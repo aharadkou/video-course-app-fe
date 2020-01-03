@@ -1,4 +1,4 @@
-import { TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 
 import { AuthenticationGuard } from './authentication.guard';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ describe('AuthenticationGuard', () => {
         AuthenticationGuard,
         { provide: UserService, useValue: userServiceSpy }
       ],
-      imports: [ RouterTestingModule ],
+      imports: [RouterTestingModule],
     });
     router = TestBed.get(Router);
     router.navigateByUrl = jasmine.createSpy();

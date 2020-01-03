@@ -19,10 +19,10 @@ describe('HeaderComponent', () => {
       createObservable(true)
     );
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      imports: [ IconsModule, RouterTestingModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ {provide: UserService, useValue: userServiceSpy} ]
+      declarations: [HeaderComponent],
+      imports: [IconsModule, RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: UserService, useValue: userServiceSpy}]
     })
     .compileComponents();
   }));

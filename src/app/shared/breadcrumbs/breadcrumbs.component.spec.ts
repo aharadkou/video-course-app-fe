@@ -17,7 +17,7 @@ describe('BreadcrumbsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreadcrumbsComponent, TestHostComponent ]
+      declarations: [BreadcrumbsComponent, TestHostComponent]
     })
     .compileComponents();
   }));

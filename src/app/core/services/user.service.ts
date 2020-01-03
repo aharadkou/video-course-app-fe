@@ -39,8 +39,7 @@ export class UserService {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(KEY_TOKEN);
-    return token != null;
+    return !!localStorage.getItem(KEY_TOKEN);
   }
 
   getUserInfo() {

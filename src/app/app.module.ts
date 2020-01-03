@@ -12,7 +12,7 @@ import { RoutingModule } from './routing/routing.module';
 import { AuthenticationInterceptor } from './core/http-interceptors/authentication-interceptor';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -23,7 +23,7 @@ import { AuthenticationInterceptor } from './core/http-interceptors/authenticati
     RoutingModule,
     HttpClientModule
   ],
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

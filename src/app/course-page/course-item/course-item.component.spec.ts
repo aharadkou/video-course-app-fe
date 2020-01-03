@@ -39,7 +39,7 @@ const mocks = [
 describe('CourseItemComponent with host', () => {
   let testHost: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  const modalServiceSpy: Partial<ModalService> = jasmine.createSpyObj([ 'open' ]);
+  const modalServiceSpy: Partial<ModalService> = jasmine.createSpyObj(['open']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,8 +52,8 @@ describe('CourseItemComponent with host', () => {
         IconsModule,
         RouterTestingModule.withRoutes([])
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ {provide: ModalService, useValue: modalServiceSpy} ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: ModalService, useValue: modalServiceSpy}]
     })
     .compileComponents();
   }));
@@ -83,12 +83,12 @@ describe('CourseItemComponent as stand alone', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent, ...mocks],
+      declarations: [CourseItemComponent, ...mocks],
       imports: [
         IconsModule,
         RouterTestingModule.withRoutes([])
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

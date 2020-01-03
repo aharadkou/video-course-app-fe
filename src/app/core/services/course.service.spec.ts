@@ -13,8 +13,8 @@ describe('CourseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [ CourseService ]
+      imports: [HttpClientTestingModule],
+      providers: [CourseService]
     });
     service = TestBed.get(CourseService);
     httpMock = TestBed.get(HttpTestingController);

@@ -9,8 +9,8 @@ describe('CourseDateInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseDateInputComponent ],
-      imports: [ FormsModule ]
+      declarations: [CourseDateInputComponent],
+      imports: [FormsModule]
     })
     .compileComponents();
   }));
