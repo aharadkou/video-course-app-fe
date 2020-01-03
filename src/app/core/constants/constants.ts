@@ -22,3 +22,7 @@ export const COURSE_LOAD_FROM = 0;
 export const COURSE_PER_PAGE = 3;
 
 export const COURSE_PAGE_ORDER = 'creationDate';
+
+export const DEBOUNCE_SEARCH = 500;
+
+export const SEARCH_SKIP_COUNT = 3;

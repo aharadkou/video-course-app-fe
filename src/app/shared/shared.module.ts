@@ -4,12 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '../icons/icons.module';
 import { ModalComponent } from './modal/modal.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { RoutingModule } from '../routing/routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingBlockComponent } from './loading-block/loading-block.component';
 
 
 @NgModule({
@@ -20,12 +21,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BreadcrumbsComponent,
     ModalComponent,
     AlertModalComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingBlockComponent
   ],
   imports: [
     CommonModule,
     IconsModule,
-    RoutingModule
+    RoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     FooterComponent,
@@ -33,7 +36,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LogoComponent,
     BreadcrumbsComponent,
     ModalComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    ReactiveFormsModule,
+    LoadingBlockComponent
   ]
 })
 export class SharedModule { }
