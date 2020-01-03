@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommunicatorService } from 'src/app/core/services/communicator.service';
 
 @Component({
   selector: 'app-course-controls',
@@ -10,18 +11,17 @@ export class CourseControlsComponent implements OnInit {
 
   searchValue: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private communicatorService: CommunicatorService) { }
 
   ngOnInit() {
   }
 
   add() {
-    console.log('Add course pressed');
-    this.router.navigate(['/courses/new']);
+    this.router.navigateByUrl('/courses/new');
   }
 
   find() {
-    console.log(this.searchValue);
+    this.communicatorService.publishData('courseFind', this.searchValue);
   }
 
 }

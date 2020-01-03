@@ -20,7 +20,7 @@ export class CourseDeleteModalComponent {
 
 
   delete() {
-    this.communicatorService.publishData(this.modal.args[0]);
+    this.communicatorService.publishData('courseDelete', this.modal.args[0]);
     this.modalService.close(this.id);
   }
 

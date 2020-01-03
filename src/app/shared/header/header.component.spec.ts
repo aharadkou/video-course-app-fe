@@ -12,17 +12,17 @@ import { Router } from '@angular/router';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  const userServiceSpy = jasmine.createSpyObj(['logout']);
+  const userServiceSpy = jasmine.createSpyObj(['logout', 'getUserInfo']);
 
   beforeEach(async(() => {
     userServiceSpy.isAuthenticated = jasmine.createSpy('isAuthenticated').and.returnValue(
       createObservable(true)
     );
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      imports: [ IconsModule, RouterTestingModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ {provide: UserService, useValue: userServiceSpy} ]
+      declarations: [HeaderComponent],
+      imports: [IconsModule, RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{provide: UserService, useValue: userServiceSpy}]
     })
     .compileComponents();
   }));

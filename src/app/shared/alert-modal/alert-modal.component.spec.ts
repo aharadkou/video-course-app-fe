@@ -9,7 +9,7 @@ describe('AlertModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertModalComponent, TestModalComponent ]
+      declarations: [AlertModalComponent, TestModalComponent]
     })
     .compileComponents();
   }));

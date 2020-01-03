@@ -9,8 +9,8 @@ describe('LogoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogoComponent ],
-      imports: [ IconsModule ]
+      declarations: [LogoComponent],
+      imports: [IconsModule]
     })
     .compileComponents();
   }));

@@ -2,9 +2,10 @@
     <app-logo></app-logo>
     <div class="header-right"> 
         <ng-container
-            *ngIf="isAuthenticated() | async; then loggedIn; else loggedOut">
+            *ngIf="isAuthenticated(); then loggedIn; else loggedOut">
         </ng-container>
         <ng-template #loggedIn>
+            <a>{{getUserInfo()}}</a>
             <a (click)="logout()" class="logout-button"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Log off</a>
         </ng-template>
         <ng-template #loggedOut>

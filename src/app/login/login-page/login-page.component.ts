@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { UserCredentials } from 'src/app/core/entities/user/user-credentials';
 
 @Component({
   selector: 'app-login-page',
@@ -23,9 +24,8 @@ export class LoginPageComponent implements OnInit {
       {
         next: () => {
           this.router.navigate(['/']);
-          console.log('Logged in succesfully');
         },
-        error: (error: Error) => {
+        error: error => {
           console.log(error);
           this.modalService.open('login-failed-modal');
         }

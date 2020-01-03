@@ -1,55 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { createObservable } from '../utils/observable-utils';
-import { KEY_USER_LOGIN, KEY_USER_PASSWORD, KEY_TOKEN } from '../constants/constants';
+import { Observable } from 'rxjs';
+import { KEY_USER_INFO, KEY_TOKEN, AUTHENTICATION_URL } from '../constants/constants';
+import { HttpClient } from '@angular/common/http';
+import { tap, map, flatMap } from 'rxjs/operators';
 import { UserCredentials } from '../entities/user/user-credentials';
-
-const USERS: UserCredentials[] = [
-  {
-    email: 'dadaya@gmail.com',
-    password: '12345'
-  },
-  {
-    email: 'justuser@gmail.com',
-    password: '112233'
-  },
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private generateFakeToken(): string {
-    // TODO: replace fake token generation alhoritm with the real one
-    return Math.random().toString(36).substr(2);
+  constructor(private http: HttpClient) { }
+
+  private getUserInfoFromServer(): Observable<UserCredentials> {
+    return this.http.get<UserCredentials>(`${AUTHENTICATION_URL}/userInfo`).pipe(
+      tap((userCred: UserCredentials) => {
+        localStorage.setItem(KEY_USER_INFO, userCred.email);
+      })
+    );
   }
 
-  login(login: string, password: string): Observable<UserCredentials> {
-    const loggedUser = USERS.find(
-      user => user.email === login.trim() && user.password === password.trim()
+  login(email: string, password: string): Observable<UserCredentials> {
+    return this.http.post(`${AUTHENTICATION_URL}/login`, { email, password }).pipe(
+      tap((response: any) => {
+        localStorage.setItem(KEY_TOKEN, response.token);
+      }),
+      flatMap(() => this.getUserInfoFromServer())
     );
-    if (!loggedUser) {
-      return throwError(`Failed to login(${login};${password})`);
-    }
-    localStorage.setItem(KEY_USER_LOGIN, login);
-    localStorage.setItem(KEY_USER_PASSWORD, password);
-    localStorage.setItem(KEY_TOKEN, this.generateFakeToken());
-    return createObservable(loggedUser);
+  }
+
+
+  getToken(): string {
+    return localStorage.getItem(KEY_TOKEN);
   }
 
   logout() {
     localStorage.clear();
   }
 
-  isAuthenticated(): Observable<boolean> {
-    const token = localStorage.getItem(KEY_TOKEN);
-    return createObservable(token != null);
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem(KEY_TOKEN);
   }
 
-  getUserInfo(): Observable<string> {
-    const userLogin = localStorage.getItem(KEY_USER_LOGIN);
-    return createObservable(userLogin);
+  getUserInfo() {
+    return localStorage.getItem(KEY_USER_INFO);
   }
 
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TestModalComponent } from './test-modal.component';
 
 @NgModule({
-  declarations: [ TestModalComponent ],
+  declarations: [TestModalComponent],
   imports: [
     CommonModule
   ]

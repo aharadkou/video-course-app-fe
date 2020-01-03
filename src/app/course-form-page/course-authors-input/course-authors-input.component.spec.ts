@@ -8,7 +8,7 @@ describe('CourseAuthorsInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseAuthorsInputComponent ]
+      declarations: [CourseAuthorsInputComponent]
     })
     .compileComponents();
   }));

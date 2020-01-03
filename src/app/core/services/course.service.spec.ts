@@ -2,16 +2,26 @@
 import { CourseService } from './course.service';
 import { CourseImpl } from '../entities/course/impl/course-impl.model';
 import { Course } from '../entities/course/course.model';
-import { async } from '@angular/core/testing';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { async, TestBed } from '@angular/core/testing';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CourseService', () => {
-  const service: CourseService = new CourseService();
+
+  let service: CourseService;
+  let httpMock: HttpTestingController;
+
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CourseService]
+    });
+    service = TestBed.get(CourseService);
+    httpMock = TestBed.get(HttpTestingController);
+  });
 
   it('should get all', async(() => {
-    const expectedLength = 3;
-    service.getAll().subscribe(courses => expect(courses.length).toBe(expectedLength));
+
   }));
 
   describe('getById', () => {

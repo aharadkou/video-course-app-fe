@@ -1,13 +1,12 @@
-import { TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 
 import { AuthenticationGuard } from './authentication.guard';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { createObservable } from '../utils/observable-utils';
 import { UserService } from '../services/user.service';
 
-let userServiceSpy = jasmine.createSpyObj({
-  isAuthenticated: createObservable(false)
+const userServiceSpy = jasmine.createSpyObj({
+  isAuthenticated: false
 });
 
 describe('AuthenticationGuard', () => {
@@ -19,14 +18,11 @@ describe('AuthenticationGuard', () => {
         AuthenticationGuard,
         { provide: UserService, useValue: userServiceSpy }
       ],
-      imports: [ RouterTestingModule ],
+      imports: [RouterTestingModule],
     });
     router = TestBed.get(Router);
     router.navigateByUrl = jasmine.createSpy();
     guard = TestBed.get(AuthenticationGuard);
-    userServiceSpy = jasmine.createSpyObj({
-      isAuthenticated: createObservable(false)
-    });
   });
 
   it('should return false if user is not authenticated', async(() => {
@@ -36,7 +32,7 @@ describe('AuthenticationGuard', () => {
     );
   }));
 
-  it('should redirect to /login is not authenticated', async(() => {
+  it('should redirect to /login if user is not authenticated', async(() => {
     TestBed.get(AuthenticationGuard)
       .canActivateChild(undefined, undefined).subscribe(
         () => expect(router.navigateByUrl).toHaveBeenCalledWith('/login')

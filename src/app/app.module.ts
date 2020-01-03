@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/login.module';
 import { CourseFormPageModule } from './course-form-page/course-form-page.module';
 import { RoutingModule } from './routing/routing.module';
+import { AuthenticationInterceptor } from './core/http-interceptors/authentication-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,11 +20,17 @@ import { RoutingModule } from './routing/routing.module';
     CourseFormPageModule,
     SharedModule,
     LoginModule,
-    RoutingModule
+    RoutingModule,
+    HttpClientModule
   ],
+  bootstrap: [AppComponent],
   providers: [
-  ],
-  bootstrap: [AppComponent]
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppModule {
   constructor() { }

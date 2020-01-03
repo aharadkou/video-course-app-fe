@@ -16,10 +16,10 @@ describe('CourseAddPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseAddPageComponent ],
-      imports: [ RouterTestingModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [ { provide: CourseService, useValue: courseServiceSpy } ]
+      declarations: [CourseAddPageComponent],
+      imports: [RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [{ provide: CourseService, useValue: courseServiceSpy }]
     })
     .compileComponents();
   }));

@@ -48,7 +48,7 @@ describe('CourseFreshnessDirective', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      declarations: [ CourseFreshnessDirective, TestHostComponent ]
+      declarations: [CourseFreshnessDirective, TestHostComponent]
     })
     .createComponent(TestHostComponent);
     fixture.detectChanges();

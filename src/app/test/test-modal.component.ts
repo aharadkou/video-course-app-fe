@@ -12,5 +12,5 @@ import { ModalComponent } from '../shared/modal/modal.component';
   )
   export class TestModalComponent {
     @Input() id;
-    args = [ ];
+    args = [];
   }
