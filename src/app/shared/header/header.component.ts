@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/core/services/user.service';
-import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { selectIsAuthenticated, selectUser } from 'src/app/store/selectors/authentication.selectors';
+import { logout } from 'src/app/store/actions/authentication.actions';
 
 @Component({
   selector: 'app-header',
@@ -9,22 +11,17 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  isAuthenticated = this.store.pipe(select(selectIsAuthenticated));
+
+  user = this.store.pipe(select(selectUser));
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
-  isAuthenticated(): boolean {
-    return this.userService.isAuthenticated();
-  }
-
-  getUserInfo(): string {
-    return this.userService.getUserInfo();
-  }
-
   logout() {
-    this.router.navigate(['/login']);
-    this.userService.logout();
+    this.store.dispatch(logout());
   }
 
 }

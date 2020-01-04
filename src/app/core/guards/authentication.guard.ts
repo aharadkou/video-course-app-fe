@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
-import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from '../services/user.service';
 import { tap } from 'rxjs/operators';
-import { createObservable } from '../utils/observable-utils';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectIsAuthenticated } from 'src/app/store/selectors/authentication.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivateChild {
-  constructor(private userService: UserService,
-              private router: Router) { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) { }
 
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
-      return createObservable(this.userService.isAuthenticated())
-      .pipe(
-        tap((isAuthenticated: boolean) => {
-          if (!isAuthenticated) {
-            this.router.navigateByUrl('/login');
-          }
-        })
-      );
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.store.pipe(
+      select(selectIsAuthenticated),
+      tap((isAuthenticated: boolean) => {
+        if (!isAuthenticated) {
+          this.router.navigateByUrl('/login');
+        }
+      }));
   }
 
 }

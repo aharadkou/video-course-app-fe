@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -11,6 +12,12 @@ import { CourseFormPageModule } from './course-form-page/course-form-page.module
 import { RoutingModule } from './routing/routing.module';
 import { AuthenticationInterceptor } from './core/http-interceptors/authentication-interceptor';
 import { LoadingBlockInterceptor } from './core/http-interceptors/loading-block-interceptor';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthenticationEffects } from './store/effects/authentication.effects';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers } from './store/reducers/meta-reducers';
+import { reducers } from './store/reducers/reducers';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +29,13 @@ import { LoadingBlockInterceptor } from './core/http-interceptors/loading-block-
     SharedModule,
     LoginModule,
     RoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    EffectsModule.forRoot([AuthenticationEffects]),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [

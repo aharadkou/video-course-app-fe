@@ -1,32 +1,41 @@
 import { HttpRequest, HttpInterceptor, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserService } from '../services/user.service';
-import { tap } from 'rxjs/operators';
-import { UNAUTHORIZED_STATUS, HEADER_TOKEN } from '../constants/constants';
-import { Router } from '@angular/router';
+import { tap, flatMap, first, take, single } from 'rxjs/operators';
+import { HEADER_TOKEN, UNAUTHORIZED_STATUS } from '../constants/constants';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectToken } from 'src/app/store/selectors/authentication.selectors';
+import { logout } from 'src/app/store/actions/authentication.actions';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
-  constructor(private userService: UserService, private router: Router) { }
+
+  constructor(private store: Store<AppState>) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let requestWithToken: HttpRequest<any>;
-    if (this.userService.isAuthenticated()) {
-      requestWithToken = req.clone({
-        setHeaders: { [HEADER_TOKEN]: this.userService.getToken() }
-      });
-    }
-    return next.handle(requestWithToken || req).pipe(
-      tap(
-        {
-          error: error => {
-            if (error.status === UNAUTHORIZED_STATUS) {
-              this.userService.logout();
-              this.router.navigateByUrl('/login');
-            }
-          }
+    return this.store.pipe(
+      first(),
+      select(selectToken),
+      flatMap((token: string) => {
+        let requestWithToken: HttpRequest<any>;
+        if (token) {
+          requestWithToken = req.clone({
+            setHeaders: { [HEADER_TOKEN]: token }
+          });
         }
+        return next.handle(requestWithToken || req).pipe(
+          tap(
+            {
+              error: error => {
+                if (error.status === UNAUTHORIZED_STATUS) {
+                  this.store.dispatch(logout());
+                }
+              }
+            }
+          )
+        );
+      }
       )
     );
   }
