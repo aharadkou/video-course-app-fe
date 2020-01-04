@@ -10,6 +10,7 @@ import { LoginModule } from './login/login.module';
 import { CourseFormPageModule } from './course-form-page/course-form-page.module';
 import { RoutingModule } from './routing/routing.module';
 import { AuthenticationInterceptor } from './core/http-interceptors/authentication-interceptor';
+import { LoadingBlockInterceptor } from './core/http-interceptors/loading-block-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,11 @@ import { AuthenticationInterceptor } from './core/http-interceptors/authenticati
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingBlockInterceptor,
       multi: true
     }
   ]

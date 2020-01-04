@@ -13,20 +13,21 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let requestWithToken: HttpRequest<any>;
     if (this.userService.isAuthenticated()) {
-        requestWithToken = req.clone({
-            setHeaders: { [HEADER_TOKEN]: this.userService.getToken() }
-        });
+      requestWithToken = req.clone({
+        setHeaders: { [HEADER_TOKEN]: this.userService.getToken() }
+      });
     }
     return next.handle(requestWithToken || req).pipe(
-        tap(
-            event => console.log(event),
-            error => {
-                if (error.status === UNAUTHORIZED_STATUS) {
-                    this.userService.logout();
-                    this.router.navigateByUrl('/login');
-                }
+      tap(
+        {
+          error: error => {
+            if (error.status === UNAUTHORIZED_STATUS) {
+              this.userService.logout();
+              this.router.navigateByUrl('/login');
             }
-        )
+          }
+        }
+      )
     );
   }
 }
