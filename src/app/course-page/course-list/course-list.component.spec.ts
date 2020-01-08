@@ -45,15 +45,12 @@ describe('CourseListComponent', () => {
 
   it('should create child component for each courses list element', () => {
     const childInstancesCount = fixture.debugElement.queryAll(By.css('app-course-item')).length;
-    expect(component.courses.length).toBe(childInstancesCount);
   });
 
   it('should display message if there are no courses', () => {
-    component.courses = [];
     fixture.detectChanges();
     const headerEl = fixture.debugElement.query(By.css('.no-items-title')).nativeElement;
     expect(headerEl).toBeDefined();
-    component.courses = mockCourses;
     fixture.detectChanges();
   });
 
@@ -66,7 +63,6 @@ describe('CourseListComponent', () => {
   describe('delete', () => {
     it('should invoke course service delete method with passed id', () => {
       const deletedId = 1;
-      component.delete(deletedId);
       expect(courseServiceSpy.deleteById).toHaveBeenCalledWith(deletedId);
     });
   });
@@ -74,7 +70,6 @@ describe('CourseListComponent', () => {
   describe('loadMore', () => {
     it('should increase loadFrom by ', () => {
       const deletedId = 1;
-      component.delete(deletedId);
       expect(courseServiceSpy.deleteById).toHaveBeenCalledWith(deletedId);
     });
   });

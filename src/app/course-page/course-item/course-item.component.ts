@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
-import { CommunicatorService } from 'src/app/core/services/communicator.service';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { MODAL_COURSE_DELETE } from 'src/app/core/constants/constants';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store } from '@ngrx/store';
+import { deleteById } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-item',
@@ -18,7 +18,7 @@ export class CourseItemComponent implements OnInit {
   courseItemClass;
   starClass;
 
-  constructor(private modalService: ModalService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.courseItemClass = {
@@ -32,7 +32,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   openDeleteModal() {
-    this.modalService.open(MODAL_COURSE_DELETE, this.course.id);
+    this.store.dispatch(deleteById({ id: this.course.id }));
   }
 
 }

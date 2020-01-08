@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime, filter} from 'rxjs/operators';
 import { DEBOUNCE_SEARCH, SEARCH_SKIP_COUNT } from 'src/app/core/constants/constants';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { find, add } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-controls',
@@ -16,7 +17,7 @@ export class CourseControlsComponent implements OnInit, OnDestroy {
   private searchSub: Subscription;
   searchControl: FormControl;
 
-  constructor(private router: Router, private communicatorService: CommunicatorService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.searchControl = new FormControl('');
@@ -27,15 +28,11 @@ export class CourseControlsComponent implements OnInit, OnDestroy {
         return searchLength >= SEARCH_SKIP_COUNT || searchLength === 0;
       })
     ).subscribe(
-      searchValue => this.communicatorService.publishData('courseFind', searchValue)
+      searchValue => this.store.dispatch(find({ filter: searchValue }))
     );
   }
 
-  add() {
-    this.router.navigateByUrl('/courses/new');
-  }
-
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.searchSub.unsubscribe();
   }
 

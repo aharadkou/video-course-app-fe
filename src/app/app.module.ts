@@ -13,11 +13,12 @@ import { RoutingModule } from './routing/routing.module';
 import { AuthenticationInterceptor } from './core/http-interceptors/authentication-interceptor';
 import { LoadingBlockInterceptor } from './core/http-interceptors/loading-block-interceptor';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthenticationEffects } from './store/effects/authentication.effects';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers } from './store/reducers/meta-reducers';
 import { reducers } from './store/reducers/reducers';
 import { environment } from 'src/environments/environment';
+import { effects } from './store/effects/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,12 +31,13 @@ import { environment } from 'src/environments/environment';
     LoginModule,
     RoutingModule,
     HttpClientModule,
-    EffectsModule.forRoot([AuthenticationEffects]),
+    EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [

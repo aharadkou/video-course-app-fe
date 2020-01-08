@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from 'src/app/core/services/course.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/core/entities/course/course.model';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectUpdated } from 'src/app/store/selectors/course.selectors';
+import { update } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-edit-page',
@@ -12,26 +14,16 @@ export class CourseEditPageComponent implements OnInit {
 
   course: Course;
 
-  constructor(private courseService: CourseService,
-              private router: Router,
-              private route: ActivatedRoute
-  ) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-        this.courseService.getById(+params.get('courseId')).subscribe(
-          course => this.course = course
-        );
-    });
+    this.store.pipe(select(selectUpdated)).subscribe(
+      course => this.course = course
+    );
   }
 
   update(course: Course) {
-    this.courseService.update(course).subscribe(
-        {
-          next: () => this.router.navigateByUrl('/courses'),
-          error: error => console.log(error)
-        }
-      );
+    this.store.dispatch(update({ course }));
   }
 
 }

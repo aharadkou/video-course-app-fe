@@ -1,9 +1,9 @@
 import { AppState } from '../states/app.state';
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { AuthenticationState } from '../states/authentication.state';
 import { UserCredentials } from 'src/app/core/entities/user/user-credentials';
 
-const selectAuthentication = (state: AppState) => state.authenticationState;
+export const selectAuthentication = createFeatureSelector<AppState, AuthenticationState>('authenticationState');
 
 export const selectErrorMessage = createSelector(
   selectAuthentication,

@@ -6,19 +6,16 @@ import { IconsModule } from 'src/app/icons/icons.module';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { CommunicatorService } from 'src/app/core/services/communicator.service';
 
 describe('CourseControlsComponent', () => {
   let component: CourseControlsComponent;
   let fixture: ComponentFixture<CourseControlsComponent>;
   let router: Router;
-  const communicatorServiceSpy: Partial<CommunicatorService> = jasmine.createSpyObj(['publishData']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseControlsComponent],
       imports: [FormsModule, IconsModule, RouterTestingModule, ReactiveFormsModule],
-      providers: [{ provide: CommunicatorService, useValue: communicatorServiceSpy }]
     })
     .compileComponents();
   }));

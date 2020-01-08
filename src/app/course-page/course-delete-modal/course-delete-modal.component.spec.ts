@@ -4,7 +4,6 @@ import { CourseDeleteModalComponent } from './course-delete-modal.component';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ModalService } from 'src/app/core/services/modal.service';
-import { CommunicatorService } from 'src/app/core/services/communicator.service';
 import { TestModalComponent } from 'src/app/test/test-modal.component';
 
 
@@ -12,7 +11,6 @@ describe('CourseDeleteModalComponent', () => {
   let component: CourseDeleteModalComponent;
   let fixture: ComponentFixture<CourseDeleteModalComponent>;
   const modalServiceSpy: Partial<ModalService> = jasmine.createSpyObj(['close']);
-  const communicatorServiceSpy: Partial<CommunicatorService> = jasmine.createSpyObj(['publishData']);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,7 +18,6 @@ describe('CourseDeleteModalComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: ModalService, useValue: modalServiceSpy },
-        { provide: CommunicatorService, useValue: communicatorServiceSpy }
       ]
     })
     .compileComponents();
@@ -39,6 +36,5 @@ describe('CourseDeleteModalComponent', () => {
     const yesButtonEl = fixture.debugElement.query(By.css('.yes-button'));
     yesButtonEl.triggerEventHandler('click', null);
     expect(modalServiceSpy.close).toHaveBeenCalledWith(component.id);
-    expect(communicatorServiceSpy.publishData).toHaveBeenCalledWith('courseDelete', component.modal.args[0]);
   });
 });

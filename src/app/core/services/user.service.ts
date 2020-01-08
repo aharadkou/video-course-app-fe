@@ -22,25 +22,4 @@ export class UserService {
     );
   }
 
-  /*
-  getToken(): string {
-    return localStorage.getItem(KEY_TOKEN);
-  }
-
-  getUserInfo() {
-    return localStorage.getItem(JSON.parse(KEY_USER_INFO));
-  }
-
-  logout() {
-    localStorage.clear();
-  }
-
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem(KEY_TOKEN);
-  }
-
-  getUserInfo() {
-    return localStorage.getItem(KEY_USER_INFO);
-  } */
-
 }
