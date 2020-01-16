@@ -2,7 +2,7 @@
     <app-course-item [course]="course"
                      (delete)="delete($event)"></app-course-item>      
 </div>
-<ng-container *ngIf="!(isEmpty | async); then loadMoreButton; else noItems"></ng-container>
+<ng-container *ngIf="(isEmpty | async) === (false | null | undefined); then loadMoreButton; else noItems"></ng-container>
 <ng-template #loadMoreButton>
     <div class="shadow" *ngIf="canLoadMore | async">
         <a class="load-more-button" (click)="loadMore()">Load more</a>
