@@ -1,24 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
-import { FormGroup, FormBuilder, Validators, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { COURSE_TITLE_MAX_LENGTH, COURSE_DESCRIPTION_MAX_LENGTH } from 'src/app/core/constants/constants';
+import { dateToString, stringToDate } from 'src/app/core/utils/date-format-utils';
 
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.css'],
-  providers: [
-    {
-      provide: NG_VALIDATORS,
-      useExisting: CourseFormComponent,
-      multi: true
-    },
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: CourseFormComponent,
-      multi: true
-    }
-  ]
+  styleUrls: ['./course-form.component.css']
 })
 export class CourseFormComponent implements OnInit {
 
@@ -32,15 +21,19 @@ export class CourseFormComponent implements OnInit {
     this.courseForm = this.formBuilder.group({
       title: [this.course.title, [Validators.required, Validators.maxLength(COURSE_TITLE_MAX_LENGTH)]],
       description: [this.course.description, [Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)]],
-      creationDate: [this.course.creationDate],
+      creationDate: [dateToString(this.course.creationDate)],
       duration: [this.course.duration],
       authors: [this.course.authors]
     });
   }
 
   saveCourse() {
-    const savedCourse = this.courseForm.value as Course;
-    this.save.emit(savedCourse);
+    const savedCourse: Course = {
+      ...this.courseForm.value,
+      id: this.course.id,
+      creationDate: stringToDate(this.courseForm.value.creationDate),
+    };
+    this.save.emit(savedCourse as Course);
   }
 
   get creationDate() {

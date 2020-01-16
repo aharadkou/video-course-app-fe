@@ -32,5 +32,6 @@ export const COURSE_TITLE_MAX_LENGTH = 50;
 
 export const COURSE_DESCRIPTION_MAX_LENGTH = 500;
 
+export const DATE_SEPARATOR = '.';
 
-export const PATTERN_DATE = /^(\d{1,2}).(\d{1,2}).(\d{4})$/;
+export const PATTERN_DATE = new RegExp(`^(\\d{2})${DATE_SEPARATOR}(\\d{2})${DATE_SEPARATOR}(\\d{4})$`);
