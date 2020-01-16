@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { COURSE_URL } from '../constants/constants';
 import { HttpClient } from '@angular/common/http';
 import { CoursePagination } from '../entities/course/course-pagination.model';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class CourseService {
   getAll(start: number, count: number, orderBy: string, filter?: string): Observable<CoursePagination> {
     return this.http.get<CoursePagination>(COURSE_URL, {
       params: { start: start.toString(), count: count.toString(), orderBy, filter }
-    });
+    }).pipe(
+      tap(coursePagination => coursePagination.courses.map(course => course.creationDate = new Date(course.creationDate))),
+    );
   }
 
   add(course: Course): Observable<Course> {

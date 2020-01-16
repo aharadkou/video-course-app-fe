@@ -1,14 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
-import { IconsModule } from 'src/app/icons/icons.module';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
-import { Component, Pipe, PipeTransform, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { mockPipe, mockDirective } from 'src/app/test/test-helpers';
-import { ModalService } from 'src/app/core/services/modal.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store } from '@ngrx/store';
+import { deleteById } from 'src/app/store/actions/course.actions';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
@@ -39,7 +41,7 @@ const mocks = [
 describe('CourseItemComponent with host', () => {
   let testHost: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
-  const modalServiceSpy: Partial<ModalService> = jasmine.createSpyObj(['open']);
+  let store: MockStore<AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -48,12 +50,9 @@ describe('CourseItemComponent with host', () => {
         TestHostComponent,
         ...mocks
       ],
-      imports: [
-        IconsModule,
-        RouterTestingModule.withRoutes([])
-      ],
+      imports: [RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [{provide: ModalService, useValue: modalServiceSpy}]
+      providers: [provideMockStore()]
     })
     .compileComponents();
   }));
@@ -62,6 +61,8 @@ describe('CourseItemComponent with host', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;
     testHost.delete = jasmine.createSpy();
+    store = TestBed.get(Store);
+    store.dispatch = jasmine.createSpy();
     fixture.detectChanges();
   });
 
@@ -69,10 +70,10 @@ describe('CourseItemComponent with host', () => {
     testCourseInfo(fixture);
   });
 
-  it('should open modal when delete button pressed', () => {
+  it('should dispatch deleteById action delete button pressed', () => {
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     deleteButton.triggerEventHandler('click', null);
-    expect( modalServiceSpy.open).toHaveBeenCalled();
+    expect(store.dispatch).toHaveBeenCalledWith(deleteById({ id: mockCourse.id }));
   });
 });
 
@@ -84,11 +85,9 @@ describe('CourseItemComponent as stand alone', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CourseItemComponent, ...mocks],
-      imports: [
-        IconsModule,
-        RouterTestingModule.withRoutes([])
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [RouterTestingModule],
+      providers: [provideMockStore()]
     })
     .compileComponents();
   }));

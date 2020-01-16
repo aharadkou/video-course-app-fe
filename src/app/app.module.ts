@@ -34,7 +34,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25,
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),

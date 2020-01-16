@@ -1,8 +1,9 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { UserService } from './user.service';
-import { KEY_USER_INFO, KEY_TOKEN, COURSE_URL, AUTHENTICATION_URL } from '../constants/constants';
+import { AUTHENTICATION_URL } from '../constants/constants';
+import { UserCredentials } from '../entities/user/user-credentials';
 
 describe('UserService', () => {
 
@@ -19,46 +20,36 @@ describe('UserService', () => {
     httpMock = TestBed.get(HttpTestingController);
   });
 
+  afterEach(() => {
+    httpMock.verify();
+  });
+
   describe('login', () => {
-    it('should add user info and token from server to local storage(valid login and password)', () => {
+    it('should send credentials in post request and receive token in response', () => {
       const expectedLogin = 'dadaya@gmail.com';
       const expectedPassword = '12345';
       const expectedToken = 'token';
       service.login(expectedLogin, expectedPassword).subscribe(
-        userCred => {
-          expect(expectedLogin).toBe(localStorage.getItem(KEY_USER_INFO));
-          expect(localStorage.getItem(KEY_TOKEN)).toBe(expectedToken);
-        }
+        token => expect(token).toBe(expectedToken)
       );
       const request = httpMock.expectOne(`${AUTHENTICATION_URL}/login`);
       expect(request.request.method).toBe('POST');
       request.flush({ token: expectedToken });
       localStorage.clear();
     });
-
-  });
-
-  describe('logout', () => {
-    it('should clear local storage', () => {
-      localStorage.setItem('key', 'val');
-      expect(localStorage.length).toBe(0);
-    });
-  });
-
-  describe('isAuthenticated', () => {
-    it('should return true if token exists in local storage', () => {
-      localStorage.setItem(KEY_TOKEN, 'val');
-      localStorage.clear();
-    });
-
-    it('should return false if token isnt exists in local storage', () => {
-    });
   });
 
   describe('getUserInfo', () => {
-    it('should return user login from local storage', () => {
-      const userLogin = 'login';
-      localStorage.setItem(KEY_USER_INFO, userLogin);
+    it('should send get request and receive user info in response', () => {
+      const expectedInfo: UserCredentials = {
+        email: 'expected'
+      };
+      service.getUserInfo().subscribe(
+        userCredentials => expect(userCredentials).toEqual(expectedInfo)
+      );
+      const request = httpMock.expectOne(`${AUTHENTICATION_URL}/userInfo`);
+      expect(request.request.method).toBe('GET');
+      request.flush(expectedInfo);
     });
   });
 });

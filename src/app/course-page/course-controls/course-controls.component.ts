@@ -5,7 +5,7 @@ import { DEBOUNCE_SEARCH, SEARCH_SKIP_COUNT } from 'src/app/core/constants/const
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/states/app.state';
-import { find, add } from 'src/app/store/actions/course.actions';
+import { find } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-controls',
