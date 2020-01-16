@@ -8,7 +8,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store } from '@ngrx/store';
 import { selectUpdated } from 'src/app/store/selectors/course.selectors';
-import { update } from 'src/app/store/actions/course.actions';
+import { updateComplete } from 'src/app/store/actions/course.actions';
 
 const mockCourse = new CourseImpl(1, 'title', new Date(), 10, '', false);
 
@@ -45,7 +45,7 @@ describe('CourseEditPageComponent', () => {
   describe('update', () => {
     it('should dispatch update action', () => {
       component.update(mockCourse);
-      expect(store.dispatch).toHaveBeenCalledWith(update({ course: mockCourse }));
+      expect(store.dispatch).toHaveBeenCalledWith(updateComplete({ course: mockCourse }));
     });
   });
 
