@@ -26,3 +26,11 @@ export const COURSE_PAGE_ORDER = 'creationDate';
 export const DEBOUNCE_SEARCH = 500;
 
 export const SEARCH_SKIP_COUNT = 3;
+
+
+export const COURSE_TITLE_MAX_LENGTH = 50;
+
+export const COURSE_DESCRIPTION_MAX_LENGTH = 500;
+
+
+export const PATTERN_DATE = /^(\d{1,2}).(\d{1,2}).(\d{4})$/;
