@@ -36,6 +36,15 @@ export const add = createAction(
 );
 
 export const update = createAction(
-  '[Course] Update',
+  '[Course] Update'
+);
+
+export const updateGetCourse = createAction(
+  '[Course] Update get course',
+  props<{ course: Course }>()
+);
+
+export const updateComplete = createAction(
+  '[Course] Update complete',
   props<{ course: Course }>()
 );

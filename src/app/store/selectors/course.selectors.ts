@@ -33,7 +33,7 @@ export const selectIsEmpty = createSelector(
   (totalLoaded: number) => totalLoaded === 0
 );
 
-const selectUpdatedId = selectRouteParam('courseId');
+export const selectUpdatedId = selectRouteParam('courseId');
 
 const selectCourseEntities = createSelector(
   selectCourse,
