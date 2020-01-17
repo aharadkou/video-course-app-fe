@@ -28,15 +28,21 @@ export class CourseFormComponent implements OnInit {
   }
 
   saveCourse() {
+    const formValue = this.courseForm.value;
     const savedCourse: Course = {
-      ...this.courseForm.value,
+      ...formValue,
       id: this.course.id,
-      creationDate: stringToDate(this.courseForm.value.creationDate),
+      creationDate: stringToDate(formValue.creationDate),
+      duration: +formValue.duration
     };
     this.save.emit(savedCourse as Course);
   }
 
   get creationDate() {
     return this.courseForm.get('creationDate');
+  }
+
+  get duration() {
+    return this.courseForm.get('duration');
   }
 }

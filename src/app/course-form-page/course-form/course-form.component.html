@@ -16,16 +16,21 @@
         <div><label>Date:</label></div>
         <app-course-date-input formControlName="creationDate"></app-course-date-input>
     </div>
+    <div *ngIf="duration.invalid"> 
+        <div *ngIf="duration.errors.invalidDuration">
+            Please, provide a valid integer number for duration!
+        </div>
+    </div>
     <div class="form-group">
         <div><label>Duration:</label></div>
-        <app-course-duration-input></app-course-duration-input>
+        <app-course-duration-input formControlName="duration"></app-course-duration-input>
     </div>
     <div class="form-group form-group-last">
         <div><label>Authors:</label></div>
         <app-course-authors-input></app-course-authors-input>
     </div>
     <div>
-        <button type="submit" class="button save-button">Save</button>
+        <button type="submit" class="button save-button" [disabled]="!courseForm.valid">Save</button>
         <button class="button cancel-button" routerLink="/courses">Cancel</button>
     </div>
 </form>

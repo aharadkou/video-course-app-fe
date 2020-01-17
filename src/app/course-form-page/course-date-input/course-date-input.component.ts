@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, ValidationErrors } from '@angular/forms';
 import { PATTERN_DATE } from 'src/app/core/constants/constants';
 
 @Component({
@@ -8,12 +8,12 @@ import { PATTERN_DATE } from 'src/app/core/constants/constants';
   styleUrls: ['./course-date-input.component.css'],
   providers: [
     {
-      provide: NG_VALIDATORS,
+      provide: NG_VALUE_ACCESSOR,
       useExisting: CourseDateInputComponent,
       multi: true
     },
     {
-      provide: NG_VALUE_ACCESSOR,
+      provide: NG_VALIDATORS,
       useExisting: CourseDateInputComponent,
       multi: true
     }
@@ -33,7 +33,7 @@ export class CourseDateInputComponent implements OnInit, ControlValueAccessor {
     this.onChange(value);
   }
 
-  validate({ value }: FormControl) {
+  validate({ value }: FormControl): ValidationErrors {
     if (!(value && value.match(PATTERN_DATE))) {
       return {
         invalidDate: { value }
@@ -41,11 +41,9 @@ export class CourseDateInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  onChange = (value: string) => {
-  }
+  onChange = (value: string) => { };
 
-  onTouched = () => {
-  }
+  onTouched = () => { };
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
