@@ -1,6 +1,12 @@
 import { createReducer, Action, on } from '@ngrx/store';
 import { CourseState, initialState } from '../states/course.state';
-import { loadPagedSuccess, loadMore, find, update, deleteByIdComplete } from '../actions/course.actions';
+import {
+  loadPagedSuccess,
+  loadMore,
+  find,
+  deleteByIdComplete,
+  updateGetCourse,
+} from '../actions/course.actions';
 import { COURSE_PER_PAGE, COURSE_LOAD_FROM } from 'src/app/core/constants/constants';
 import { courseAdapter } from '../adapters/course.adapter';
 
@@ -26,18 +32,16 @@ const courseReducer = createReducer(
       loadFrom: COURSE_LOAD_FROM
     };
   }),
-  on(update, state => {
+  on(updateGetCourse, (state, { course }) => {
     return {
-      ...courseAdapter.removeAll(state),
-      loadFrom: COURSE_LOAD_FROM,
-      loadCount: state.ids.length
+      ...courseAdapter.addOne(course, state)
     };
   }),
   on(deleteByIdComplete, state => {
     return {
       ...courseAdapter.removeAll(state),
       loadFrom: COURSE_LOAD_FROM,
-      loadCount: state.ids.length
+      loadCount: state.ids.length - 1
     };
   })
 );

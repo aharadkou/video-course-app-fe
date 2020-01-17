@@ -7,5 +7,5 @@ export interface Course {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: User[];
+    authors: number[];
 }

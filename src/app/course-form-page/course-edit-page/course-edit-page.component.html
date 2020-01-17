@@ -2,4 +2,6 @@
 <app-breadcrumbs>
     <span routerLink="/courses" class="courses-link">Courses/{{course?.title}}</span>
 </app-breadcrumbs>
-<app-course-form [course]="course" (save)="update($event)"></app-course-form>
+<app-course-form *ngIf="course" [course]="course" (save)="update($event)"></app-course-form>
+
+

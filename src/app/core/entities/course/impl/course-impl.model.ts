@@ -9,7 +9,7 @@ export class CourseImpl implements Course {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: User[];
+    authors: number[];
 
     constructor(
         id: number,
@@ -18,7 +18,7 @@ export class CourseImpl implements Course {
         duration: number,
         description: string,
         topRated: boolean,
-        authors?: User[]
+        authors?: number[]
     ) {
         this.id = id;
         this.title = title;

@@ -26,7 +26,9 @@ export class CourseService {
   }
 
   getById(id: number): Observable<Course> {
-    return this.http.get<Course>(`${COURSE_URL}/${id}`);
+    return this.http.get<Course>(`${COURSE_URL}/${id}`).pipe(
+      tap(course => course.creationDate = new Date(course.creationDate))
+    );
   }
 
   update(course: Course): Observable<Course> {
