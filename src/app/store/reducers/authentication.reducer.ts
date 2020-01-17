@@ -1,12 +1,13 @@
-import { createReducer, on, Action, State } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { inititalState, AuthenticationState } from '../states/authentication.state';
-import { loginSuccess, loginFailure, logout, loginComplete } from '../actions/authentication.actions';
+import { loginSuccess, loginFailure, logout } from '../actions/authentication.actions';
 
 const authenticationReducer = createReducer(
   inititalState,
-  on(loginSuccess, (state, { token }) => {
+  on(loginSuccess, (state, { token, user }) => {
     return {
-      ...state,
+      errorMessage: null,
+      user,
       token,
     };
   }),
@@ -14,12 +15,6 @@ const authenticationReducer = createReducer(
     return {
       ...state,
       errorMessage: error.error.message || 'Unknown error'
-    };
-  }),
-  on(loginComplete, (state, { credentials }) => {
-    return {
-      ...state,
-      user: credentials
     };
   }),
   on(logout, () => {
