@@ -38,7 +38,8 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
     ModalComponent,
     AlertModalComponent,
     ReactiveFormsModule,
-    LoadingBlockComponent
+    LoadingBlockComponent,
+    IconsModule
   ]
 })
 export class SharedModule { }

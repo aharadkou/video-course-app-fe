@@ -6,6 +6,7 @@ import {
   find,
   deleteByIdComplete,
   updateGetCourse,
+  updateReplaceOld,
 } from '../actions/course.actions';
 import { COURSE_PER_PAGE, COURSE_LOAD_FROM } from 'src/app/core/constants/constants';
 import { courseAdapter } from '../adapters/course.adapter';
@@ -35,6 +36,11 @@ const courseReducer = createReducer(
   on(updateGetCourse, (state, { course }) => {
     return {
       ...courseAdapter.addOne(course, state)
+    };
+  }),
+  on(updateReplaceOld, (state, { course }) => {
+    return {
+      ...courseAdapter.upsertOne(course, state)
     };
   }),
   on(deleteByIdComplete, state => {

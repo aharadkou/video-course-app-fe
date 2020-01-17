@@ -18,6 +18,7 @@ export class CourseFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log(this.course);
     this.courseForm = this.formBuilder.group({
       title: [this.course.title, [Validators.required, Validators.maxLength(COURSE_TITLE_MAX_LENGTH)]],
       description: [this.course.description, [Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)]],

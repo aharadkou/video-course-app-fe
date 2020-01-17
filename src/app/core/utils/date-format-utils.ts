@@ -1,4 +1,5 @@
 import { DATE_SEPARATOR, PATTERN_DATE } from '../constants/constants';
+import { Course } from '../entities/course/course.model';
 
 export function dateToString(value: Date): string {
   return addLeadingZero(value.getDate()) + DATE_SEPARATOR +
@@ -12,4 +13,8 @@ function addLeadingZero(value: number) {
 export function stringToDate(value: string) {
   const [, day, month, year] = value.match(PATTERN_DATE);
   return new Date(+year, +month - 1, +day);
+}
+
+export function restoreCourseDate(course: Course) {
+  course.creationDate = new Date(course.creationDate);
 }

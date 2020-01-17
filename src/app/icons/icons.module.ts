@@ -6,6 +6,7 @@ import {
   faPlayCircle as farPlayCircle,
   faClock as farClock,
   faCalendarAlt as farCalendarAlt,
+  faMinusSquare as farMinusSquare,
   IconDefinition
 } from '@fortawesome/free-regular-svg-icons';
 import {
@@ -29,7 +30,8 @@ const icons: IconDefinition[] = [
   fasSearch,
   farClock,
   farCalendarAlt,
-  fasStar
+  fasStar,
+  farMinusSquare
 ];
 
 

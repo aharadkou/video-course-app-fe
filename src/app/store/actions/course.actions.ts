@@ -48,3 +48,8 @@ export const updateComplete = createAction(
   '[Course] Update complete',
   props<{ course: Course }>()
 );
+
+export const updateReplaceOld = createAction(
+  '[Course] Update replace old',
+  props<{ course: Course }>()
+);

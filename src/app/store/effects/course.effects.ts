@@ -12,7 +12,8 @@ import {
   deleteByIdComplete,
   deleteById,
   updateComplete,
-  updateGetCourse
+  updateGetCourse,
+  updateReplaceOld
 } from '../actions/course.actions';
 import { withLatestFrom, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { AppState } from '../states/app.state';
@@ -59,8 +60,9 @@ export class CourseEffects {
   updateComplete = createEffect(() => this.actions.pipe(
     ofType(updateComplete),
     tap(() => this.router.navigateByUrl('/')),
-    switchMap(action => this.courseService.update(action.course))
-  ), { dispatch: false });
+    switchMap(action => this.courseService.update(action.course)),
+    map(course => updateReplaceOld({ course }))
+  ));
 
   deleteById = createEffect(() => this.actions.pipe(
     ofType(deleteById),

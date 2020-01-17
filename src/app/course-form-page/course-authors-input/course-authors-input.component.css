@@ -1,24 +1,37 @@
 .input-container {
-    position: relative;
-}
-
-.authors-container {
-    position: absolute;
-    top: 8px;
-    left: 10px;
+    width: 100%;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .author-item {
     display: inline-block;
-    margin-right: 7px;
-    background-color: lightblue;
-    padding: 5px;
-    border-radius: 3px;
-    font-style: italic;
+    padding: 12px;
+    border: 1px solid black;
+    margin: 0 8px;
 }
 
-.author-item::after {
-    content: 'x';
-    font-style: normal;
-    font-weight: 900;
+.remove-icon {
+    cursor: pointer;
+}
+
+.authors-list {
+    padding-left: 5px;
+    margin: 0;
+}
+
+.authors-list li {
+    display: block;
+    padding: 5px 0;
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.authors-list li:hover {
+    background-color: gray;
+}
+
+.hidden {
+    display: none;
 }

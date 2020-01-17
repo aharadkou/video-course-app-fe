@@ -1,8 +1,19 @@
-<div class="input-container">
-    <div class="authors-container">
-            <div *ngFor="let author of authors" class="author-item">
+<ng-container *ngIf="allAuthors">
+    <div class="input-container" (click)="toggleAuthorsHidden()">
+        <div *ngFor="let authorId of selectedAuthors" class="author-item">
+            <span>
+                {{getAuthorById(authorId).firstName}} {{getAuthorById(authorId).lastName}}
+            </span>
+            <span class="remove-icon" (click)="removeAuthor(authorId)">
+                <fa-icon [icon]="['far', 'minus-square']"></fa-icon>
+            </span>
+        </div>
+    </div>
+    <ul class="authors-list hidden">
+        <li *ngFor="let author of allAuthorsExceptSelected" (click)="selectAuthor(author)">
+            <span>
                 {{author.firstName}} {{author.lastName}}
-            </div>   
-    </div>  
-    <input class="form-input input-stretched authors-input" type="text" readonly />
-</div>
+            </span>
+        </li>
+    </ul>
+</ng-container>

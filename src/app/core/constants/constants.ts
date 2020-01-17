@@ -13,6 +13,8 @@ export const COURSE_URL = `${SERVER_URL}/courses`;
 
 export const AUTHENTICATION_URL = `${SERVER_URL}/auth`;
 
+export const AUTHOR_URL = `${SERVER_URL}/authors`;
+
 export const UNAUTHORIZED_STATUS = 401;
 
 export const HEADER_TOKEN = 'x-access-token';

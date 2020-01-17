@@ -1,5 +1,3 @@
-import { User } from '../user/user.model';
-
 export interface Course {
     id: number;
     title: string;
