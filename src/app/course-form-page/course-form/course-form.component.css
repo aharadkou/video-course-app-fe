@@ -29,3 +29,8 @@
 .save-button, .cancel-button {
     font-size: 20px;
 }
+
+.form-error {
+    margin-left: 15px;
+    color: red;
+}

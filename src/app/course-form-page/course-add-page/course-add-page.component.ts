@@ -12,7 +12,7 @@ import { add } from 'src/app/store/actions/course.actions';
 })
 export class CourseAddPageComponent implements OnInit {
 
-  course = new CourseImpl(undefined, '', new Date(), 0, '', false);
+  course = new CourseImpl(undefined, '', new Date(), undefined, '', false);
 
   constructor(private store: Store<AppState>) { }
 

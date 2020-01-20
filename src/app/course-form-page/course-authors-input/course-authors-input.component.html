@@ -1,5 +1,5 @@
 <ng-container *ngIf="allAuthors">
-    <div class="input-container" (click)="toggleAuthorsHidden()">
+    <div class="input-container" (click)="setFocusOnInput()">
         <div *ngFor="let authorId of selectedAuthors" class="author-item">
             <span>
                 {{getAuthorById(authorId).firstName}} {{getAuthorById(authorId).lastName}}
@@ -8,12 +8,21 @@
                 <fa-icon [icon]="['far', 'minus-square']"></fa-icon>
             </span>
         </div>
+        <div class="filter-input-container">
+            <input type="text"
+                class="filter-input"
+                [(ngModel)]="filter" 
+                (keydown.enter)="addFirstSuitable($event)"
+                (keydown.backspace)="removeLastSelected()"
+                (focusout)="onTouched()"
+            />
+            <ul *ngIf="suitableAuthors && suitableAuthors.length > 0" class="authors-list shadow">
+                <li *ngFor="let author of suitableAuthors" (click)="selectAuthor(author)">
+                    <span>
+                        {{author.firstName}} {{author.lastName}}
+                    </span>
+                </li>
+            </ul>
+        </div>
     </div>
-    <ul class="authors-list hidden">
-        <li *ngFor="let author of allAuthorsExceptSelected" (click)="selectAuthor(author)">
-            <span>
-                {{author.firstName}} {{author.lastName}}
-            </span>
-        </li>
-    </ul>
 </ng-container>

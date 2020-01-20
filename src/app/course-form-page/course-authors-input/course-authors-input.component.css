@@ -1,15 +1,29 @@
 .input-container {
     width: 100%;
+    min-height: 35px;
+    align-items: center;
     display: flex;
     border: 1px solid black;
     border-radius: 5px;
+    background: white;
+    padding: 5px 3px;
+}
+
+.filter-input {
+    display: inline-block;
+    position: relative;
+    border: none;
+    outline: none;
 }
 
 .author-item {
     display: inline-block;
     padding: 12px;
-    border: 1px solid black;
-    margin: 0 8px;
+    margin: 0 6px;
+    background-color: #2cb7de;
+    color: white;
+    border-radius: 3px;
+    font-weight: bold;
 }
 
 .remove-icon {
@@ -17,19 +31,24 @@
 }
 
 .authors-list {
-    padding-left: 5px;
+    position: absolute;
+    z-index: 10;
     margin: 0;
+    padding: 0;
+    border: 1px solid gainsboro;
+    background-color: white;
+    border-radius: 3px;
 }
 
 .authors-list li {
     display: block;
-    padding: 5px 0;
-    background-color: gainsboro;
+    padding: 7px;
     cursor: pointer;
 }
 
 .authors-list li:hover {
-    background-color: gray;
+    background-color: #2cb7de;
+    color: white;
 }
 
 .hidden {

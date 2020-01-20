@@ -1,2 +1,2 @@
-<input type="text" [ngModel]="duration" (ngModelChange)="writeValue($event)" class="form-input"/>
+<input type="text" (focusout)="onTouched()" [ngModel]="duration" (ngModelChange)="writeValue($event)" class="form-input" (focusout)="onTouched()"/>
 <span class="string-duration">{{duration | courseDuration}}</span>

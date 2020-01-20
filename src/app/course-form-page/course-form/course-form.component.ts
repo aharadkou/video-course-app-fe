@@ -18,12 +18,11 @@ export class CourseFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log(this.course);
     this.courseForm = this.formBuilder.group({
       title: [this.course.title, [Validators.required, Validators.maxLength(COURSE_TITLE_MAX_LENGTH)]],
-      description: [this.course.description, [Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)]],
+      description: [this.course.description, Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)],
       creationDate: [dateToString(this.course.creationDate)],
-      duration: [this.course.duration],
+      duration: [this.course.duration, Validators.required],
       authors: [this.course.authors]
     });
   }
@@ -43,7 +42,20 @@ export class CourseFormComponent implements OnInit {
     return this.courseForm.get('creationDate');
   }
 
+  get description() {
+    return this.courseForm.get('description');
+  }
+
+  get title() {
+    return this.courseForm.get('title');
+  }
+
   get duration() {
     return this.courseForm.get('duration');
   }
+
+  get authors() {
+    return this.courseForm.get('authors');
+  }
+
 }

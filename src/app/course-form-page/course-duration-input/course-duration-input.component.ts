@@ -49,6 +49,7 @@ export class CourseDurationInputComponent implements OnInit, ControlValueAccesso
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
 }
