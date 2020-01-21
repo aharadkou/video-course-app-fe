@@ -3,7 +3,7 @@ import { Course } from 'src/app/core/entities/course/course.model';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectUpdated } from 'src/app/store/selectors/course.selectors';
-import { update, updateComplete } from 'src/app/store/actions/course.actions';
+import { getUpdated, update } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-edit-page',
@@ -17,14 +17,14 @@ export class CourseEditPageComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(update());
+    this.store.dispatch(getUpdated());
     this.store.pipe(select(selectUpdated)).subscribe(
       course => this.course = course
     );
   }
 
   update(course: Course) {
-    this.store.dispatch(updateComplete({ course }));
+    this.store.dispatch(update({ course }));
   }
 
 }

@@ -22,7 +22,7 @@ export const selectFirstFiltered = createSelector(
   (authors: Author[]) => authors[0]
 );
 
-export const selectError = createSelector(
+export const selectErrorMessage = createSelector(
   selectAuthor,
   (state: AuthorState) => state.errorMessage
 );

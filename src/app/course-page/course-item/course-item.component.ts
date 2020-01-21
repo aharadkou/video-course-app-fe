@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { Course } from 'src/app/core/entities/course/course.model';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store } from '@ngrx/store';
-import { deleteById } from 'src/app/store/actions/course.actions';
+import { openDeleteModal } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-item',
@@ -32,7 +32,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   openDeleteModal() {
-    this.store.dispatch(deleteById({ id: this.course.id }));
+    this.store.dispatch(openDeleteModal({ id: this.course.id }));
   }
 
 }

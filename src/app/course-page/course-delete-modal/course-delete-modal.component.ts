@@ -2,7 +2,7 @@ import { Component, ViewChild, Input } from '@angular/core';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store } from '@ngrx/store';
-import { deleteByIdComplete } from 'src/app/store/actions/course.actions';
+import { deleteById } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-delete-modal',
@@ -17,7 +17,7 @@ export class CourseDeleteModalComponent {
   @Input() id: string;
 
   delete() {
-    this.store.dispatch(deleteByIdComplete({ id: this.modal.args[0]}));
+    this.store.dispatch(deleteById({ id: this.modal.args[0]}));
   }
 
 }

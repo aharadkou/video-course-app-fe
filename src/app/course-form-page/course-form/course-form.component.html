@@ -43,7 +43,7 @@
                     Duration is required!
                 </ng-container>
                 <ng-container *ngIf="duration.errors.invalidDuration">
-                    Please, provide a valid integer number for duration!
+                    Please, provide a positive integer number for duration!
                 </ng-container>
             </label>
         </div>
@@ -63,5 +63,7 @@
     <div>
         <button type="submit" class="button save-button" [disabled]="!courseForm.valid">Save</button>
         <button class="button cancel-button" routerLink="/courses">Cancel</button>
+        <label class="form-error" *ngIf="courseErrorMessage | async">{{courseErrorMessage | async}}</label>
+        <label class="form-error" *ngIf="authorErrorMessage | async">{{authorErrorMessage | async}}</label>
     </div>
 </form>

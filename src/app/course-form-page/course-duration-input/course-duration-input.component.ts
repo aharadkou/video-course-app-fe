@@ -28,10 +28,9 @@ export class CourseDurationInputComponent implements OnInit, ControlValueAccesso
   }
 
   validate({ value }: FormControl): ValidationErrors {
-    if (!Number.isInteger(+value)) {
-      return {
-        invalidDuration: { value }
-      };
+    const numberValue = +value;
+    if (!Number.isInteger(numberValue) || numberValue < 0) {
+        return { invalidDuration: { value } };
     }
   }
 

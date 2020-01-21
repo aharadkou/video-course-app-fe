@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectLoaded, selectCanLoadMore, selectIsEmpty } from 'src/app/store/selectors/course.selectors';
-import { loadMore, loadPaged } from 'src/app/store/actions/course.actions';
+import { loadNextPage } from 'src/app/store/actions/course.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-list',
@@ -20,11 +21,17 @@ export class CourseListComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(loadPaged());
+    this.isEmpty.pipe(take(1)).subscribe(
+      isEmpty => {
+        if (isEmpty) {
+          this.store.dispatch(loadNextPage());
+        }
+      }
+    );
   }
 
   loadMore() {
-    this.store.dispatch(loadMore());
+    this.store.dispatch(loadNextPage());
   }
 
 }

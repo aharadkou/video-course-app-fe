@@ -2,6 +2,11 @@
     float: right;
 }
 
+.error {
+    float: left;
+    color: red;
+}
+
 .controls-container {
     padding-top: 20px;
     padding-bottom: 20px;

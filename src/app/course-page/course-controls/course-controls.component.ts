@@ -3,9 +3,10 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, filter} from 'rxjs/operators';
 import { DEBOUNCE_SEARCH, SEARCH_SKIP_COUNT } from 'src/app/core/constants/constants';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/states/app.state';
 import { find } from 'src/app/store/actions/course.actions';
+import { selectErrorMessage } from 'src/app/store/selectors/course.selectors';
 
 @Component({
   selector: 'app-course-controls',
@@ -16,6 +17,7 @@ export class CourseControlsComponent implements OnInit, OnDestroy {
 
   private searchSub: Subscription;
   searchControl: FormControl;
+  errorMessage = this.store.pipe(select(selectErrorMessage));
 
   constructor(private store: Store<AppState>) { }
 

@@ -1,7 +1,4 @@
-<div *ngFor="let course of (courses | async)">
-    <app-course-item [course]="course"
-                     (delete)="delete($event)"></app-course-item>      
-</div>
+<app-course-item *ngFor="let course of (courses | async)" [course]="course" (delete)="delete($event)"></app-course-item>      
 <ng-container *ngIf="(isEmpty | async) === false; then loadMoreButton; else noItems"></ng-container>
 <ng-template #loadMoreButton>
     <div class="shadow" *ngIf="canLoadMore | async">

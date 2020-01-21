@@ -3,6 +3,11 @@ import { Course } from 'src/app/core/entities/course/course.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { COURSE_TITLE_MAX_LENGTH, COURSE_DESCRIPTION_MAX_LENGTH } from 'src/app/core/constants/constants';
 import { dateToString, stringToDate } from 'src/app/core/utils/date-format-utils';
+import { select, Store } from '@ngrx/store';
+import { selectErrorMessage as selectCourseErrorMessage} from 'src/app/store/selectors/course.selectors';
+import { selectErrorMessage as selectAuthorErrorMessage} from 'src/app/store/selectors/author.selectors';
+
+import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
   selector: 'app-course-form',
@@ -14,8 +19,10 @@ export class CourseFormComponent implements OnInit {
   @Input() course: Course;
   @Output() save: EventEmitter<Course> = new EventEmitter<Course>();
   courseForm: FormGroup;
+  courseErrorMessage = this.store.pipe(select(selectCourseErrorMessage));
+  authorErrorMessage = this.store.pipe(select(selectAuthorErrorMessage));
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.courseForm = this.formBuilder.group({

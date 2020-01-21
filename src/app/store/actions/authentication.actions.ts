@@ -20,11 +20,3 @@ export const loginFailure = createAction(
 export const logout = createAction(
   '[Authentication] Logout'
 );
-
-export const logoutSuccess = createAction(
-  '[Authentication] Logout success'
-);
-
-export const logoutFailure = createAction(
-  '[Authentication] Logout failure'
-);

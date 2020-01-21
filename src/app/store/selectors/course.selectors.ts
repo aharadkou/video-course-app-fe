@@ -8,8 +8,7 @@ export const selectCourse = createFeatureSelector<AppState, CourseState>('course
 
 const {
   selectTotal,
-  selectAll,
-  selectEntities
+  selectAll
 } = courseAdapter.getSelectors();
 
 export const selectTotalLoaded = createSelector(
@@ -35,13 +34,12 @@ export const selectIsEmpty = createSelector(
 
 export const selectUpdatedId = selectRouteParam('courseId');
 
-const selectCourseEntities = createSelector(
+export const selectUpdated = createSelector(
   selectCourse,
-  selectEntities
+  (state: CourseState) => state.updated
 );
 
-export const selectUpdated = createSelector(
-  selectCourseEntities,
-  selectUpdatedId,
-  (courses, courseId) => courses[+courseId]
+export const selectErrorMessage = createSelector(
+  selectCourse,
+  (state: CourseState) => state.errorMessage
 );

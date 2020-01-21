@@ -3,6 +3,7 @@
         <input class="search-input" type="text" [formControl]="searchControl" required/>
         <span class="search-placeholder"><fa-icon [icon]="['fas', 'search']"></fa-icon> Text to search</span>
     </div>
+    <label class="error" *ngIf="errorMessage | async">{{errorMessage | async}}</label>
     <div class="add-button-container">
         <button routerLink="/courses/new" class="button course-add-button"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add course</button>
     </div>
