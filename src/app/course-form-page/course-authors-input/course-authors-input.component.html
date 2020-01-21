@@ -1,28 +1,26 @@
-<ng-container *ngIf="allAuthors">
-    <div class="input-container" (click)="setFocusOnInput()">
-        <div *ngFor="let authorId of selectedAuthors" class="author-item">
-            <span>
-                {{getAuthorById(authorId).firstName}} {{getAuthorById(authorId).lastName}}
-            </span>
-            <span class="remove-icon" (click)="removeAuthor(authorId)">
-                <fa-icon [icon]="['far', 'minus-square']"></fa-icon>
-            </span>
-        </div>
-        <div class="filter-input-container">
-            <input type="text"
-                class="filter-input"
-                [(ngModel)]="filter" 
-                (keydown.enter)="addFirstSuitable($event)"
-                (keydown.backspace)="removeLastSelected()"
-                (focusout)="onTouched()"
-            />
-            <ul *ngIf="suitableAuthors && suitableAuthors.length > 0" class="authors-list shadow">
-                <li *ngFor="let author of suitableAuthors" (click)="selectAuthor(author)">
-                    <span>
-                        {{author.firstName}} {{author.lastName}}
-                    </span>
-                </li>
-            </ul>
-        </div>
+<div class="input-container" (click)="setFocusOnInput()">
+    <div *ngFor="let author of selectedAuthors" class="author-item">
+        <span>
+            {{author.firstName}} {{author.lastName}}
+        </span>
+        <span class="remove-icon" (click)="removeAuthor(author.id)">
+            <fa-icon [icon]="['far', 'minus-square']"></fa-icon>
+        </span>
     </div>
-</ng-container>
+    <div class="filter-input-container">
+        <input type="text"
+            class="filter-input"
+            [formControl]="filterControl"
+            (keydown.enter)="addFirstSuitable($event)"
+            (keydown.backspace)="removeLastSelected()"
+            (focusout)="onTouched()"
+        />
+        <ul class="authors-list">
+            <li *ngFor="let author of (suitableAuthors | async)" (click)="selectAuthor(author)">
+                <span>
+                    {{author.firstName}} {{author.lastName}}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

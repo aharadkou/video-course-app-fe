@@ -1,8 +1,12 @@
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, ValidationErrors } from '@angular/forms';
-import { Author } from 'src/app/core/entities/user/impl/author.model';
-import { AuthorService } from 'src/app/core/services/author.service';
-import { COURSE_AUTHORS_MIN } from 'src/app/core/constants/constants';
+import { COURSE_AUTHORS_MIN, DEBOUNCE_SEARCH } from 'src/app/core/constants/constants';
+import { Author } from 'src/app/core/entities/course/author.model';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectFirstFiltered, selectFiltered } from 'src/app/store/selectors/author.selectors';
+import { debounceTime, filter, tap, take } from 'rxjs/operators';
+import { loadFiltered, clearFiltered } from 'src/app/store/actions/author.actions';
 
 @Component({
   selector: 'app-course-authors-input',
@@ -23,40 +27,27 @@ import { COURSE_AUTHORS_MIN } from 'src/app/core/constants/constants';
 })
 export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor {
 
-  constructor(private authorService: AuthorService, private elementRef: ElementRef) { }
+  constructor(private store: Store<AppState>, private elementRef: ElementRef) { }
 
-  allAuthors: Author[];
+  filterControl: FormControl;
 
-  selectedAuthors: number[];
+  selectedAuthors: Author[];
 
-  private filter: string;
-
-  private queryAuthorsList(): any {
-    return this.elementRef.nativeElement.querySelector('.authors-list');
-  }
-
-  get suitableAuthors() {
-    const authorNameToUpperCase = (author: Author) => (author.firstName + ' ' + author.lastName).toUpperCase();
-    if (this.filter) {
-      const upperCaseFilter = this.filter.toUpperCase();
-      return this.allAuthors.filter(author =>
-        !this.selectedAuthors.find(authorId => authorId === +author.id)
-          && authorNameToUpperCase(author).includes(upperCaseFilter)
-      ).sort(
-        (author1: Author, author2: Author) =>
-              authorNameToUpperCase(author1).indexOf(upperCaseFilter) - authorNameToUpperCase(author2).indexOf(upperCaseFilter));
-    }
-  }
+  suitableAuthors = this.store.pipe(select(selectFiltered));
 
   addFirstSuitable(event: any) {
-    if (this.suitableAuthors && this.suitableAuthors[0]) {
-      this.selectAuthor(this.suitableAuthors[0]);
-    }
+    this.store.pipe(select(selectFirstFiltered), take(1)).subscribe(
+      firstFiltered => {
+        if (firstFiltered) {
+          this.selectAuthor(firstFiltered);
+        }
+      }
+    );
     event.preventDefault();
   }
 
   removeLastSelected() {
-    if (!this.filter && this.selectedAuthors && this.selectedAuthors[0]) {
+    if (!this.filterControl.value && this.selectedAuthors && this.selectedAuthors.length > 0) {
       const selectedWithoutLast = this.selectedAuthors.slice();
       selectedWithoutLast.pop();
       this.selectedAuthors = selectedWithoutLast;
@@ -65,8 +56,20 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
   }
 
   ngOnInit() {
-    this.authorService.getAll().subscribe(
-      authors => this.allAuthors = authors
+    this.filterControl = new FormControl('');
+    this.filterControl.valueChanges.pipe(
+      filter((filterValue: string) => {
+        const isBlank = filterValue.trim().length === 0;
+        if (isBlank) {
+          this.store.dispatch(clearFiltered());
+        }
+        return !isBlank;
+      }),
+      debounceTime(DEBOUNCE_SEARCH)
+    ).subscribe(
+      (filterValue: string) => this.store.dispatch(
+        loadFiltered({ filter: filterValue, selectedIds: this.selectedAuthors.map(author => author.id) })
+      )
     );
   }
 
@@ -82,12 +85,13 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
     this.elementRef.nativeElement.querySelector('.filter-input').focus();
   }
 
-  writeValue(selectedAuthors: number[]): void {
+  writeValue(selectedAuthors: Author[]) {
     this.selectedAuthors = selectedAuthors;
     this.onChange(selectedAuthors);
   }
 
-  onChange = (selectedAuthors: number[]) => { };
+  onChange = (selectedAuthors: Author[]) => { };
+
   onTouched = () => { };
 
   registerOnChange(fn: any): void {
@@ -97,17 +101,13 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
     this.onTouched = fn;
   }
 
-  getAuthorById(id: number) {
-    return this.allAuthors.find(author => +author.id === id);
-  }
-
   removeAuthor(id: number) {
-    this.writeValue(this.selectedAuthors.filter(authorId => authorId !== id));
+    this.writeValue(this.selectedAuthors.filter(author => author.id !== id));
   }
 
   selectAuthor(author: Author) {
-    this.writeValue(this.selectedAuthors.concat(+author.id));
-    this.filter = undefined;
+    this.writeValue(this.selectedAuthors.concat(author));
+    this.filterControl.setValue('');
   }
 
 }

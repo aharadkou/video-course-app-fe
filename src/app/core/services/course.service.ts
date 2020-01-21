@@ -18,7 +18,7 @@ export class CourseService {
     return this.http.get<CoursePagination>(COURSE_URL, {
       params: { start: start.toString(), count: count.toString(), orderBy, filter }
     }).pipe(
-      tap(coursePagination => coursePagination.courses.map(course => restoreCourseDate(course))),
+      tap(coursePagination => coursePagination.courses.map(course => restoreCourseDate(course)))
     );
   }
 
