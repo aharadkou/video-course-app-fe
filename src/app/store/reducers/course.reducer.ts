@@ -15,6 +15,7 @@ import {
   updateSuccess,
 } from '../actions/course.actions';
 import { courseAdapter } from '../adapters/course.adapter';
+import { UNKNOWN_ERROR } from 'src/app/core/constants/constants';
 
 const courseReducer = createReducer(
   initialState,
@@ -28,7 +29,7 @@ const courseReducer = createReducer(
     (state, { error }) => {
     return {
       ...state,
-      errorMessage: error.error.message || 'Unknown error'
+      errorMessage: error.error.message || UNKNOWN_ERROR
     };
   }),
   on(openDeleteModalFailure, (state, { errorMessage }) => {

@@ -28,11 +28,6 @@ export class CourseDateInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
   }
 
-  writeValue(value: string): void {
-    this.date = value;
-    this.onChange(value);
-  }
-
   validate({ value }: FormControl): ValidationErrors {
     if (!(value && value.match(PATTERN_DATE))) {
       return {
@@ -41,15 +36,24 @@ export class CourseDateInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  onChange = (value: string) => { };
+  writeValue(value: string) {
+    this.date = value;
+  }
 
-  onTouched = () => { };
+  updateValue(value: string) {
+    this.date = value;
+    this.onChange(value);
+  }
 
-  registerOnChange(fn: any): void {
+  onChange(value: string) { }
+
+  onTouched() { }
+
+  registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
 

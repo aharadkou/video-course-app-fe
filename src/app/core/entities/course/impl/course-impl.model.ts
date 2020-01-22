@@ -1,5 +1,4 @@
 import { Course } from '../course.model';
-import { User } from '../../user/user.model';
 import { Author } from '../author.model';
 
 export class CourseImpl implements Course {

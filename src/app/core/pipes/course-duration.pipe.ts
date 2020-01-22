@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { MINUTES_IN_HOUR } from '../constants/constants';
 
 @Pipe({
   name: 'courseDuration'
@@ -10,9 +11,11 @@ export class CourseDurationPipe implements PipeTransform {
   }
 
   transform(value: number): string {
-    const minutesInHour = 60;
-    const hours = Math.floor(value / minutesInHour);
-    const minutes = Math.floor(value % minutesInHour);
+    if (value < 0) {
+      return;
+    }
+    const hours = Math.floor(value / MINUTES_IN_HOUR);
+    const minutes = Math.floor(value % MINUTES_IN_HOUR);
     return this.getTimePart(hours, 'h ') + this.getTimePart(minutes, 'min');
   }
 

@@ -29,25 +29,29 @@ export class CourseDurationInputComponent implements OnInit, ControlValueAccesso
 
   validate({ value }: FormControl): ValidationErrors {
     const numberValue = +value;
-    if (!Number.isInteger(numberValue) || numberValue < 0) {
+    if (!Number.isInteger(numberValue) || numberValue <= 0) {
         return { invalidDuration: { value } };
     }
   }
 
-  onChange = (value: string) => { };
+  writeValue(value: string) {
+    this.duration = value;
+  }
 
-  onTouched = () => { };
-
-  writeValue(value: string): void {
+  updateValue(value: string) {
     this.duration = value;
     this.onChange(value);
   }
 
-  registerOnChange(fn: any): void {
+  onChange(value: string) { }
+
+  onTouched() { }
+
+  registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
 

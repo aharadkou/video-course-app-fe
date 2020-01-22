@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { COURSE_TITLE_MAX_LENGTH, COURSE_DESCRIPTION_MAX_LENGTH } from 'src/app/core/constants/constants';
-import { dateToString, stringToDate } from 'src/app/core/utils/date-format-utils';
+import { dateToString, stringToDate } from 'src/app/core/utils/date-utils';
 import { select, Store } from '@ngrx/store';
 import { selectErrorMessage as selectCourseErrorMessage} from 'src/app/store/selectors/course.selectors';
 import { selectErrorMessage as selectAuthorErrorMessage} from 'src/app/store/selectors/author.selectors';
@@ -27,8 +27,8 @@ export class CourseFormComponent implements OnInit {
   ngOnInit() {
     this.courseForm = this.formBuilder.group({
       title: [this.course.title, [Validators.required, Validators.maxLength(COURSE_TITLE_MAX_LENGTH)]],
-      description: [this.course.description, Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)],
-      creationDate: [dateToString(this.course.creationDate)],
+      description: [this.course.description, [Validators.required, Validators.maxLength(COURSE_DESCRIPTION_MAX_LENGTH)]],
+      creationDate: [dateToString(this.course.creationDate), Validators.required],
       duration: [this.course.duration, Validators.required],
       authors: [this.course.authors]
     });

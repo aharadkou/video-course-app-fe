@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, ValidationErrors } from '@angular/forms';
-import { COURSE_AUTHORS_MIN, DEBOUNCE_SEARCH } from 'src/app/core/constants/constants';
+import { COURSE_AUTHORS_MIN, DEBOUNCE_SEARCH, TAKE_FIRST } from 'src/app/core/constants/constants';
 import { Author } from 'src/app/core/entities/course/author.model';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectFirstFiltered, selectFiltered } from 'src/app/store/selectors/author.selectors';
-import { debounceTime, filter, tap, take } from 'rxjs/operators';
+import { debounceTime, filter, take } from 'rxjs/operators';
 import { loadFiltered, clearFiltered } from 'src/app/store/actions/author.actions';
 
 @Component({
@@ -36,7 +36,7 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
   suitableAuthors = this.store.pipe(select(selectFiltered));
 
   addFirstSuitable(event: any) {
-    this.store.pipe(select(selectFirstFiltered), take(1)).subscribe(
+    this.store.pipe(select(selectFirstFiltered), take(TAKE_FIRST)).subscribe(
       firstFiltered => {
         if (firstFiltered) {
           this.selectAuthor(firstFiltered);
@@ -51,7 +51,7 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
       const selectedWithoutLast = this.selectedAuthors.slice();
       selectedWithoutLast.pop();
       this.selectedAuthors = selectedWithoutLast;
-      this.writeValue(this.selectedAuthors);
+      this.updateValue(this.selectedAuthors);
     }
   }
 
@@ -87,26 +87,30 @@ export class CourseAuthorsInputComponent implements OnInit, ControlValueAccessor
 
   writeValue(selectedAuthors: Author[]) {
     this.selectedAuthors = selectedAuthors;
+  }
+
+  updateValue(selectedAuthors: Author[]) {
+    this.selectedAuthors = selectedAuthors;
     this.onChange(selectedAuthors);
   }
 
-  onChange = (selectedAuthors: Author[]) => { };
+  onChange(selectedAuthors: Author[]) { }
 
-  onTouched = () => { };
+  onTouched() { }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any) {
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
     this.onTouched = fn;
   }
 
   removeAuthor(id: number) {
-    this.writeValue(this.selectedAuthors.filter(author => author.id !== id));
+    this.updateValue(this.selectedAuthors.filter(author => author.id !== id));
   }
 
   selectAuthor(author: Author) {
-    this.writeValue(this.selectedAuthors.concat(author));
+    this.updateValue(this.selectedAuthors.concat(author));
     this.filterControl.setValue('');
   }
 

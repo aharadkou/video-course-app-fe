@@ -16,9 +16,12 @@
     <div class="form-group">
         <div>
             <label>Description:</label>
-            <label *ngIf="description.invalid" class="form-error">
+            <label *ngIf="description.invalid && (description.dirty || description.touched)" class="form-error">
                 <ng-container *ngIf="description.errors.maxlength">
                     Description is too long!
+                </ng-container>
+                <ng-container *ngIf="description.errors.required">
+                    Description is required!
                 </ng-container>
             </label>
         </div>
@@ -28,8 +31,11 @@
         <div>
             <label>Date:</label>
             <label *ngIf="creationDate.invalid" class="form-error"> 
+                <ng-container *ngIf="creationDate.errors.required">
+                    Date is required!
+                </ng-container>
                 <ng-container *ngIf="creationDate.errors.invalidDate">
-                    Date is invalid! Please, provide date in format DayOfMonth.Month.Year (e.g. 25.08.2005)
+                    Please, provide date in format DayOfMonth.Month.Year (e.g. 25.08.2005)
                 </ng-container>
             </label>
         </div>

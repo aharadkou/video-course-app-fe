@@ -1,6 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { inititalState, AuthenticationState } from '../states/authentication.state';
 import { loginSuccess, loginFailure, logout } from '../actions/authentication.actions';
+import { UNKNOWN_ERROR } from 'src/app/core/constants/constants';
 
 const authenticationReducer = createReducer(
   inititalState,
@@ -14,7 +15,7 @@ const authenticationReducer = createReducer(
   on(loginFailure, (state, { error }) => {
     return {
       ...state,
-      errorMessage: error.error.message || 'Unknown error'
+      errorMessage: error.error.message || UNKNOWN_ERROR
     };
   }),
   on(logout, () => {

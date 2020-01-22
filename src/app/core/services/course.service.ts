@@ -5,7 +5,7 @@ import { COURSE_URL } from '../constants/constants';
 import { HttpClient } from '@angular/common/http';
 import { CoursePagination } from '../entities/course/course-pagination.model';
 import { tap } from 'rxjs/operators';
-import { restoreCourseDate } from '../utils/date-format-utils';
+import { restoreCourseDate } from '../utils/date-utils';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,8 @@
 
 export const FRESHESS_DURATION = 14;
 
+export const MINUTES_IN_HOUR = 60;
+
 export const KEY_TOKEN = 'token';
 
 export const KEY_USER_INFO = 'login';
@@ -39,3 +41,8 @@ export const COURSE_AUTHORS_MIN = 1;
 export const DATE_SEPARATOR = '.';
 
 export const PATTERN_DATE = new RegExp(`^(\\d?\\d)${DATE_SEPARATOR}(\\d?\\d)${DATE_SEPARATOR}(\\d{4})$`);
+
+
+export const TAKE_FIRST = 1;
+
+export const UNKNOWN_ERROR = 'Unknown error';
