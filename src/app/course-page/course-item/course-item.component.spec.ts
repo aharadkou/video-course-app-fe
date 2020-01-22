@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store } from '@ngrx/store';
-import { deleteById } from 'src/app/store/actions/course.actions';
+import { deleteById, openDeleteModal } from 'src/app/store/actions/course.actions';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {
@@ -70,10 +70,10 @@ describe('CourseItemComponent with host', () => {
     testCourseInfo(fixture);
   });
 
-  it('should dispatch deleteById action delete button pressed', () => {
+  it('should dispatch openDeleteModal action delete button pressed', () => {
     const deleteButton = fixture.debugElement.query(By.css('.delete-button'));
     deleteButton.triggerEventHandler('click', null);
-    expect(store.dispatch).toHaveBeenCalledWith(deleteById({ id: mockCourse.id }));
+    expect(store.dispatch).toHaveBeenCalledWith(openDeleteModal({ id: mockCourse.id }));
   });
 });
 

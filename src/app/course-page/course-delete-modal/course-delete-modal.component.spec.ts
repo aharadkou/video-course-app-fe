@@ -6,7 +6,7 @@ import { TestModalComponent } from 'src/app/test/test-modal.component';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/states/app.state';
-import { deleteByIdComplete } from 'src/app/store/actions/course.actions';
+import { deleteById } from 'src/app/store/actions/course.actions';
 
 describe('CourseDeleteModalComponent', () => {
   let component: CourseDeleteModalComponent;
@@ -34,9 +34,9 @@ describe('CourseDeleteModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should dispatch deleteByIdComplete action', () => {
+  it('should dispatch deleteById action', () => {
     const yesButtonEl = fixture.debugElement.query(By.css('.yes-button'));
     yesButtonEl.triggerEventHandler('click', null);
-    expect(store.dispatch).toHaveBeenCalledWith(deleteByIdComplete({ id: deletedId }));
+    expect(store.dispatch).toHaveBeenCalledWith(deleteById({ id: deletedId }));
   });
 });

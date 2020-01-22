@@ -10,7 +10,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppState } from 'src/app/store/states/app.state';
 import { selectLoaded, selectCanLoadMore, selectIsEmpty } from 'src/app/store/selectors/course.selectors';
 import { MemoizedSelector, Store } from '@ngrx/store';
-import { loadPaged, loadMore } from 'src/app/store/actions/course.actions';
+import { loadNextPage } from 'src/app/store/actions/course.actions';
 
 
 describe('CourseListComponent', () => {
@@ -62,15 +62,26 @@ describe('CourseListComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    it('should dispatch loadPage action', () => {
-      expect(store.dispatch).toHaveBeenCalledWith(loadPaged());
+    it('should dispatch loadNextPage action if store is empty', () => {
+      mockIsEmptySelector.setResult(true);
+      store.refreshState();
+      fixture.detectChanges();
+      component.ngOnInit();
+      expect(store.dispatch).toHaveBeenCalledWith(loadNextPage());
+    });
+    it('shouldnt dispatch loadNextPage action if store isnt empty', () => {
+      mockIsEmptySelector.setResult(false);
+      store.refreshState();
+      fixture.detectChanges();
+      component.ngOnInit();
+      expect(store.dispatch).not.toHaveBeenCalledWith(loadNextPage());
     });
   });
 
   describe('loadMore', () => {
     it('should dispatch loadMore action', () => {
       fixture.debugElement.query(By.css('.load-more-button')).triggerEventHandler('click', null);
-      expect(store.dispatch).toHaveBeenCalledWith(loadMore());
+      expect(store.dispatch).toHaveBeenCalledWith(loadNextPage());
     });
   });
 

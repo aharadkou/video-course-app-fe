@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { UserService } from './user.service';
 import { AUTHENTICATION_URL } from '../constants/constants';
-import { UserCredentials } from '../entities/user/user-credentials';
 
 describe('UserService', () => {
 
@@ -30,26 +29,16 @@ describe('UserService', () => {
       const expectedPassword = '12345';
       const expectedToken = 'token';
       service.login(expectedLogin, expectedPassword).subscribe(
-        token => expect(token).toBe(expectedToken)
+        response => {
+          expect(response.token).toBe(expectedToken);
+          expect(response.user.email).toBe(expectedLogin);
+        }
       );
       const request = httpMock.expectOne(`${AUTHENTICATION_URL}/login`);
       expect(request.request.method).toBe('POST');
-      request.flush({ token: expectedToken });
+      request.flush({ token: expectedToken, user: { email: expectedLogin } });
       localStorage.clear();
     });
   });
 
-  describe('getUserInfo', () => {
-    it('should send get request and receive user info in response', () => {
-      const expectedInfo: UserCredentials = {
-        email: 'expected'
-      };
-      service.getUserInfo().subscribe(
-        userCredentials => expect(userCredentials).toEqual(expectedInfo)
-      );
-      const request = httpMock.expectOne(`${AUTHENTICATION_URL}/userInfo`);
-      expect(request.request.method).toBe('GET');
-      request.flush(expectedInfo);
-    });
-  });
 });
