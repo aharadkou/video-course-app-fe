@@ -25,7 +25,6 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     CoreModule,
     SharedModule,
-    IconsModule,
     RouterModule
   ],
   exports: [CoursePageContainerComponent],

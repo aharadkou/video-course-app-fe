@@ -1,24 +1,56 @@
 .input-container {
-    position: relative;
+    width: 100%;
+    min-height: 35px;
+    align-items: center;
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background: white;
+    padding: 5px 3px;
 }
 
-.authors-container {
-    position: absolute;
-    top: 8px;
-    left: 10px;
+.filter-input {
+    display: inline-block;
+    position: relative;
+    border: none;
+    outline: none;
 }
 
 .author-item {
     display: inline-block;
-    margin-right: 7px;
-    background-color: lightblue;
-    padding: 5px;
+    padding: 12px;
+    margin: 0 6px;
+    background-color: #2cb7de;
+    color: white;
     border-radius: 3px;
-    font-style: italic;
+    font-weight: bold;
 }
 
-.author-item::after {
-    content: 'x';
-    font-style: normal;
-    font-weight: 900;
+.remove-icon {
+    cursor: pointer;
+}
+
+.authors-list {
+    position: absolute;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    border: 1px solid gainsboro;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.authors-list li {
+    display: block;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.authors-list li:hover {
+    background-color: #2cb7de;
+    color: white;
+}
+
+.hidden {
+    display: none;
 }

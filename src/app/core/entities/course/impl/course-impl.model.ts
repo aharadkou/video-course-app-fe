@@ -1,5 +1,5 @@
 import { Course } from '../course.model';
-import { User } from '../../user/user.model';
+import { Author } from '../author.model';
 
 export class CourseImpl implements Course {
 
@@ -9,7 +9,7 @@ export class CourseImpl implements Course {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: User[];
+    authors: Author[];
 
     constructor(
         id: number,
@@ -18,7 +18,7 @@ export class CourseImpl implements Course {
         duration: number,
         description: string,
         topRated: boolean,
-        authors?: User[]
+        authors?: Author[]
     ) {
         this.id = id;
         this.title = title;

@@ -1,30 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginPageComponent } from './login-page.component';
-import { UserService } from 'src/app/core/services/user.service';
-import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { AppState } from 'src/app/store/states/app.state';
+import { Store } from '@ngrx/store';
+import { login } from 'src/app/store/actions/authentication.actions';
+import { ReactiveFormsModule } from '@angular/forms';
+import { selectErrorMessage } from 'src/app/store/selectors/authentication.selectors';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
-  const userServiceSpy: Partial<UserService> = jasmine.createSpyObj(
-    {
-      login: new Observable()
-    }
-  );
-  const routerSpy: Partial<Router> = jasmine.createSpyObj(['navigate']);
+  let store: MockStore<AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginPageComponent],
-      providers: [
-        { provide: UserService, useValue: userServiceSpy },
-        { provide: Router, useValue: routerSpy },
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      providers: [provideMockStore()],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [ReactiveFormsModule]
     })
     .compileComponents();
   }));
@@ -32,11 +27,20 @@ describe('LoginPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
+    store = TestBed.get(Store);
+    store.overrideSelector(selectErrorMessage, 'error');
+    store.dispatch = jasmine.createSpy();
     fixture.detectChanges();
   });
 
-  it('should invoke service login method after login button pressed ', () => {
-    fixture.debugElement.query(By.css('.login-button')).triggerEventHandler('click', null);
-    expect(userServiceSpy.login).toHaveBeenCalled();
+  it('should dispatch login action after login button pressed ', () => {
+    component.submitLogin();
+    const loginForm = component.loginForm.value;
+    expect(store.dispatch).toHaveBeenCalledWith(login({
+      credentials: {
+        email: loginForm.login,
+        password: loginForm.password
+      }
+    }));
   });
 });

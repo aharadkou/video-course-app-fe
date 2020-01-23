@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/core/services/user.service';
-import { Router } from '@angular/router';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { UserCredentials } from 'src/app/core/entities/user/user-credentials';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { selectErrorMessage } from 'src/app/store/selectors/authentication.selectors';
+import { login } from 'src/app/store/actions/authentication.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -11,25 +12,33 @@ import { UserCredentials } from 'src/app/core/entities/user/user-credentials';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private userService: UserService,
-              private router: Router,
-              private modalService: ModalService
-  ) { }
+  constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
+
+  loginForm: FormGroup;
+  errorMessage = this.store.pipe(select(selectErrorMessage));
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      login: [''],
+      password: ['']
+    });
   }
 
-  login(email: string, password: string) {
-    this.userService.login(email, password).subscribe(
-      {
-        next: () => {
-          this.router.navigate(['/']);
-        },
-        error: error => {
-          console.log(error);
-          this.modalService.open('login-failed-modal');
-        }
+  get login() {
+    return this.loginForm.get('login');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  submitLogin() {
+    const formValue = this.loginForm.value;
+    this.store.dispatch(login({
+      credentials: {
+        email: formValue.login,
+        password: formValue.password
       }
-    );
+    }));
   }
 }

@@ -1,8 +1,26 @@
-<div class="input-container">
-    <div class="authors-container">
-            <div *ngFor="let author of authors" class="author-item">
-                {{author.firstName}} {{author.lastName}}
-            </div>   
-    </div>  
-    <input class="form-input input-stretched authors-input" type="text" readonly />
+<div class="input-container" (click)="setFocusOnInput()">
+    <div *ngFor="let author of selectedAuthors" class="author-item">
+        <span>
+            {{author.firstName}} {{author.lastName}}
+        </span>
+        <span class="remove-icon" (click)="removeAuthor(author.id)">
+            <fa-icon [icon]="['far', 'minus-square']"></fa-icon>
+        </span>
+    </div>
+    <div class="filter-input-container">
+        <input type="text"
+            class="filter-input"
+            [formControl]="filterControl"
+            (keydown.enter)="addFirstSuitable($event)"
+            (keydown.backspace)="removeLastSelected()"
+            (focusout)="onTouched()"
+        />
+        <ul class="authors-list">
+            <li *ngFor="let author of (suitableAuthors | async)" (click)="selectAuthor(author)">
+                <span>
+                    {{author.firstName}} {{author.lastName}}
+                </span>
+            </li>
+        </ul>
+    </div>
 </div>

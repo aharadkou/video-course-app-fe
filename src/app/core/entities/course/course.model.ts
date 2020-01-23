@@ -1,4 +1,4 @@
-import { User } from '../user/user.model';
+import { Author } from './author.model';
 
 export interface Course {
     id: number;
@@ -7,5 +7,5 @@ export interface Course {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: User[];
+    authors: Author[];
 }

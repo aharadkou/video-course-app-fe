@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { CourseImpl } from 'src/app/core/entities/course/impl/course-impl.model';
-import { CourseService } from 'src/app/core/services/course.service';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { add } from 'src/app/store/actions/course.actions';
 
 @Component({
   selector: 'app-course-add-page',
@@ -11,16 +12,15 @@ import { Router } from '@angular/router';
 })
 export class CourseAddPageComponent implements OnInit {
 
-  course: Course;
+  course = new CourseImpl(undefined, '', new Date(), undefined, '', false);
 
-  constructor(private courseService: CourseService, private router: Router) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.course = new CourseImpl(undefined, '', new Date(), 0, '', false);
   }
 
   add(course: Course) {
-    this.courseService.add(course).subscribe(() => this.router.navigateByUrl('/courses'));
+    this.store.dispatch(add({ course }));
   }
 
 }

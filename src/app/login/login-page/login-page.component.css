@@ -47,9 +47,19 @@
     font-size: 18px;
     border: none;
     padding: 10px 15px;
+    cursor: pointer;
 }
 
 .forgot-password {
     line-height: 32px;
     padding-left: 20px;
+}
+
+.form-title > * {
+    display: inline-block;
+}
+
+.form-error {
+    float: right;
+    color: red;
 }
