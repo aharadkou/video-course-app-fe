@@ -46,3 +46,14 @@ export const PATTERN_DATE = new RegExp(`^(\\d?\\d)${DATE_SEPARATOR}(\\d?\\d)${DA
 export const TAKE_FIRST = 1;
 
 export const UNKNOWN_ERROR = 'Unknown error';
+
+export const SUPPORTED_LANGS = [
+  {
+    lang: 'en',
+    title: 'English'
+  },
+  {
+    lang: 'ru',
+    title: 'Русский'
+  }
+];

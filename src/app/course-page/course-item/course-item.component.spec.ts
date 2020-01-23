@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState } from 'src/app/store/states/app.state';
 import { Store } from '@ngrx/store';
-import { deleteById, openDeleteModal } from 'src/app/store/actions/course.actions';
+import { openDeleteModal } from 'src/app/store/actions/course.actions';
 
 
 function testCourseInfo(fixture: ComponentFixture<any>) {

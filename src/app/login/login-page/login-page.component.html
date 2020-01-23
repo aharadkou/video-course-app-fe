@@ -2,26 +2,27 @@
 <div class="login-form-container">
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
         <div class="form-title">
-            <h2 class="login-form-title">Login</h2>
+            <h2 class="login-form-title">{{"PAGES.LOGIN_PAGE.FORM_TITLE" | translate}}</h2>
             <label class="form-error">{{ errorMessage | async }}</label>
         </div>
         <div class="form-group">
             <div>
-                <label for="email-input">E-mail:</label>
-                <span class="input-description">*required</span>
+                <label for="email-input">{{"PAGES.LOGIN_PAGE.LBL_EMAIL" | translate}}:</label>
+                <span class="input-description">*{{"PAGES.LOGIN_PAGE.REQUIRED" | translate}}</span>
             </div>
-            <input #emailInput id="email-input" type="text" required placeholder="Enter e-mail" formControlName="login"/>
+            <input #emailInput id="email-input" type="text" required placeholder="{{'PAGES.LOGIN_PAGE.EMAIL_PLACEHOLDER' | translate}}" formControlName="login"/>
         </div>
         <div class="form-group">
             <div>
-                <label for="password-input">Password:</label>
-                <span class="input-description">*required</span>
+                <label for="password-input">{{"PAGES.LOGIN_PAGE.LBL_PASSWORD" | translate}}:</label>
+                <span class="input-description">*{{"PAGES.LOGIN_PAGE.REQUIRED" | translate}}</span>
             </div>
-            <input #passwordInput id="password-input" type="password" required placeholder="Enter password" formControlName="password"/>
+            <input #passwordInput id="password-input" type="password" required
+                    placeholder="{{'PAGES.LOGIN_PAGE.PASSWORD_PLACEHOLDER' | translate}}" formControlName="password"/>
         </div>
         <div class="form-group">
-            <a class="forgot-password" href="#" >Forgot password?</a>
-            <button type="submit" class="login-button">Login</button>
+            <a class="forgot-password" href="#" >{{"PAGES.LOGIN_PAGE.FORGOT_PASSWORD" | translate}}?</a>
+            <button type="submit" class="login-button">{{"PAGES.LOGIN_PAGE.BTN_LOGIN" | translate}}</button>
         </div>
     </form>		
 </div>

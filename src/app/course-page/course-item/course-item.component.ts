@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from 'src/app/core/entities/course/course.model';
 import { AppState } from 'src/app/store/states/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { openDeleteModal } from 'src/app/store/actions/course.actions';
+import { selectCurrentLang } from 'src/app/store/selectors/lang.selectors';
 
 @Component({
   selector: 'app-course-item',
@@ -14,7 +15,7 @@ export class CourseItemComponent implements OnInit {
 
   @Input() course: Course;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
-
+  currentLang = this.store.pipe(select(selectCurrentLang));
   courseItemClass;
   starClass;
 

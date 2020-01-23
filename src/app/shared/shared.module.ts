@@ -11,7 +11,8 @@ import { RoutingModule } from '../routing/routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingBlockComponent } from './loading-block/loading-block.component';
-
+import {TranslateModule} from '@ngx-translate/core';
+import { LanguageSelectComponent } from './language-select/language-select.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,15 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
     ModalComponent,
     AlertModalComponent,
     PageNotFoundComponent,
-    LoadingBlockComponent
+    LoadingBlockComponent,
+    LanguageSelectComponent
   ],
   imports: [
     CommonModule,
     IconsModule,
     RoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     FooterComponent,
@@ -39,7 +42,8 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
     AlertModalComponent,
     ReactiveFormsModule,
     LoadingBlockComponent,
-    IconsModule
+    IconsModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }

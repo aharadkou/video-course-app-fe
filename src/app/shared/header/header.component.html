@@ -1,15 +1,18 @@
 <div class="header header-footer-background padding-default-left">
     <app-logo></app-logo>
     <div class="header-right"> 
+        <app-language-select class="language-select"></app-language-select>
         <ng-container
             *ngIf="isAuthenticated | async; then loggedIn; else loggedOut">
         </ng-container>
         <ng-template #loggedIn>
             <a>{{ (user | async)?.email }}</a>
-            <a (click)="logout()" class="logout-button"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Log off</a>
+            <a (click)="logout()" class="logout-button">
+                <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> {{"SHARED.HEADER.LOG_OFF" | translate}}
+            </a>
         </ng-template>
         <ng-template #loggedOut>
-            <a routerLink="/login"><fa-icon [icon]="['fas', 'user']"></fa-icon> User login</a>
+            <a routerLink="/login"><fa-icon [icon]="['fas', 'user']"></fa-icon> {{"SHARED.HEADER.LOGIN" | translate}}</a>
         </ng-template>
     </div>
 </div>

@@ -19,3 +19,8 @@
     padding: 15px;
     cursor: pointer;
 }
+
+.language-select {
+    padding: 15px;
+    float: left;
+}
