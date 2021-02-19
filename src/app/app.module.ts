@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
@@ -19,6 +19,16 @@ import { reducers } from './store/reducers/reducers';
 import { environment } from 'src/environments/environment';
 import { effects } from './store/effects/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +47,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -53,5 +70,5 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   ]
 })
 export class AppModule {
-  constructor() { }
+
 }

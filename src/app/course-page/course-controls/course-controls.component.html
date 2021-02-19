@@ -1,10 +1,14 @@
 <div class="clearfix controls-container">
     <div class="search-container">
         <input class="search-input" type="text" [formControl]="searchControl" required/>
-        <span class="search-placeholder"><fa-icon [icon]="['fas', 'search']"></fa-icon> Text to search</span>
+        <span class="search-placeholder">
+            <fa-icon [icon]="['fas', 'search']"></fa-icon> {{"PAGES.COURSE_LIST_PAGE.SEARCH_PLACEHOLDER" | translate}}
+        </span>
     </div>
     <label class="error" *ngIf="errorMessage | async">{{errorMessage | async}}</label>
     <div class="add-button-container">
-        <button routerLink="/courses/new" class="button course-add-button"><fa-icon [icon]="['fas', 'plus']"></fa-icon> Add course</button>
+        <button routerLink="/courses/new" class="button course-add-button">
+            <fa-icon [icon]="['fas', 'plus']"></fa-icon> {{"PAGES.COURSE_LIST_PAGE.BTN_ADD_COURSE" | translate}}
+        </button>
     </div>
 </div>

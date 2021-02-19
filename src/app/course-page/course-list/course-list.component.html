@@ -2,10 +2,10 @@
 <ng-container *ngIf="(isEmpty | async) === false; then loadMoreButton; else noItems"></ng-container>
 <ng-template #loadMoreButton>
     <div class="shadow" *ngIf="canLoadMore | async">
-        <a class="load-more-button" (click)="loadMore()">Load more</a>
+        <a class="load-more-button" (click)="loadMore()">{{"PAGES.COURSE_LIST_PAGE.BTN_LOAD_MORE" | translate}}</a>
     </div>
 </ng-template>
 <ng-template #noItems>
-    <h2 class="no-items-title">There are no courses to display!</h2>
+    <h2 class="no-items-title">{{"PAGES.COURSE_LIST_PAGE.NO_COURSES" | translate}}</h2>
 </ng-template>
 <app-course-delete-modal id="course-delete-modal"></app-course-delete-modal>

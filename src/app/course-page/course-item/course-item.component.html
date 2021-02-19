@@ -5,11 +5,11 @@
                         <div class="date-duration-container">
                                 <span class="duration">
                                         <fa-icon [icon]="['far', 'clock']"></fa-icon>
-                                        {{course?.duration | courseDuration}}
+                                        {{course?.duration | courseDuration:("SHARED.HOURS_ABBREV" | translate):("SHARED.MINUTES_ABBREV" | translate)}}
                                 </span>
                                 <span class="date">
                                         <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>
-                                        {{course?.creationDate | date: 'd MMM, y'}}
+                                        {{course?.creationDate | localizedDate:'d MMM, y':(currentLang | async)}}
                                 </span>
                         </div>
                 </div>
@@ -17,10 +17,10 @@
         </div>
         <div class="buttons-container">
                         <button class="button" [routerLink]="['/courses', course?.id]">
-                                <fa-icon [icon]="['fas', 'pen']"></fa-icon> Edit
+                                <fa-icon [icon]="['fas', 'pen']"></fa-icon> {{"PAGES.COURSE_LIST_PAGE.BTN_EDIT_COURSE" | translate}}
                         </button>
                         <button class="button delete-button" (click)="openDeleteModal()">
-                                <fa-icon [icon]="['fas', 'trash']"></fa-icon> Delete
+                                <fa-icon [icon]="['fas', 'trash']"></fa-icon> {{"PAGES.COURSE_LIST_PAGE.BTN_DELETE_COURSE" | translate}}
                         </button>
         </div>
 </div>

@@ -4,6 +4,7 @@ import { PageTitleDirective } from './directives/page-title.directive';
 import { CourseDurationPipe } from './pipes/course-duration.pipe';
 import { IconsModule } from '../icons/icons.module';
 import { CourseFreshnessDirective } from './directives/course-freshness.directive';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 
 
 
@@ -11,7 +12,8 @@ import { CourseFreshnessDirective } from './directives/course-freshness.directiv
   declarations: [
     PageTitleDirective,
     CourseDurationPipe,
-    CourseFreshnessDirective
+    CourseFreshnessDirective,
+    LocalizedDatePipe
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { CourseFreshnessDirective } from './directives/course-freshness.directiv
     PageTitleDirective,
     CourseDurationPipe,
     CourseFreshnessDirective,
-    CourseFreshnessDirective
+    CourseFreshnessDirective,
+    LocalizedDatePipe
   ]
 })
 export class CoreModule { }

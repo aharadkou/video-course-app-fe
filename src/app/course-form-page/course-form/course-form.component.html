@@ -1,13 +1,13 @@
 <form class="form-container padding-default-left padding-default-right" [formGroup]="courseForm" (ngSubmit)="saveCourse()">
     <div class="form-group">
         <div>
-            <label>Title:</label>
+            <label>{{"PAGES.COURSE_FORM_PAGE.LBL_TITLE" | translate}}:</label>
             <label *ngIf="title.invalid && (title.dirty || title.touched)" class="form-error">
                 <ng-container *ngIf="title.errors.required">
-                    Title is required!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_TITLE_REQUIRED" | translate}}
                 </ng-container>
                 <ng-container *ngIf="title.errors.maxlength">
-                    Title is too long!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_TITLE_MAXLENGTH" | translate}}
                 </ng-container>
             </label>
         </div>
@@ -15,13 +15,13 @@
     </div>
     <div class="form-group">
         <div>
-            <label>Description:</label>
+            <label>{{"PAGES.COURSE_FORM_PAGE.LBL_DESCRIPTION" | translate}}:</label>
             <label *ngIf="description.invalid && (description.dirty || description.touched)" class="form-error">
                 <ng-container *ngIf="description.errors.maxlength">
-                    Description is too long!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DESCRIPTION_MAXLENGTH" | translate}}
                 </ng-container>
                 <ng-container *ngIf="description.errors.required">
-                    Description is required!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DESCRIPTION_REQUIRED" | translate}}
                 </ng-container>
             </label>
         </div>
@@ -29,13 +29,13 @@
     </div>
     <div class="form-group">
         <div>
-            <label>Date:</label>
+            <label>{{"PAGES.COURSE_FORM_PAGE.LBL_DATE" | translate}}:</label>
             <label *ngIf="creationDate.invalid" class="form-error"> 
                 <ng-container *ngIf="creationDate.errors.required">
-                    Date is required!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DATE_REQUIRED" | translate}}
                 </ng-container>
                 <ng-container *ngIf="creationDate.errors.invalidDate">
-                    Please, provide date in format DayOfMonth.Month.Year (e.g. 25.08.2005)
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DATE_INVALID" | translate}}
                 </ng-container>
             </label>
         </div>
@@ -43,13 +43,13 @@
     </div>
     <div class="form-group">
         <div>
-            <label>Duration:</label>
+            <label>{{"PAGES.COURSE_FORM_PAGE.LBL_DURATION" | translate}}:</label>
             <label *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="form-error">
                 <ng-container *ngIf="duration.errors.required">
-                    Duration is required!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DURATION_REQUIRED" | translate}}
                 </ng-container>
                 <ng-container *ngIf="duration.errors.invalidDuration">
-                    Please, provide a positive integer number for duration!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_DURATION_INVALID" | translate}}
                 </ng-container>
             </label>
         </div>
@@ -57,18 +57,20 @@
     </div>
     <div class="form-group form-group-last">
         <div>
-            <label>Authors:</label>
+            <label>{{"PAGES.COURSE_FORM_PAGE.LBL_AUTHORS" | translate}}:</label>
             <label *ngIf="authors.invalid && (authors.dirty || authors.touched)" class="form-error"> 
                 <ng-container *ngIf="authors.errors.minAuthors">
-                    Please, select at least 1 author!
+                    {{"PAGES.COURSE_FORM_PAGE.ERR_AUTHORS_MINAUTHORS" | translate}}
                 </ng-container>
             </label>
         </div>
         <app-course-authors-input formControlName="authors"></app-course-authors-input>
     </div>
     <div>
-        <button type="submit" class="button save-button" [disabled]="!courseForm.valid">Save</button>
-        <button class="button cancel-button" routerLink="/courses">Cancel</button>
+        <button type="submit" class="button save-button" [disabled]="!courseForm.valid">
+            {{"PAGES.COURSE_FORM_PAGE.BTN_SAVE" | translate}}
+        </button>
+        <button class="button cancel-button" routerLink="/courses">{{"PAGES.COURSE_FORM_PAGE.BTN_CANCEL" | translate}}</button>
         <label class="form-error" *ngIf="courseErrorMessage | async">{{courseErrorMessage | async}}</label>
         <label class="form-error" *ngIf="authorErrorMessage | async">{{authorErrorMessage | async}}</label>
     </div>

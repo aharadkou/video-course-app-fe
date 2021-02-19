@@ -1,9 +1,9 @@
 <app-modal [id]="id" #childModal>
     <div class="modal-body">
-        <h3 class="modal-title">Are you sure want to delete this course?</h3>
+        <h3 class="modal-title">{{"PAGES.COURSE_LIST_PAGE.DELETE_MODAL_TITLE" | translate}}</h3>
         <div>
-            <button class="button yes-button" (click)="delete()">Yes</button>
-            <button class="button cancel-button" (click)="childModal.close()">Cancel</button>
+            <button class="button yes-button" (click)="delete()">{{"PAGES.COURSE_LIST_PAGE.DELETE_MODAL_CONFIRM" | translate}}</button>
+            <button class="button cancel-button" (click)="childModal.close()">{{"PAGES.COURSE_LIST_PAGE.DELETE_MODAL_CANCEL" | translate}}</button>
         </div>
     </div>
 </app-modal>

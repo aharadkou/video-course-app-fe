@@ -3,7 +3,12 @@ import { ActionReducer } from '@ngrx/store';
 
 const options = {
   keys: [
-    { authenticationState: ['user', 'token'] }
+    {
+      authenticationState: ['user', 'token'],
+    },
+    {
+      langState: ['currentLang']
+    }
   ],
   rehydrate: true
 };

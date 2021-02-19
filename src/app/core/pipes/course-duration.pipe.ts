@@ -10,13 +10,13 @@ export class CourseDurationPipe implements PipeTransform {
     return time ? time + title : '';
   }
 
-  transform(value: number): string {
+  transform(value: number, hoursAbbrev: string, minutesAbbrev: string): string {
     if (value < 0) {
       return;
     }
     const hours = Math.floor(value / MINUTES_IN_HOUR);
     const minutes = Math.floor(value % MINUTES_IN_HOUR);
-    return this.getTimePart(hours, 'h ') + this.getTimePart(minutes, 'min');
+    return this.getTimePart(hours, `${hoursAbbrev} `) + this.getTimePart(minutes, `${minutesAbbrev}`);
   }
 
 }

@@ -1,0 +1,55 @@
+{
+  "PAGES": {
+    "COURSE_LIST_PAGE": {
+      "BREADCRUMBS": "Курсы",
+      "BTN_ADD_COURSE": "Добавить курс",
+      "BTN_EDIT_COURSE": "Изменить",
+      "BTN_DELETE_COURSE": "Удалить",
+      "BTN_LOAD_MORE": "Загрузить еще",
+      "SEARCH_PLACEHOLDER": "Текст для поиска",
+      "NO_COURSES": "Нет ни одного курса!",
+      "DELETE_MODAL_TITLE": "Вы действительно хотите удалить этот курс?",
+      "DELETE_MODAL_CONFIRM": "Да",
+      "DELETE_MODAL_CANCEL": "Нет"    
+    },
+    "COURSE_FORM_PAGE": {
+      "LBL_TITLE": "Название",
+      "ERR_TITLE_REQUIRED": "Название не может быть пустым!",
+      "ERR_TITLE_MAXLENGTH": "Название слишком длинное!",      
+      "LBL_DESCRIPTION": "Описание",
+      "ERR_DESCRIPTION_REQUIRED": "Описание не может быть пустым!",
+      "ERR_DESCRIPTION_MAXLENGTH": "Описание слишком длинное!",  
+      "LBL_DATE": "Дата",
+      "ERR_DATE_REQUIRED": "Поле даты обязательно для заполнения!",
+      "ERR_DATE_INVALID": "Введите дату в формате День.Месяц.Год (например 25.08.2005)",
+      "LBL_DURATION": "Длительность",
+      "ERR_DURATION_REQUIRED": "Укажите длительность!",
+      "ERR_DURATION_INVALID": "Значение должно быть целым положительным числом!",
+      "LBL_AUTHORS": "Авторы",
+      "ERR_AUTHORS_MINAUTHORS": "Пожалуйста, выберите хотя бы одного автора!",
+      "BTN_SAVE": "Сохранить",
+      "BTN_CANCEL": "Отменить"               
+    },
+    "LOGIN_PAGE": {
+      "FORM_TITLE": "Вход",
+      "LBL_EMAIL": "Почта",
+      "LBL_PASSWORD": "Пароль",
+      "EMAIL_PLACEHOLDER": "Введите почту",
+      "PASSWORD_PLACEHOLDER": "Введите пароль",      
+      "REQUIRED": "обязательное поле",
+      "FORGOT_PASSWORD": "Забыли пароль",
+      "BTN_LOGIN": "Войти"
+    }
+  },
+  "SHARED": {
+    "HEADER": {
+      "LOG_OFF": "Выйти",
+      "LOGIN": "Вход"
+    },
+    "FOOTER": {
+      "RIGHTS_RESERVED": "Все права защищены"
+    },
+    "HOURS_ABBREV": "ч",
+    "MINUTES_ABBREV": "м"
+  }
+}

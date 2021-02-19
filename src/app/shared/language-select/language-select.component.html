@@ -1,0 +1,3 @@
+<select (change)="changeLang(langSelect.value)" #langSelect>
+  <option *ngFor="let language of supportedLangs" [value]="language.lang" [selected]="language.lang === (currentLang | async)">{{language.title}}</option>
+</select>
